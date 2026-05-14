@@ -72,6 +72,7 @@ export default function ProjectPage() {
                   src={project.image} 
                   alt={project.title} 
                   fill 
+                  sizes="(max-width: 1024px) 100vw, 800px"
                   className="object-cover"
                   referrerPolicy="no-referrer"
                 />

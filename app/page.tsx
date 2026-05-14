@@ -16,7 +16,7 @@ export default function Portfolio() {
 
       <main className="flex-1 pt-8 relative scroll-smooth overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">
-          <div className="flex flex-col space-y-20">
+          <div className="flex flex-col space-y-12">
             <Hero />
             <About />
             <Skills />
