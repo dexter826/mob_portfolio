@@ -1,17 +1,19 @@
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
-import { PROJECTS } from '@/lib/data';
+import { PROJECTS, UI_LABELS } from '@/lib/data';
 import { motion } from 'motion/react';
 import { ChevronLeft, Terminal, Globe, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function ProjectPage() {
   const params = useParams();
   const router = useRouter();
+  const { t } = useLanguage();
   const project = PROJECTS.find(p => p.slug === params.slug);
 
   if (!project) {
@@ -33,7 +35,7 @@ export default function ProjectPage() {
           className="group flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-12 font-mono text-xs uppercase tracking-widest cursor-pointer"
         >
           <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-          Back_to_Home
+          {t(UI_LABELS.projects.backToHome)}
         </button>
 
         <motion.div
@@ -46,7 +48,7 @@ export default function ProjectPage() {
             <div className="flex-1">
               {project.role && (
                 <span className="text-[10px] sm:text-xs font-mono text-primary uppercase tracking-[0.4em] mb-4 block">
-                  {project.role}
+                  {t(project.role)}
                 </span>
               )}
               <h1 className="text-5xl md:text-8xl font-black uppercase italic tracking-tighter text-foreground mb-6 leading-[0.85]">
@@ -64,13 +66,13 @@ export default function ProjectPage() {
             <div className="flex gap-4 shrink-0">
               <Link href={project.link} target="_blank">
                 <Button variant="outline" size="sm" className="rounded-none font-mono text-[10px] uppercase tracking-widest border-border-medium hover:border-primary hover:text-primary bg-transparent h-10 px-6">
-                  <Terminal className="w-4 h-4 mr-2" /> GitHub
+                  <Terminal className="w-4 h-4 mr-2" /> {t(UI_LABELS.projects.github)}
                 </Button>
               </Link>
               {(project as any).liveDemo && (
                 <Link href={(project as any).liveDemo} target="_blank">
                   <Button size="sm" className="rounded-none font-mono text-[10px] uppercase tracking-widest bg-primary text-black hover:bg-primary/90 h-10 px-6">
-                    <Globe className="w-4 h-4 mr-2" /> Live Demo
+                    <Globe className="w-4 h-4 mr-2" /> {t(UI_LABELS.projects.liveDemo)}
                   </Button>
                 </Link>
               )}
@@ -98,24 +100,24 @@ export default function ProjectPage() {
               <section className="space-y-8">
                 <div className="space-y-4">
                   <h2 className="text-xs uppercase tracking-[0.3em] text-primary font-mono font-bold flex items-center gap-3">
-                    <span className="w-8 h-px bg-primary/30" /> Overview
+                    <span className="w-8 h-px bg-primary/30" /> {t(UI_LABELS.projects.overview)}
                   </h2>
                   <p className="text-muted-foreground leading-relaxed text-xl italic">
-                    {project.description}
+                    {t(project.description)}
                   </p>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-4">
                   <div className="space-y-3">
-                    <h3 className="text-[10px] uppercase tracking-widest text-foreground font-mono font-bold">The Problem</h3>
+                    <h3 className="text-[10px] uppercase tracking-widest text-foreground font-mono font-bold">{t(UI_LABELS.projects.problem)}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                      {(project as any).problem}
+                      {t((project as any).problem)}
                     </p>
                   </div>
                   <div className="space-y-3">
-                    <h3 className="text-[10px] uppercase tracking-widest text-foreground font-mono font-bold">The Solution</h3>
+                    <h3 className="text-[10px] uppercase tracking-widest text-foreground font-mono font-bold">{t(UI_LABELS.projects.solution)}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                      {(project as any).solution}
+                      {t((project as any).solution)}
                     </p>
                   </div>
                 </div>
@@ -124,20 +126,20 @@ export default function ProjectPage() {
               {/* Detailed Features Section */}
               <section className="space-y-12">
                 <h2 className="text-xs uppercase tracking-[0.3em] text-primary font-mono font-bold flex items-center gap-3">
-                  <span className="w-8 h-px bg-primary/30" /> Core Features
+                  <span className="w-8 h-px bg-primary/30" /> {t(UI_LABELS.projects.coreFeatures)}
                 </h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
                   {(project as any).detailedFeatures?.map((category: any, i: number) => (
                     <div key={i} className="space-y-6">
                       <h3 className="text-sm font-bold uppercase tracking-tighter text-foreground border-l-2 border-primary pl-4">
-                        {category.category}
+                        {t(category.category)}
                       </h3>
                       <ul className="space-y-4">
-                        {category.items.map((item: string, j: number) => (
+                        {category.items.map((item: any, j: number) => (
                           <li key={j} className="flex items-start gap-3 text-xs text-muted-foreground group">
                             <ArrowRight className="w-3 h-3 mt-0.5 text-primary shrink-0 group-hover:translate-x-1 transition-transform" />
-                            {item}
+                            {t(item)}
                           </li>
                         ))}
                       </ul>
@@ -149,10 +151,10 @@ export default function ProjectPage() {
               {/* Development Section */}
               <section className="space-y-8">
                 <h2 className="text-xs uppercase tracking-[0.3em] text-primary font-mono font-bold flex items-center gap-3">
-                  <span className="w-8 h-px bg-primary/30" /> Case Study
+                  <span className="w-8 h-px bg-primary/30" /> {t(UI_LABELS.projects.caseStudy)}
                 </h2>
                 <div className="prose prose-invert max-w-none prose-sm text-muted-foreground leading-relaxed">
-                  <p>{project.fullDescription}</p>
+                  <p>{t(project.fullDescription)}</p>
                 </div>
               </section>
             </div>
@@ -161,7 +163,7 @@ export default function ProjectPage() {
             <div className="lg:col-span-4 space-y-10">
               {/* Tech Stack Sidebar */}
               <div className="p-8 border border-border-subtle bg-card/30 backdrop-blur-sm sticky top-12">
-                <h3 className="text-[10px] uppercase tracking-widest text-primary font-mono mb-8 font-bold">Tech Stack</h3>
+                <h3 className="text-[10px] uppercase tracking-widest text-primary font-mono mb-8 font-bold">{t(UI_LABELS.projects.techStack)}</h3>
                 
                 <div className="space-y-8">
                   {Object.entries((project as any).techStack || {}).map(([key, value]) => (
@@ -174,7 +176,7 @@ export default function ProjectPage() {
 
                 <div className="mt-12 pt-8 border-t border-border-subtle">
                   <Link href={project.link} target="_blank" className="flex items-center justify-between group">
-                    <span className="text-[10px] uppercase tracking-widest font-mono text-muted-foreground group-hover:text-primary transition-colors">View Source</span>
+                    <span className="text-[10px] uppercase tracking-widest font-mono text-muted-foreground group-hover:text-primary transition-colors">{t(UI_LABELS.projects.viewSource)}</span>
                     <Terminal className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
                   </Link>
                 </div>

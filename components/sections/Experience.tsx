@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { EXPERIENCE } from '@/lib/data';
+import { EXPERIENCE, UI_LABELS } from '@/lib/data';
 import { ExternalLink } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 
 const container = {
@@ -21,6 +22,8 @@ const item = {
 };
 
 export function Experience() {
+  const { t } = useLanguage();
+
   return (
     <motion.div 
       id="experience"
@@ -30,7 +33,7 @@ export function Experience() {
       viewport={{ once: true, margin: "-100px" }}
       className="border-t border-border-medium py-12"
     >
-      <h2 className="text-xs uppercase tracking-widest text-primary mb-12 font-mono">Kinh nghiệm</h2>
+      <h2 className="text-xs uppercase tracking-widest text-primary mb-12 font-mono">{t(UI_LABELS.experience.title)}</h2>
       
       <div className="relative border-l border-border-subtle ml-3 space-y-12">
         {EXPERIENCE.map((exp, idx) => (
@@ -41,7 +44,7 @@ export function Experience() {
               <div className="space-y-3">
                 <div>
                   <h3 className="text-lg font-bold uppercase italic tracking-tight text-foreground mb-1">
-                    {exp.role}
+                    {t(exp.role)}
                   </h3>
                   <div className="flex items-center gap-2">
                     <p className="text-[11px] font-mono text-muted-foreground uppercase tracking-wider">
@@ -53,7 +56,7 @@ export function Experience() {
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-primary hover:text-foreground transition-colors"
-                        title="Xem chi tiết công ty"
+                        title={t(UI_LABELS.experience.viewCompany)}
                       >
                         <ExternalLink className="w-3 h-3" />
                       </a>
@@ -62,7 +65,7 @@ export function Experience() {
                 </div>
                 
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  {exp.description}
+                  {t(exp.description)}
                 </p>
               </div>
 

@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { SKILLS } from '@/lib/data';
+import { SKILLS, UI_LABELS } from '@/lib/data';
+import { useLanguage } from '@/context/LanguageContext';
 
 const container = {
   hidden: { opacity: 0 },
@@ -19,6 +20,8 @@ const item = {
 };
 
 export function Skills() {
+  const { t } = useLanguage();
+
   return (
     <motion.div 
       id="skills"
@@ -28,7 +31,7 @@ export function Skills() {
       viewport={{ once: true, margin: "-100px" }}
       className="border-t border-border-medium py-12"
     >
-      <h2 className="text-xs uppercase tracking-widest text-primary mb-12 font-mono">Kỹ năng</h2>
+      <h2 className="text-xs uppercase tracking-widest text-primary mb-12 font-mono">{t(UI_LABELS.skills.title)}</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {SKILLS.map((skillGroup, idx) => (
@@ -38,13 +41,11 @@ export function Skills() {
             className={`p-6 border border-border-subtle bg-card/50 relative overflow-hidden group hover:border-primary/50 transition-colors ${
               idx === 0 ? 'md:col-span-2' : 'md:col-span-1'
             }`}
-
-
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-[80px] group-hover:bg-primary/10 transition-colors" />
             
             <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted mb-4 font-mono group-hover:text-primary transition-colors">
-              {skillGroup.category}
+              {t(skillGroup.category)}
             </h3>
             
             <div className="flex flex-wrap gap-2">
@@ -53,7 +54,7 @@ export function Skills() {
                   key={i} 
                   className="px-3 py-1 bg-white/5 border border-white/5 text-[10px] uppercase tracking-wider font-mono text-muted-foreground group-hover:text-foreground transition-colors"
                 >
-                  {skill}
+                  {t(skill)}
                 </span>
               ))}
             </div>

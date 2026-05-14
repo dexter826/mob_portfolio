@@ -2,11 +2,11 @@
 
 import { motion } from 'motion/react';
 import { ChevronRight } from 'lucide-react';
-import { PROJECTS } from '@/lib/data';
+import { PROJECTS, UI_LABELS } from '@/lib/data';
 import Image from 'next/image';
-import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
+import { useLanguage } from '@/context/LanguageContext';
 
 const container = {
   hidden: { opacity: 0 },
@@ -24,6 +24,8 @@ const item = {
 };
 
 export function Projects() {
+  const { t } = useLanguage();
+
   return (
     <motion.div 
       id="projects"
@@ -34,9 +36,9 @@ export function Projects() {
       className="border-t border-border-medium py-12 flex flex-col"
     >
       <div className="flex justify-between items-center mb-12">
-        <h2 className="text-xs uppercase tracking-widest text-primary font-mono">Dự án</h2>
+        <h2 className="text-xs uppercase tracking-widest text-primary font-mono">{t(UI_LABELS.projects.title)}</h2>
         <a href="https://github.com/dexter826" target="_blank" rel="noopener noreferrer" className="text-[10px] uppercase tracking-widest text-muted hover:text-primary transition-colors flex items-center gap-1 font-mono group">
-          GitHub <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+          {t(UI_LABELS.projects.github)} <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
         </a>
       </div>
       
@@ -66,7 +68,7 @@ export function Projects() {
                 <div className="w-full lg:w-[45%] flex flex-col">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="h-[1px] w-8 bg-primary/30" />
-                    <span className="text-[10px] uppercase font-mono text-primary tracking-[0.3em]">Project_0{idx + 1}</span>
+                    <span className="text-[10px] uppercase font-mono text-primary tracking-[0.3em]">{t(UI_LABELS.projects.idPrefix)}_0{idx + 1}</span>
                   </div>
                   
                   <h3 className="text-3xl sm:text-4xl font-bold uppercase italic tracking-tighter mb-4 group-hover:text-primary transition-colors leading-none">
@@ -74,7 +76,7 @@ export function Projects() {
                   </h3>
                   
                   <p className="text-sm text-muted-foreground leading-relaxed mb-6 max-w-xl">
-                    {project.description}
+                    {t(project.description)}
                   </p>
                   
                   <div className="flex flex-wrap gap-2 mb-8">
@@ -86,7 +88,7 @@ export function Projects() {
                   </div>
 
                   <div className="flex items-center gap-2 text-[10px] uppercase font-mono text-muted group-hover:text-primary transition-colors">
-                    <span>Xem chi tiết dự án</span>
+                    <span>{t(UI_LABELS.projects.viewDetail)}</span>
                     <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>

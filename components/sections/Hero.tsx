@@ -1,12 +1,14 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { PERSONAL_INFO } from '@/lib/data';
+import { useLanguage } from '@/context/LanguageContext';
+import { PERSONAL_INFO, UI_LABELS } from '@/lib/data';
 import { MatrixRain } from '@/components/ui/MatrixRain';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 export function Hero() {
+  const { t } = useLanguage();
   const [text, setText] = useState('');
   const fullText = `${PERSONAL_INFO.rolePrefix} ${PERSONAL_INFO.roleSuffix}`;
   
@@ -58,18 +60,20 @@ export function Hero() {
         </motion.div>
 
         <div className="text-center lg:text-right">
-          <p className="text-primary text-[10px] font-mono uppercase tracking-[0.3em] mb-2">{PERSONAL_INFO.status}</p>
-          {(PERSONAL_INFO as any).quote && (
+          <p className="text-primary text-[10px] font-mono uppercase tracking-[0.3em] mb-2">{t(PERSONAL_INFO.status)}</p>
+          {t(PERSONAL_INFO.quote) && (
             <motion.p 
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.5 }}
               transition={{ delay: 2, duration: 1 }}
               className="text-[9px] italic text-foreground font-mono mb-4 block"
             >
-              &ldquo;{(PERSONAL_INFO as any).quote}&rdquo;
+              &ldquo;{t(PERSONAL_INFO.quote)}&rdquo;
             </motion.p>
           )}
-          <p className="text-[10px] text-muted-foreground font-mono uppercase tracking-widest opacity-60">Based in {PERSONAL_INFO.basedIn}</p>
+          <p className="text-[10px] text-muted-foreground font-mono uppercase tracking-widest opacity-60">
+            {t(UI_LABELS.hero.basedIn)} {t(PERSONAL_INFO.basedIn)}
+          </p>
         </div>
       </div>
     </motion.section>
