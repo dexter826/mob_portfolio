@@ -6,6 +6,7 @@ import { PROJECTS } from '@/lib/data';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import Link from 'next/link';
 
 const container = {
   hidden: { opacity: 0 },
@@ -34,7 +35,7 @@ export function Projects() {
     >
       <div className="flex justify-between items-center mb-8">
         <h2 className="text-xs uppercase tracking-widest text-primary font-mono">Dự Án Nổi Bật</h2>
-        <a href="https://github.com" className="text-[10px] uppercase tracking-widest text-muted hover:text-foreground transition-colors flex items-center gap-1 font-mono">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-[10px] uppercase tracking-widest text-muted hover:text-foreground transition-colors flex items-center gap-1 font-mono">
           GitHub <ChevronRight className="w-3 h-3" />
         </a>
       </div>
@@ -42,7 +43,8 @@ export function Projects() {
       <div className="space-y-10">
         {PROJECTS.map((project, idx) => (
           <motion.div key={idx} variants={item}>
-            <Card className="group block transition-all hover:bg-white/5 border-0 bg-transparent rounded-none shadow-none p-0 cursor-pointer">
+            <Link href={`/projects/${project.slug}`}>
+              <Card className="group block transition-all hover:bg-white/5 border-0 bg-transparent rounded-none shadow-none p-0 cursor-pointer">
               <CardContent className="p-0">
                 <div className="relative w-full h-40 sm:h-48 lg:h-56 mb-4 overflow-hidden bg-border-subtle group-hover:border-primary border border-transparent transition-colors">
                   <Image 
@@ -70,7 +72,8 @@ export function Projects() {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </Link>
+        </motion.div>
         ))}
       </div>
     </motion.div>

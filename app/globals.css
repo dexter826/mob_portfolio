@@ -80,6 +80,26 @@
     @apply bg-background text-foreground;
   }
   html {
-    @apply font-sans;
+    @apply font-sans scroll-smooth;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #050505;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #222;
+    border-radius: 10px;
+    border: 1px solid #111;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00ff41;
+    box-shadow: 0 0 10px #00ff41;
   }
 }
