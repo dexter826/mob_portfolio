@@ -26,20 +26,23 @@ export function Skills() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-100px" }}
-      className="border-t border-border-medium pt-6"
+      className="border-t border-border-medium pt-12"
     >
-      <h2 className="text-xs uppercase tracking-widest text-primary mb-6 font-mono">Kỹ năng cốt lõi</h2>
+      <h2 className="text-xs uppercase tracking-widest text-primary mb-8 font-mono">Kỹ năng cốt lõi</h2>
       <div className="space-y-8">
         {SKILLS.map((skillGroup, idx) => (
           <motion.div key={idx} variants={item}>
-            <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted mb-2 font-mono">
+            <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted mb-3 font-mono">
               {skillGroup.category}
             </h3>
-            <ul className="font-mono text-sm space-y-1 text-muted-foreground">
+            <div className="flex flex-wrap gap-x-6 gap-y-3 font-mono text-xs sm:text-sm text-muted-foreground">
               {skillGroup.items.map((item, i) => (
-                <li key={i}>{item}</li>
+                <span key={i} className="flex items-center gap-2">
+                   <span className="w-1 h-1 bg-primary/40 rotate-45" />
+                  {item}
+                </span>
               ))}
-            </ul>
+            </div>
           </motion.div>
         ))}
       </div>

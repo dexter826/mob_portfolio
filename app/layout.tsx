@@ -11,8 +11,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'IT Student Portfolio',
+  title: 'M.O.B Portfolio',
   description: 'Personal portfolio of an Information Technology student.',
+  icons: {
+    icon: '/icon.png',
+  },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

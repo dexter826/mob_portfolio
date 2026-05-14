@@ -30,21 +30,21 @@ export function Projects() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-100px" }}
-      className="border-t border-border-medium pt-6 flex flex-col"
+      className="border-t border-border-medium pt-12 flex flex-col"
     >
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-8">
         <h2 className="text-xs uppercase tracking-widest text-primary font-mono">Dự Án Nổi Bật</h2>
         <a href="https://github.com" className="text-[10px] uppercase tracking-widest text-muted hover:text-foreground transition-colors flex items-center gap-1 font-mono">
           GitHub <ChevronRight className="w-3 h-3" />
         </a>
       </div>
       
-      <div className="space-y-8">
+      <div className="space-y-10">
         {PROJECTS.map((project, idx) => (
           <motion.div key={idx} variants={item}>
             <Card className="group block transition-all hover:bg-white/5 border-0 bg-transparent rounded-none shadow-none p-0 cursor-pointer">
               <CardContent className="p-0">
-                <div className="relative w-full h-48 sm:h-56 lg:h-64 mb-6 overflow-hidden bg-border-subtle group-hover:border-primary border border-transparent transition-colors">
+                <div className="relative w-full h-40 sm:h-48 lg:h-56 mb-4 overflow-hidden bg-border-subtle group-hover:border-primary border border-transparent transition-colors">
                   <Image 
                     src={project.image} 
                     alt={project.title} 
@@ -53,20 +53,17 @@ export function Projects() {
                     referrerPolicy="no-referrer"
                   />
                 </div>
-                <div className="flex justify-between items-end border-b border-border-subtle pb-2 mb-3">
-                  <span className="text-2xl font-bold uppercase italic tracking-tight group-hover:text-primary transition-colors line-clamp-1 mr-4">
+                <div className="flex justify-between items-end border-b border-border-subtle pb-1.5 mb-2.5">
+                  <span className="text-xl font-bold uppercase italic tracking-tight group-hover:text-primary transition-colors line-clamp-1">
                     0{idx + 1}. {project.title}
                   </span>
-                  <span className="text-[10px] text-muted uppercase whitespace-nowrap hidden lg:block font-mono">
-                    {project.tech[0]}
-                  </span>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-3">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5">
                    {project.tech.map((tech, i) => (
-                     <Badge key={i} variant="secondary" className="text-[10px] uppercase font-mono tracking-widest rounded-none text-primary bg-border-subtle hover:bg-primary hover:text-black">
+                     <Badge key={i} variant="secondary" className="text-[9px] uppercase font-mono tracking-widest rounded-none text-primary bg-border-subtle hover:bg-primary hover:text-black py-0 px-2">
                        {tech}
                      </Badge>
                    ))}
