@@ -11,15 +11,15 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Minh.Dev | Software Engineer Portfolio',
-  description: 'Portfolio của Minh - Sinh viên IT đam mê phát triển phần mềm, chuyên về Web và Hệ thống.',
-  keywords: ['Software Engineer', 'Portfolio', 'Minh Dev', 'Web Development', 'Next.js'],
-  authors: [{ name: 'Minh.Dev' }],
+  title: 'Trần Công Minh | Software Engineer',
+  description: 'Portfolio của Trần Công Minh - Cử nhân Kỹ thuật Phần mềm đam mê phát triển hệ thống phần mềm thực dụng.',
+  keywords: ['Software Engineer', 'Portfolio', 'Trần Công Minh', 'Web Development', 'Next.js', 'Flutter', 'Bachelor'],
+  authors: [{ name: 'Trần Công Minh' }],
   openGraph: {
-    title: 'Minh.Dev Portfolio',
-    description: 'Khám phá các dự án và kỹ năng lập trình của Minh.',
+    title: 'Trần Công Minh Portfolio',
+    description: 'Khám phá các dự án và kỹ năng của Trần Công Minh - Cử nhân Kỹ thuật Phần mềm.',
     url: 'https://minhdev.id.vn',
-    siteName: 'Minh.Dev Portfolio',
+    siteName: 'Trần Công Minh Portfolio',
     locale: 'vi_VN',
     type: 'website',
   },
@@ -32,14 +32,14 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Minh.Dev",
+    "name": "Trần Công Minh",
     "jobTitle": "Software Engineer",
     "url": "https://minhdev.id.vn",
     "sameAs": [
-      "https://github.com",
-      "https://linkedin.com"
+      "https://github.com/dexter826"
     ]
   };
+
 
   return (
     <html lang="vi" className={cn(jetbrainsMono.variable, "font-sans", geist.variable)}>

@@ -31,50 +31,68 @@ export function Projects() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-100px" }}
-      className="border-t border-border-medium pt-12 flex flex-col"
+      className="border-t border-border-medium py-12 flex flex-col"
     >
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-xs uppercase tracking-widest text-primary font-mono">Dự Án Nổi Bật</h2>
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-[10px] uppercase tracking-widest text-muted hover:text-foreground transition-colors flex items-center gap-1 font-mono">
-          GitHub <ChevronRight className="w-3 h-3" />
+      <div className="flex justify-between items-center mb-12">
+        <h2 className="text-xs uppercase tracking-widest text-primary font-mono">Dự án</h2>
+        <a href="https://github.com/dexter826" target="_blank" rel="noopener noreferrer" className="text-[10px] uppercase tracking-widest text-muted hover:text-primary transition-colors flex items-center gap-1 font-mono group">
+          GitHub <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
         </a>
       </div>
       
-      <div className="space-y-10">
+      <div className="flex flex-col gap-16 lg:gap-20">
         {PROJECTS.map((project, idx) => (
           <motion.div key={idx} variants={item}>
             <Link href={`/projects/${project.slug}`}>
-              <Card className="group block transition-all hover:bg-white/5 border-0 bg-transparent rounded-none shadow-none p-0 cursor-pointer">
-              <CardContent className="p-0">
-                <div className="relative w-full h-40 sm:h-48 lg:h-56 mb-4 overflow-hidden bg-border-subtle group-hover:border-primary border border-transparent transition-colors">
+              <div className={`group flex flex-col ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-16 items-center cursor-pointer`}>
+                {/* Image Section */}
+                <div className="w-full lg:w-[55%] relative aspect-[16/9] overflow-hidden border border-border-subtle group-hover:border-primary/50 transition-colors bg-card">
                   <Image 
                     src={project.image} 
                     alt={project.title} 
                     fill 
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover opacity-60 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0 duration-500" 
-                    referrerPolicy="no-referrer"
+                    className="object-cover transition-all duration-700" 
                   />
+                  {/* Scanline Effect */}
+                  <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-10 pointer-events-none bg-[length:100%_2px,3px_100%] opacity-0 group-hover:opacity-100 transition-opacity" />
+                  
+                  {/* Project Number Overlay */}
+                  <div className={`absolute bottom-4 ${idx % 2 === 1 ? 'left-4' : 'right-4'} z-20`}>
+                    <span className="text-4xl font-black text-white/5 font-mono select-none">0{idx + 1}</span>
+                  </div>
                 </div>
-                <div className="flex justify-between items-end border-b border-border-subtle pb-1.5 mb-2.5">
-                  <span className="text-xl font-bold uppercase italic tracking-tight group-hover:text-primary transition-colors line-clamp-1">
-                    0{idx + 1}. {project.title}
-                  </span>
+                
+                {/* Content Section */}
+                <div className="w-full lg:w-[45%] flex flex-col">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="h-[1px] w-8 bg-primary/30" />
+                    <span className="text-[10px] uppercase font-mono text-primary tracking-[0.3em]">Project_0{idx + 1}</span>
+                  </div>
+                  
+                  <h3 className="text-3xl sm:text-4xl font-bold uppercase italic tracking-tighter mb-4 group-hover:text-primary transition-colors leading-none">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-6 max-w-xl">
+                    {project.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-8">
+                     {project.tech.map((tech, i) => (
+                       <Badge key={i} variant="secondary" className="text-[9px] uppercase font-mono tracking-widest rounded-none text-primary bg-primary/5 border border-primary/10 hover:bg-primary hover:text-black py-0.5 px-2 transition-colors">
+                         {tech}
+                       </Badge>
+                     ))}
+                  </div>
+
+                  <div className="flex items-center gap-2 text-[10px] uppercase font-mono text-muted group-hover:text-primary transition-colors">
+                    <span>Xem chi tiết dự án</span>
+                    <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
-                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-3">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                   {project.tech.map((tech, i) => (
-                     <Badge key={i} variant="secondary" className="text-[9px] uppercase font-mono tracking-widest rounded-none text-primary bg-border-subtle hover:bg-primary hover:text-black py-0 px-2">
-                       {tech}
-                     </Badge>
-                   ))}
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-        </motion.div>
+              </div>
+            </Link>
+          </motion.div>
         ))}
       </div>
     </motion.div>

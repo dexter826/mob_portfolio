@@ -26,9 +26,9 @@ export function Skills() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-100px" }}
-      className="border-t border-border-medium pt-12"
+      className="border-t border-border-medium py-12"
     >
-      <h2 className="text-xs uppercase tracking-widest text-primary mb-8 font-mono">Kỹ năng chuyên môn</h2>
+      <h2 className="text-xs uppercase tracking-widest text-primary mb-12 font-mono">Kỹ năng</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {SKILLS.map((skillGroup, idx) => (
@@ -36,8 +36,10 @@ export function Skills() {
             key={idx} 
             variants={item}
             className={`p-6 border border-border-subtle bg-card/50 relative overflow-hidden group hover:border-primary/50 transition-colors ${
-              idx === 0 ? 'md:col-span-2' : ''
-            } ${idx === 3 ? 'md:col-span-3' : ''}`}
+              idx === 0 ? 'md:col-span-2' : 'md:col-span-1'
+            }`}
+
+
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-[80px] group-hover:bg-primary/10 transition-colors" />
             

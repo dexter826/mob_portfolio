@@ -82,6 +82,10 @@
   html {
     @apply font-sans scroll-smooth;
   }
+  
+  button, [role="button"], a {
+    @apply cursor-pointer;
+  }
 
   /* Custom Scrollbar */
   ::-webkit-scrollbar {
