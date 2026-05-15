@@ -26,7 +26,7 @@ export function Footer() {
           </a>
         )}
       </div>
-      <div className="text-[10px] uppercase tracking-[0.3em] font-bold text-muted font-mono">
+      <div className="text-[11px] uppercase tracking-mega font-bold text-muted-foreground/60 font-mono">
         {PERSONAL_INFO.email}
       </div>
     </footer>

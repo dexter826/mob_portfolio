@@ -1,24 +1,18 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion, Variants } from 'motion/react';
 import { EXPERIENCE, UI_LABELS } from '@/lib/data';
 import { ExternalLink } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { staggerContainer, easeExpo } from '@/lib/motion';
 
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
-const item = {
+const item: Variants = {
   hidden: { opacity: 0, x: -20 },
-  show: { opacity: 1, x: 0 }
+  show: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 0.6, ease: easeExpo as any }
+  }
 };
 
 export function Experience() {
@@ -27,27 +21,41 @@ export function Experience() {
   return (
     <motion.div 
       id="experience"
-      variants={container}
+      variants={staggerContainer}
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-100px" }}
-      className="border-t border-border-medium py-12"
+      className="border-t border-border-medium py-10 sm:py-12"
     >
-      <h2 className="text-xs uppercase tracking-widest text-primary mb-12 font-mono">{t(UI_LABELS.experience.title)}</h2>
+      <motion.h2 
+        variants={item}
+        className="text-xs uppercase tracking-mega text-primary font-bold mb-8 sm:mb-10 font-mono"
+      >
+        {t(UI_LABELS.experience.title)}
+      </motion.h2>
       
-      <div className="relative border-l border-border-subtle ml-3 space-y-12">
+      <div className="relative border-l border-border-subtle ml-3 space-y-16">
         {EXPERIENCE.map((exp, idx) => (
           <motion.div key={idx} variants={item} className="relative pl-8 group">
-            <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_#00ff41]" />
+            <div className="absolute left-[-5.5px] top-2 w-[11px] h-[11px] border border-primary/50 bg-background flex items-center justify-center">
+              <motion.div 
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [1, 0.7, 1]
+                }}
+                transition={{ repeat: Infinity, duration: 2 }}
+                className="w-1.5 h-1.5 bg-primary shadow-[0_0_8px_#00ff41]" 
+              />
+            </div>
             
             <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-start">
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <div>
-                  <h3 className="text-lg font-bold uppercase italic tracking-tight text-foreground mb-1">
+                  <h3 className="text-xl font-bold uppercase italic tracking-tight text-foreground mb-2 group-hover:text-primary transition-colors">
                     {t(exp.role)}
                   </h3>
                   <div className="flex items-center gap-2">
-                    <p className="text-[11px] font-mono text-muted-foreground uppercase tracking-wider">
+                    <p className="text-[11px] font-mono text-muted-foreground uppercase tracking-widest font-medium">
                       {exp.company}
                     </p>
                     {(exp as any).link && (
@@ -64,13 +72,13 @@ export function Experience() {
                   </div>
                 </div>
                 
-                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm sm:text-[14px] text-muted-foreground/90 leading-relaxed font-medium max-w-2xl">
                   {t(exp.description)}
                 </p>
               </div>
 
               <div className="md:pt-1">
-                <span className="text-[10px] font-mono text-primary uppercase tracking-widest bg-primary/5 px-2 py-1 border border-primary/20 whitespace-nowrap">
+                <span className="text-[11px] font-mono text-primary uppercase tracking-mega bg-primary/5 px-2.5 py-1.5 border border-primary/20 whitespace-nowrap font-bold">
                   {exp.period}
                 </span>
               </div>

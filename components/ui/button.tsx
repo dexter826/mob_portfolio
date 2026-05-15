@@ -1,5 +1,9 @@
+'use client';
+
+import * as React from "react"
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
+import { motion, HTMLMotionProps } from "motion/react"
 
 import { cn } from "@/lib/utils"
 
@@ -8,9 +12,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_15px_rgba(0,255,65,0.3)]",
         outline:
-          "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
+          "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50 dark:hover:border-primary/50 dark:hover:shadow-[0_0_15px_rgba(0,255,65,0.1)]",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
         ghost:
@@ -40,18 +44,34 @@ const buttonVariants = cva(
   }
 )
 
+
+export interface ButtonProps 
+  extends ButtonPrimitive.Props, 
+    VariantProps<typeof buttonVariants> {
+  motionProps?: HTMLMotionProps<"div">;
+}
+
 function Button({
   className,
   variant = "default",
   size = "default",
+  motionProps,
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+}: ButtonProps) {
   return (
-    <ButtonPrimitive
-      data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    />
+    <motion.div
+      className="inline-flex shrink-0"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+      {...motionProps}
+    >
+      <ButtonPrimitive
+        data-slot="button"
+        className={cn(buttonVariants({ variant, size, className }))}
+        {...props}
+      />
+    </motion.div>
   )
 }
 
