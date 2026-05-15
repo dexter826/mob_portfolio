@@ -13,7 +13,7 @@ export const SplashProvider: React.FC<SplashProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setShowSplash(true);
+    requestAnimationFrame(() => setShowSplash(true));
   }, []);
 
   useEffect(() => {

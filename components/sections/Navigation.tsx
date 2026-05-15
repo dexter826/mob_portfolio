@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { PERSONAL_INFO, UI_LABELS } from '@/lib/data';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -27,9 +28,9 @@ export function Navigation() {
   return (
     <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border-subtle shrink-0">
       <div className="max-w-7xl mx-auto px-6 sm:px-12 py-5 flex justify-between items-center w-full">
-        <a href="/" className="text-xl sm:text-2xl font-black tracking-tighter uppercase text-foreground group">
+        <Link href="/" className="text-xl sm:text-2xl font-black tracking-tighter uppercase text-foreground group">
           <GlitchText text={PERSONAL_INFO.name} className="group-hover:text-primary transition-colors" />
-        </a>
+        </Link>
         
         <div className="flex items-center gap-4 sm:gap-8">
           <nav className="hidden sm:flex gap-8 text-[11px] uppercase tracking-mega font-bold text-muted-foreground/60 font-mono">

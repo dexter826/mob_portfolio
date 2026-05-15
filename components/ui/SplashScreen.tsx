@@ -14,6 +14,13 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
   const [animationData, setAnimationData] = useState<any>(null);
   const [isVisible, setIsVisible] = useState(true);
 
+  const handleComplete = React.useCallback(() => {
+    setIsVisible(false);
+    setTimeout(() => {
+      onComplete?.();
+    }, 400);
+  }, [onComplete]);
+
   useEffect(() => {
     fetch('/splash.json')
       .then((res) => res.json())
@@ -29,14 +36,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, []);
-
-  const handleComplete = () => {
-    setIsVisible(false);
-    setTimeout(() => {
-      onComplete?.();
-    }, 400);
-  };
+  }, [handleComplete, onComplete]);
 
   return (
     <AnimatePresence>

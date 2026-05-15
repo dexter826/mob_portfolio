@@ -19,7 +19,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const savedLang = localStorage.getItem('portfolio-lang') as Language;
     if (savedLang && (savedLang === 'vi' || savedLang === 'en')) {
-      setLanguageState(savedLang);
+      requestAnimationFrame(() => setLanguageState(savedLang));
     }
   }, []);
 
