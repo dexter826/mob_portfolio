@@ -12,7 +12,7 @@
 
   <p>Một trang web portfolio hiện đại, tối giản và chuyên nghiệp được xây dựng bằng Next.js 15.</p>
 
-<a href="https://mob-portfolio-sand.vercel.app/"><strong>🚀 Xem bản Live Demo</strong></a>
+<a href="https://mob-portfolio-sand.vercel.app/" target="_blank" rel="noopener noreferrer"><strong>🚀 Xem bản Live Demo</strong></a>
 
 </div>
 
@@ -26,22 +26,22 @@
 
 Dự án được xây dựng dựa trên các công nghệ hiện đại nhất:
 
-- **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
-- **Ngôn ngữ:** [TypeScript](https://www.typescriptlang.org/)
-- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
-- **Animations:** [Framer Motion](https://www.framer.com/motion/)
-- **UI Components:** [Shadcn UI](https://ui.shadcn.com/) & [Lucide React](https://lucide.dev/)
+- **Framework:** <a href="https://nextjs.org/" target="_blank">Next.js 15</a> (App Router)
+- **Ngôn ngữ:** <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>
+- **Styling:** <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS 4</a>
+- **Animations:** <a href="https://www.framer.com/motion/" target="_blank">Framer Motion</a>
+- **UI Components:** <a href="https://ui.shadcn.com/" target="_blank">Shadcn UI</a> & <a href="https://lucide.dev/" target="_blank">Lucide React</a>
 - **Quản lý dữ liệu:** Dữ liệu tập trung tại `lib/data.ts` giúp dễ dàng cập nhật nội dung.
 
 - **Clean Architecture:** Cấu trúc thư mục rõ ràng, dễ bảo trì và mở rộng.
 
 ## 📱 Dự án tiêu biểu
 
-| Dự án        | Mô tả                                  | Công nghệ                  | Demo                                               |
-| :----------- | :------------------------------------- | :------------------------- | :------------------------------------------------- |
-| **CineMOB**  | Movie Tracker thông minh tích hợp AI.  | React, Firebase, AI        | [Link](https://cinematrics-e0231.firebaseapp.com/) |
-| **ShiftPay** | Hệ thống quản lý nhân sự & bảng lương. | React, Firebase, VietQR    | [Link](https://at-shiftpay.web.app/)               |
-| **Smurfy**   | Mạng xã hội thời gian thực.            | React, Firebase, ZegoCloud | [Link](https://smurfy-138c1.web.app/)              |
+| Dự án        | Mô tả                                  | Công nghệ                  | Demo                                                                              |
+| :----------- | :------------------------------------- | :------------------------- | :-------------------------------------------------------------------------------- |
+| **CineMOB**  | Movie Tracker thông minh tích hợp AI.  | React, Firebase, AI        | <a href="https://cinematrics-e0231.firebaseapp.com/" target="_blank">Link</a> |
+| **ShiftPay** | Hệ thống quản lý nhân sự & bảng lương. | React, Firebase, VietQR    | <a href="https://at-shiftpay.web.app/" target="_blank">Link</a>               |
+| **Smurfy**   | Mạng xã hội thời gian thực.            | React, Firebase, ZegoCloud | <a href="https://smurfy-138c1.web.app/" target="_blank">Link</a>              |
 
 <p align="center">
   <img src="public/cinemob.jpg" width="30%" />
@@ -53,8 +53,8 @@ Dự án được xây dựng dựa trên các công nghệ hiện đại nhất
 
 ### Yêu cầu hệ thống
 
-- [Node.js](https://nodejs.org/) (phiên bản 18 trở lên)
-- [npm](https://www.npmjs.com/) hoặc [yarn](https://yarnpkg.com/)
+- <a href="https://nodejs.org/" target="_blank">Node.js</a> (phiên bản 18 trở lên)
+- <a href="https://www.npmjs.com/" target="_blank">npm</a> hoặc <a href="https://yarnpkg.com/" target="_blank">yarn</a>
 
 ### Các bước thực hiện
 
@@ -97,7 +97,7 @@ Dự án được xây dựng dựa trên các công nghệ hiện đại nhất
 Dự án được tối ưu hóa để triển khai trên nền tảng **Vercel**:
 
 1. Đẩy mã nguồn lên GitHub.
-2. Truy cập [Vercel](https://vercel.com/) và import repository này.
+2. Truy cập <a href="https://vercel.com/" target="_blank">Vercel</a> và import repository này.
 3. Cấu hình biến môi trường `APP_URL` trong Settings của Vercel.
 4. Nhấn **Deploy**.
 
