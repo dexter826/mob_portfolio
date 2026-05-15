@@ -92,10 +92,10 @@ export const UI_LABELS = {
     viewCompany: { vi: 'Xem chi tiết công ty', en: 'View Company' }
   },
   contact: {
-    title: { vi: 'Cùng hợp tác nhé', en: "Let's Work Together" },
+    title: { vi: 'THIẾT LẬP KẾT NỐI', en: 'ESTABLISH CONNECTION' },
     description: { 
-      vi: 'Luôn sẵn sàng thảo luận về các giải pháp công nghệ và hợp tác trong các dự án ứng dụng thực tế.', 
-      en: 'Always ready to discuss technology solutions and collaborate on practical application projects.' 
+      vi: 'Đang tìm kiếm những thách thức mới. Nếu bạn có dự án thú vị, hãy để lại lời nhắn.', 
+      en: 'Seeking new challenges. If you have an interesting project, leave a message.' 
     },
     button: { vi: 'Liên hệ ngay', en: 'Contact Now' }
   }
