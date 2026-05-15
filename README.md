@@ -12,7 +12,7 @@
 
   <p>Một trang web portfolio hiện đại, tối giản và chuyên nghiệp được xây dựng bằng Next.js 15.</p>
 
-<a href="https://mob-portfolio.vercel.app"><strong>🚀 Xem bản Live Demo</strong></a>
+<a href="https://mob-portfolio-sand.vercel.app/"><strong>🚀 Xem bản Live Demo</strong></a>
 
 </div>
 
