@@ -71,14 +71,7 @@ Dự án được xây dựng dựa trên các công nghệ hiện đại nhất
    npm install
    ```
 
-3. **Cấu hình môi trường:**
-   Sao chép tệp `.env.example` thành `.env.local` và cập nhật các biến cần thiết:
-
-   ```bash
-   cp .env.example .env.local
-   ```
-
-4. **Chạy dự án ở chế độ phát triển:**
+3. **Chạy dự án ở chế độ phát triển:**
    ```bash
    npm run dev
    ```
@@ -98,8 +91,7 @@ Dự án được tối ưu hóa để triển khai trên nền tảng **Vercel*
 
 1. Đẩy mã nguồn lên GitHub.
 2. Truy cập <a href="https://vercel.com/" target="_blank">Vercel</a> và import repository này.
-3. Cấu hình biến môi trường `APP_URL` trong Settings của Vercel.
-4. Nhấn **Deploy**.
+3. Nhấn **Deploy**.
 
 ---
 
