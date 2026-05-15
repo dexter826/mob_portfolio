@@ -48,7 +48,7 @@ export function Projects() {
             <Link href={`/projects/${project.slug}`}>
               <div className={`group flex flex-col ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-16 items-center cursor-pointer`}>
                 {/* Image Section */}
-                <div className="w-full lg:w-[55%] relative aspect-video overflow-hidden border border-border-subtle group-hover:border-primary/50 transition-colors bg-card">
+                <div className="w-full lg:w-[55%] relative aspect-3/2 overflow-hidden border border-border-subtle group-hover:border-primary/50 transition-colors bg-card">
                   <Image 
                     src={project.image} 
                     alt={project.title} 

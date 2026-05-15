@@ -80,7 +80,7 @@ export default function ProjectPage() {
           </div>
 
           {/* Main Visual */}
-          <div className="relative aspect-video w-full overflow-hidden border border-border-medium bg-card mb-16">
+          <div className="relative aspect-3/2 w-full overflow-hidden border border-border-medium bg-card mb-16">
             <Image 
               src={project.image} 
               alt={project.title} 
