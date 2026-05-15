@@ -27,9 +27,9 @@ export default function ProjectPage() {
   return (
     <div className="min-h-screen bg-background selection:bg-primary selection:text-background pb-20">
       {/* Background Matrix-like Grid */}
-      <div className="fixed inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+      <div className="fixed inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-size-[40px_40px] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
-      <div className="max-w-5xl mx-auto px-6 pt-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 pt-12 relative z-10">
         <button 
           onClick={() => router.back()}
           className="group flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-12 font-mono text-xs uppercase tracking-widest cursor-pointer"
@@ -51,7 +51,7 @@ export default function ProjectPage() {
                   {t(project.role)}
                 </span>
               )}
-              <h1 className="text-5xl md:text-8xl font-black uppercase italic tracking-tighter text-foreground mb-6 leading-[0.85]">
+              <h1 className="text-4xl sm:text-6xl md:text-8xl font-black uppercase italic tracking-tighter text-foreground mb-6 leading-[0.85] wrap-break-word">
                 {project.title}
               </h1>
               <div className="flex flex-wrap gap-2">
@@ -63,7 +63,7 @@ export default function ProjectPage() {
               </div>
             </div>
             
-            <div className="flex gap-4 shrink-0">
+            <div className="flex flex-col sm:flex-row gap-4 shrink-0">
               <Link href={project.link} target="_blank">
                 <Button variant="outline" size="sm" className="rounded-none font-mono text-[10px] uppercase tracking-widest border-border-medium hover:border-primary hover:text-primary bg-transparent h-10 px-6">
                   <Terminal className="w-4 h-4 mr-2" /> {t(UI_LABELS.projects.github)}
@@ -85,12 +85,12 @@ export default function ProjectPage() {
               src={project.image} 
               alt={project.title} 
               fill 
-              sizes="(max-width: 1024px) 100vw, 1200px"
+              sizes="(max-width: 1280px) 100vw, 1280px"
               className="object-cover opacity-80"
               priority
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent" />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">

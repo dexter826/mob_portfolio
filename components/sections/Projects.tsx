@@ -48,15 +48,16 @@ export function Projects() {
             <Link href={`/projects/${project.slug}`}>
               <div className={`group flex flex-col ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-16 items-center cursor-pointer`}>
                 {/* Image Section */}
-                <div className="w-full lg:w-[55%] relative aspect-[16/9] overflow-hidden border border-border-subtle group-hover:border-primary/50 transition-colors bg-card">
+                <div className="w-full lg:w-[55%] relative aspect-video overflow-hidden border border-border-subtle group-hover:border-primary/50 transition-colors bg-card">
                   <Image 
                     src={project.image} 
                     alt={project.title} 
                     fill 
+                    sizes="(max-width: 1024px) 100vw, 55vw"
                     className="object-cover transition-all duration-700" 
                   />
                   {/* Scanline Effect */}
-                  <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-10 pointer-events-none bg-[length:100%_2px,3px_100%] opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-10 pointer-events-none bg-size-[100%_2px,3px_100%] opacity-0 group-hover:opacity-100 transition-opacity" />
                   
                   {/* Project Number Overlay */}
                   <div className={`absolute bottom-4 ${idx % 2 === 1 ? 'left-4' : 'right-4'} z-20`}>
@@ -67,7 +68,7 @@ export function Projects() {
                 {/* Content Section */}
                 <div className="w-full lg:w-[45%] flex flex-col">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="h-[1px] w-8 bg-primary/30" />
+                    <div className="h-px w-8 bg-primary/30" />
                     <span className="text-[10px] uppercase font-mono text-primary tracking-[0.3em]">{t(UI_LABELS.projects.idPrefix)}_0{idx + 1}</span>
                   </div>
                   

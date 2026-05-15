@@ -32,7 +32,7 @@ export function Hero() {
       <MatrixRain />
       
       <div className="relative z-10 flex-1 max-w-3xl">
-        <h1 className="text-[40px] sm:text-[60px] lg:text-[80px] font-black uppercase leading-[0.9] tracking-tighter text-foreground break-words">
+        <h1 className="text-[40px] sm:text-[60px] lg:text-[80px] font-black uppercase leading-[0.9] tracking-tighter text-foreground wrap-break-word">
           {text.split(' ').map((word, idx) => (
             <span key={idx} className="block">
               {word}
@@ -51,12 +51,12 @@ export function Hero() {
             src="/avatar.JPG" 
             alt={PERSONAL_INFO.name}
             fill
-            sizes="(max-width: 768px) 160px, (max-width: 1024px) 224px, 288px"
+            sizes="(max-width: 768px) 192px, (max-width: 1024px) 256px, 288px"
             className="object-cover p-1"
             priority
           />
           {/* Scanline effect overlay */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-20 pointer-events-none bg-[length:100%_2px,3px_100%]" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-20 pointer-events-none bg-size-[100%_2px,3px_100%]" />
         </motion.div>
 
         <div className="text-center lg:text-right">

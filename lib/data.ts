@@ -9,7 +9,7 @@ import {
 export const PERSONAL_INFO = {
   name: 'Trần Công Minh',
   role: {
-    vi: 'Kỹ sư Phần mềm',
+    vi: 'Software Engineer',
     en: 'Software Engineer'
   },
   rolePrefix: 'SOFTWARE',
@@ -103,31 +103,28 @@ export const UI_LABELS = {
 
 export const SKILLS = [
   { 
-    category: { vi: 'Frontend', en: 'Frontend' }, 
-    items: ['Flutter', 'React', 'Tailwind CSS', 'HTML/CSS (Basic)'] 
+    category: { vi: 'Software Development', en: 'Software Development' }, 
+    items: ['React', 'TypeScript', 'Tailwind CSS', 'HTML/CSS', 'Firebase', 'Supabase', 'Vercel'] 
   },
   { 
-    category: { vi: 'Backend & Cơ sở dữ liệu', en: 'Backend & DB' }, 
-    items: ['Firebase', 'Firestore'] 
+    category: { vi: 'Tools', en: 'Tools' }, 
+    items: ['Visual Paradigm', 'Photoshop', 'Git / GitHub', 'MS Office', 'Figma', 'Postman'] 
   },
   { 
-    category: { vi: 'Công cụ', en: 'Tools' }, 
-    items: ['Visual Paradigm', 'Git', 'MS Office', 'Photoshop'] 
-  },
-  { 
-    category: { vi: 'Ngôn ngữ', en: 'Languages' }, 
+    category: { vi: 'Additional Skills', en: 'Additional Skills' }, 
     items: [
-      { vi: 'Tiếng Việt (Bản ngữ)', en: 'Vietnamese (Native)' },
-      { vi: 'Tiếng Anh (B2 VSTEP)', en: 'English (B2 VSTEP)' }
+      { vi: 'Giải quyết vấn đề', en: 'Problem Solving' },
+      { vi: 'Tư duy thiết kế', en: 'Design Thinking' },
+      { vi: 'Tư duy phản biện', en: 'Critical Thinking' },
+      { vi: 'Viết tài liệu kỹ thuật', en: 'Technical Documentation' },
+      { vi: 'Khả năng tự học', en: 'Self-Learning' }
     ] 
   },
   { 
-    category: { vi: 'Kỹ năng mềm', en: 'Soft Skills' }, 
+    category: { vi: 'Languages', en: 'Languages' }, 
     items: [
-      { vi: 'Lãnh đạo nhóm', en: 'Team Leadership' },
-      { vi: 'Giải quyết vấn đề', en: 'Problem-Solving' },
-      { vi: 'Tài liệu kỹ thuật', en: 'Technical Documentation' },
-      { vi: 'Thuyết trình', en: 'Presentation' }
+      { vi: 'Tiếng Việt (Bản ngữ)', en: 'Vietnamese (Native)' },
+      { vi: 'Tiếng Anh - B2 VSTEP (Đọc hiểu tài liệu & Giao tiếp cơ bản)', en: 'English - B2 VSTEP (Technical Reading & Basic Communication)' }
     ] 
   },
 ];
@@ -136,7 +133,7 @@ export const PROJECTS = [
   {
     slug: 'cinemob',
     title: 'CineMOB - Movie Tracker',
-    role: { vi: 'Trưởng nhóm & Phát triển', en: 'Project Lead & Developer' },
+    role: { vi: 'Project Lead & Developer', en: 'Project Lead & Developer' },
     description: {
       vi: 'Nền tảng quản lý phim ảnh cá nhân và khám phá điện ảnh thông minh tích hợp AI.',
       en: 'Personal movie management and smart cinema discovery platform with AI integration.'
@@ -201,7 +198,7 @@ export const PROJECTS = [
   {
     slug: 'shiftpay-system',
     title: 'ShiftPay - Payroll System',
-    role: { vi: 'Trưởng nhóm & Phát triển', en: 'Project Lead & Developer' },
+    role: { vi: 'Project Lead & Developer', en: 'Project Lead & Developer' },
     description: {
       vi: 'Hệ thống hỗ trợ quản lý nhân sự, chấm công và tự động hóa bảng lương linh hoạt.',
       en: 'Flexible system for HR management, attendance tracking, and automated payroll.'
@@ -258,7 +255,7 @@ export const PROJECTS = [
   {
     slug: 'smurfy-social',
     title: 'Smurfy - Realtime Social',
-    role: { vi: 'Lập trình viên Fullstack', en: 'Fullstack Developer' },
+    role: { vi: 'Fullstack Developer', en: 'Fullstack Developer' },
     description: {
       vi: 'Mạng xã hội thời gian thực hỗ trợ kết nối và chia sẻ đa phương tiện mượt mà.',
       en: 'Real-time social network supporting seamless connection and multimedia sharing.'
@@ -316,7 +313,7 @@ export const PROJECTS = [
 export const EXPERIENCE = [
   {
     period: '07/2025 - 09/2025',
-    role: { vi: 'Thực tập sinh IT Hardware', en: 'IT Hardware Intern' },
+    role: { vi: 'IT Hardware Intern', en: 'IT Hardware Intern' },
     company: 'Thanh Nhan Computer Co., Ltd (TNC)',
     link: 'https://www.tnc.com.vn/gioi-thieu-ve-cong-ty.html',
     description: {

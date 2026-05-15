@@ -44,7 +44,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
 
 
   return (
-    <html lang="vi" className={cn(jetbrainsMono.variable, "font-sans", geist.variable)}>
+    <html lang="vi" className={cn(jetbrainsMono.variable, "font-sans", geist.variable)} data-scroll-behavior="smooth">
       <head>
         <script
           type="application/ld+json"

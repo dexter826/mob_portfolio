@@ -1,7 +1,19 @@
 <div align="center">
-  <!-- <img width="1200" height="475" alt="Mob Portfolio Banner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" /> -->
+  <img width="250" alt="Mob Portfolio Banner" src="public/it_mano-borsa.png" />
+  
   <h1>Mob Portfolio - Personal Showcase</h1>
+  
+  <p>
+    <img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js" alt="Next.js" />
+    <img src="https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript" alt="TypeScript" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?style=for-the-badge&logo=tailwind-css" alt="Tailwind CSS" />
+    <img src="https://img.shields.io/badge/Framer_Motion-600EE4?style=for-the-badge&logo=framer" alt="Framer Motion" />
+  </p>
+
   <p>Một trang web portfolio hiện đại, tối giản và chuyên nghiệp được xây dựng bằng Next.js 15.</p>
+
+<a href="https://mob-portfolio.vercel.app"><strong>🚀 Xem bản Live Demo</strong></a>
+
 </div>
 
 ---
@@ -21,14 +33,21 @@ Dự án được xây dựng dựa trên các công nghệ hiện đại nhất
 - **UI Components:** [Shadcn UI](https://ui.shadcn.com/) & [Lucide React](https://lucide.dev/)
 - **Quản lý dữ liệu:** Dữ liệu tập trung tại `lib/data.ts` giúp dễ dàng cập nhật nội dung.
 
-## ✨ Tính năng nổi bật
-
-- **Responsive Design:** Hiển thị tối ưu trên Mobile, Tablet và Desktop.
-- **Smooth Animations:** Hiệu ứng cuộn và chuyển trang mượt mà nhờ Framer Motion.
-- **Project Showcase:** Trình bày các dự án nổi bật với hình ảnh và mô tả chi tiết.
-- **Skills Categorization:** Phân loại kỹ năng (Frontend, Backend, Database, Tools) rõ ràng.
-- **Contact Form:** Giao diện liên hệ chuyên nghiệp.
 - **Clean Architecture:** Cấu trúc thư mục rõ ràng, dễ bảo trì và mở rộng.
+
+## 📱 Dự án tiêu biểu
+
+| Dự án        | Mô tả                                  | Công nghệ                  | Demo                                               |
+| :----------- | :------------------------------------- | :------------------------- | :------------------------------------------------- |
+| **CineMOB**  | Movie Tracker thông minh tích hợp AI.  | React, Firebase, AI        | [Link](https://cinematrics-e0231.firebaseapp.com/) |
+| **ShiftPay** | Hệ thống quản lý nhân sự & bảng lương. | React, Firebase, VietQR    | [Link](https://at-shiftpay.web.app/)               |
+| **Smurfy**   | Mạng xã hội thời gian thực.            | React, Firebase, ZegoCloud | [Link](https://smurfy-138c1.web.app/)              |
+
+<p align="center">
+  <img src="public/cinemob.jpg" width="30%" />
+  <img src="public/shiftpay.jpg" width="30%" />
+  <img src="public/smurfy.jpg" width="30%" />
+</p>
 
 ## 💻 Hướng dẫn cài đặt
 
@@ -72,6 +91,15 @@ Dự án được xây dựng dựa trên các công nghệ hiện đại nhất
 - `hooks/`: Các custom hooks dùng chung.
 - `lib/`: Chứa dữ liệu (`data.ts`) và các hàm tiện ích (`utils.ts`).
 - `public/`: Chứa các tài nguyên tĩnh như hình ảnh, icons.
+
+## 🌐 Triển khai
+
+Dự án được tối ưu hóa để triển khai trên nền tảng **Vercel**:
+
+1. Đẩy mã nguồn lên GitHub.
+2. Truy cập [Vercel](https://vercel.com/) và import repository này.
+3. Cấu hình biến môi trường `APP_URL` trong Settings của Vercel.
+4. Nhấn **Deploy**.
 
 ---
 
