@@ -29,8 +29,8 @@ export const PERSONAL_INFO = {
   birthDate: '09/03/2004',
 
   quote: {
-    vi: 'Only God Can Judge Me',
-    en: 'Only God Can Judge Me'
+    vi: "I'm living in blessings that used to be prayer requests ♰",
+    en: "I'm living in blessings that used to be prayer requests ♰"
   },
   bio: {
     vi: 'Cử nhân ngành Kỹ thuật Phần mềm, tập trung vào việc sử dụng các công nghệ hiện đại để hiện thực hóa ý tưởng thành ứng dụng thực tế. Luôn tìm kiếm những giải pháp nhanh gọn, hiệu quả và thực dụng nhất để xây dựng và triển khai sản phẩm.',
