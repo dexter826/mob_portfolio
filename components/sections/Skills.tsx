@@ -15,8 +15,12 @@ const container = {
 };
 
 const item = {
-  hidden: { opacity: 0, x: -10 },
-  show: { opacity: 1, x: 0 }
+  hidden: { opacity: 0, y: 10 },
+  show: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.4 }
+  }
 };
 
 export function Skills() {
@@ -29,20 +33,23 @@ export function Skills() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-100px" }}
-      className="border-t border-border-medium py-12"
+      className="border-t border-border-medium py-16"
     >
-      <h2 className="text-xs uppercase tracking-widest text-primary mb-12 font-mono">{t(UI_LABELS.skills.title)}</h2>
+      <motion.h2 
+        variants={item}
+        className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold font-mono mb-12"
+      >
+        {t(UI_LABELS.skills.title)}
+      </motion.h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {SKILLS.map((skillGroup, idx) => (
           <motion.div 
             key={idx} 
             variants={item}
-            className="p-6 border border-border-subtle bg-card/50 relative overflow-hidden group hover:border-primary/50 transition-colors"
+            className="p-6 border border-border-subtle bg-card/30 hover:border-primary/40 transition-colors duration-300 group"
           >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-[80px] group-hover:bg-primary/10 transition-colors" />
-            
-            <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted mb-4 font-mono group-hover:text-primary transition-colors">
+            <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground mb-6 font-mono group-hover:text-primary transition-colors">
               {t(skillGroup.category)}
             </h3>
             
@@ -50,7 +57,7 @@ export function Skills() {
               {skillGroup.items.map((skill, i) => (
                 <span 
                   key={i} 
-                  className="px-3 py-1 bg-white/5 border border-white/5 text-[10px] uppercase tracking-wider font-mono text-muted-foreground group-hover:text-foreground transition-colors"
+                  className="px-3 py-1 bg-white/5 border border-white/5 text-[10px] font-mono text-muted-foreground hover:text-primary hover:border-primary/20 hover:bg-primary/5 transition-all cursor-default"
                 >
                   {t(skill)}
                 </span>

@@ -103,28 +103,23 @@ export const UI_LABELS = {
 
 export const SKILLS = [
   { 
-    category: { vi: 'Software Development', en: 'Software Development' }, 
-    items: ['React', 'TypeScript', 'Tailwind CSS', 'HTML/CSS', 'Firebase', 'Supabase', 'Vercel'] 
-  },
-  { 
     category: { vi: 'Tools', en: 'Tools' }, 
-    items: ['Visual Paradigm', 'Photoshop', 'Git / GitHub', 'MS Office', 'Figma', 'Postman'] 
+    items: ['Visual Paradigm (UML)', 'Git / GitHub', 'Photoshop', 'MS Office', 'Firebase'] 
   },
   { 
-    category: { vi: 'Additional Skills', en: 'Additional Skills' }, 
+    category: { vi: 'Soft Skills', en: 'Soft Skills' }, 
     items: [
       { vi: 'Giải quyết vấn đề', en: 'Problem Solving' },
       { vi: 'Tư duy thiết kế', en: 'Design Thinking' },
       { vi: 'Tư duy phản biện', en: 'Critical Thinking' },
-      { vi: 'Viết tài liệu kỹ thuật', en: 'Technical Documentation' },
-      { vi: 'Khả năng tự học', en: 'Self-Learning' }
+      { vi: 'Viết tài liệu kỹ thuật', en: 'Technical Documentation' }
     ] 
   },
   { 
     category: { vi: 'Languages', en: 'Languages' }, 
     items: [
       { vi: 'Tiếng Việt (Bản ngữ)', en: 'Vietnamese (Native)' },
-      { vi: 'Tiếng Anh - B2 VSTEP (Đọc hiểu tài liệu & Giao tiếp cơ bản)', en: 'English - B2 VSTEP (Technical Reading & Basic Communication)' }
+      { vi: 'Tiếng Anh - (B2 VSTEP)', en: 'English - (B2 VSTEP)' }
     ] 
   },
 ];
