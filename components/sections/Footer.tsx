@@ -5,8 +5,10 @@ import { PERSONAL_INFO } from '@/lib/data';
 
 export function Footer() {
   const [time, setTime] = useState(new Date());
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
@@ -24,7 +26,9 @@ export function Footer() {
       <div className="flex items-center gap-4">
         <span>{PERSONAL_INFO.basedIn.vi}</span>
         <span className="hidden sm:inline text-border-medium">|</span>
-        <span className="text-primary/80">{formattedTime} GMT+7</span>
+        <span className="text-primary/80">
+          {mounted ? `${formattedTime} GMT+7` : '--:--:-- -- GMT+7'}
+        </span>
       </div>
       <div>
         © {new Date().getFullYear()} {PERSONAL_INFO.name}

@@ -8,10 +8,16 @@ import { Experience } from '@/components/sections/Experience';
 import { Projects } from '@/components/sections/Projects';
 import { Contact } from '@/components/sections/Contact';
 import { Footer } from '@/components/sections/Footer';
+import { motion } from 'motion/react';
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen w-full bg-background text-foreground flex flex-col font-sans selection:bg-primary selection:text-background overflow-x-hidden">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1, delay: 0.2 }}
+      className="min-h-screen w-full bg-background text-foreground flex flex-col font-sans selection:bg-primary selection:text-background overflow-x-hidden"
+    >
       <Navigation />
 
       <main className="flex-1 pt-8 relative scroll-smooth overflow-x-hidden">
@@ -30,6 +36,6 @@ export default function Portfolio() {
       <div className="max-w-7xl mx-auto px-6 sm:px-12 w-full">
         <Footer />
       </div>
-    </div>
+    </motion.div>
   );
 }

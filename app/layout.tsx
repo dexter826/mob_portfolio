@@ -29,6 +29,7 @@ export const metadata: Metadata = {
 };
 
 import { LanguageProvider } from '@/context/LanguageContext';
+import { SplashProvider } from '@/components/ui/SplashProvider';
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   const jsonLd = {
@@ -52,9 +53,11 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         />
       </head>
       <body className="font-sans bg-background text-foreground antialiased" suppressHydrationWarning>
-        <LanguageProvider>
-          {children}
-        </LanguageProvider>
+        <SplashProvider>
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
+        </SplashProvider>
       </body>
     </html>
   );
