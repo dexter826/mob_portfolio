@@ -19,8 +19,8 @@ export const PERSONAL_INFO = {
     en: 'Ho Chi Minh City, Vietnam'
   },
   status: {
-    vi: 'SOFTWARE SYSTEM BUILDER',
-    en: 'SOFTWARE SYSTEM BUILDER'
+    vi: 'SOFTWARE ENGINEER',
+    en: 'SOFTWARE ENGINEER'
   },
   email: 'tcongminh1604@gmail.com',
   github: 'https://github.com/dexter826',
@@ -34,14 +34,14 @@ export const PERSONAL_INFO = {
   },
   bio: {
     vi: 'Cử nhân ngành Kỹ thuật Phần mềm, tập trung vào việc sử dụng các công nghệ hiện đại để hiện thực hóa ý tưởng thành ứng dụng thực tế. Luôn tìm kiếm những giải pháp nhanh gọn, hiệu quả và thực dụng nhất để xây dựng và triển khai sản phẩm.',
-    en: 'Bachelor of Software Engineering, focusing on using modern technologies to turn ideas into practical applications. Always seeking fast, efficient, and pragmatic solutions to build and deploy products.'
+    en: 'Bachelor of Software Engineering, focusing on leveraging modern technologies to transform ideas into real-world applications. Always seeking the most agile, efficient, and pragmatic solutions to build and deploy products.'
   },
 
   education: {
     period: '2022 - 2026',
     school: {
       vi: 'Đại học Công Thương TP.HCM (HUIT)',
-      en: 'HCMC University of Industry and Trade (HUIT)'
+      en: 'Ho Chi Minh City University of Industry and Trade (HUIT)'
     },
     major: {
       vi: 'Công nghệ Phần mềm',
@@ -128,7 +128,7 @@ export const PROJECTS = [
   {
     slug: 'cinemob',
     title: 'CineMOB - Movie Tracker',
-    role: { vi: 'Project Lead & Developer', en: 'Project Lead & Developer' },
+    role: { vi: 'System Designer & Developer', en: 'System Designer & Developer' },
     description: {
       vi: 'Nền tảng quản lý phim ảnh cá nhân và khám phá điện ảnh thông minh tích hợp AI.',
       en: 'Personal movie management and smart cinema discovery platform with AI integration.'
@@ -193,7 +193,7 @@ export const PROJECTS = [
   {
     slug: 'shiftpay-system',
     title: 'ShiftPay - Payroll System',
-    role: { vi: 'Project Lead & Developer', en: 'Project Lead & Developer' },
+    role: { vi: 'System Designer & Developer', en: 'System Designer & Developer' },
     description: {
       vi: 'Hệ thống hỗ trợ quản lý nhân sự, chấm công và tự động hóa bảng lương linh hoạt.',
       en: 'Flexible system for HR management, attendance tracking, and automated payroll.'
@@ -250,7 +250,7 @@ export const PROJECTS = [
   {
     slug: 'smurfy-social',
     title: 'Smurfy - Realtime Social',
-    role: { vi: 'Fullstack Developer', en: 'Fullstack Developer' },
+    role: { vi: 'System Designer & Developer', en: 'System Designer & Developer' },
     description: {
       vi: 'Mạng xã hội thời gian thực hỗ trợ kết nối và chia sẻ đa phương tiện mượt mà.',
       en: 'Real-time social network supporting seamless connection and multimedia sharing.'
@@ -294,7 +294,7 @@ export const PROJECTS = [
     ],
     tech: ['TypeScript', 'React', 'Firebase'],
     techStack: {
-      frontend: 'React 19, TypeScript, Zustand',
+      frontend: 'React 19, TypeScript, Tailwind CSS, Zustand',
       backend: 'Firebase (Firestore, RTDB, Functions, Auth, Storage, FCM)',
       external: 'ZegoCloud (Video Call), Giphy API, LinkPreview API'
     },

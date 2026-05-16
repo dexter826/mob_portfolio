@@ -29,8 +29,7 @@ export function Skills() {
           <motion.div 
             key={idx} 
             variants={fadeInUp}
-            whileHover={{ y: -5 }}
-            className="p-6 border border-border-subtle bg-card/30 hover:border-primary/40 transition-all duration-300 group shadow-[0_0_20px_rgba(0,0,0,0.2)] hover:shadow-[0_0_30px_rgba(0,255,65,0.05)]"
+            className="p-6 border border-border-subtle bg-card/30 hover:border-primary/40 transition-all duration-300 group"
           >
             <h3 className="text-[11px] uppercase tracking-widest font-bold text-muted-foreground mb-6 font-mono group-hover:text-primary transition-colors">
               {t(skillGroup.category)}
@@ -41,7 +40,6 @@ export function Skills() {
                 <motion.span 
                   key={i} 
                   whileHover={{ 
-                    scale: 1.1, 
                     color: "#00ff41",
                     borderColor: "rgba(0,255,65,0.4)",
                     backgroundColor: "rgba(0,255,65,0.1)"
