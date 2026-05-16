@@ -66,21 +66,23 @@ export function Contact() {
            <Mail className="w-4 h-4" /> {t(UI_LABELS.contact.button)}
          </motion.a>
 
-         <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
+         <div className="flex justify-center gap-6 sm:gap-8">
            {socials.map((social) => (
              <motion.a 
                key={social.name}
                href={social.link} 
                target="_blank" 
                rel="noopener noreferrer"
-               whileHover={{ scale: 1.05 }}
-               className="group flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.2em] font-bold text-muted-foreground transition-all duration-300"
+               whileHover={{ scale: 1.1 }}
+               whileTap={{ scale: 0.95 }}
+               className="group flex items-center gap-3 font-mono uppercase tracking-widest font-bold text-muted-foreground transition-all duration-300 p-3 sm:p-0 border border-border-subtle sm:border-transparent bg-card/30 sm:bg-transparent hover:border-primary/40 sm:hover:border-transparent"
+               aria-label={social.name}
              >
-               <span className="flex items-center justify-center text-muted-foreground group-hover:text-primary group-hover:drop-shadow-[0_0_8px_#00ff41] transition-all duration-300">
+               <span className="flex items-center justify-center text-muted-foreground group-hover:text-primary group-hover:drop-shadow-[0_0_8px_#00ff41] transition-all duration-300 scale-125 sm:scale-100">
                 {social.icon}
                </span>
                
-               <div className="flex items-center h-full leading-none translate-y-[1px]">
+               <div className="hidden sm:flex items-center h-full leading-none translate-y-px text-[11px]">
                  <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary mr-1.5">[</span>
                  <GlitchText text={social.name} className="group-hover:text-primary" />
                  <span className="opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary ml-1.5">]</span>
