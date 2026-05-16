@@ -23,10 +23,6 @@ export const metadata: Metadata = {
     locale: 'vi_VN',
     type: 'website',
   },
-  icons: {
-    icon: '/icon.png',
-    apple: '/apple-touch-icon.png',
-  },
 };
 
 import { LanguageProvider } from '@/context/LanguageContext';
