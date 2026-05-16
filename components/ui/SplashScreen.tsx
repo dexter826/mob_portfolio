@@ -1,20 +1,19 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
+import React, { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-
-const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
 interface SplashScreenProps {
   onComplete?: () => void;
 }
 
+// Quản lý màn hình khởi tạo với hiệu ứng terminal.
 export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
-  const [animationData, setAnimationData] = useState<any>(null);
+  const [displayedText, setDisplayedText] = useState('');
   const [isVisible, setIsVisible] = useState(true);
+  const fullText = "<Hello World />";
 
-  const handleComplete = React.useCallback(() => {
+  const handleComplete = useCallback(() => {
     setIsVisible(false);
     setTimeout(() => {
       onComplete?.();
@@ -22,21 +21,21 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
   }, [onComplete]);
 
   useEffect(() => {
-    fetch('/splash.json')
-      .then((res) => res.json())
-      .then((data) => setAnimationData(data))
-      .catch((err) => {
-        console.error('Failed to load splash animation:', err);
-        setIsVisible(false);
-        onComplete?.();
-      });
+    let currentIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (currentIndex < fullText.length) {
+        setDisplayedText(fullText.slice(0, currentIndex + 1));
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+        setTimeout(() => {
+          handleComplete();
+        }, 800);
+      }
+    }, 120);
 
-    const timer = setTimeout(() => {
-      handleComplete();
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, [handleComplete, onComplete]);
+    return () => clearInterval(typingInterval);
+  }, [handleComplete]);
 
   return (
     <AnimatePresence>
@@ -45,29 +44,30 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4, ease: 'easeInOut' }}
-          className="fixed inset-0 z-9999 flex items-center justify-center bg-[#050505]"
+          className="fixed inset-0 z-9999 flex items-center justify-center bg-background font-mono px-4"
         >
-          <motion.div 
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1.05, opacity: 1 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-[200px] md:max-w-[240px] px-4"
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            className="flex items-center"
           >
-            {animationData && (
-              <Lottie
-                animationData={animationData}
-                loop={false}
-                onComplete={handleComplete}
-                style={{ 
-                  width: '100%', 
-                  height: '100%',
-                  filter: 'drop-shadow(0 0 5px rgba(0, 255, 65, 0.8)) drop-shadow(0 0 15px rgba(0, 255, 65, 0.4)) brightness(1.1)'
-                }}
+            <h1 
+              className="text-4xl md:text-6xl font-bold tracking-tight text-primary"
+              style={{ filter: 'drop-shadow(0 0 15px var(--primary))' }}
+            >
+              {displayedText}
+              <motion.span
+                animate={{ opacity: [1, 0] }}
+                transition={{ duration: 0.8, repeat: Infinity, ease: 'easeInOut' }}
+                className="inline-block ml-1 md:ml-2 w-[3px] md:w-[4px] h-[32px] md:h-[48px] bg-primary align-middle"
+                style={{ boxShadow: '0 0 10px var(--primary)' }}
               />
-            )}
+            </h1>
           </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
   );
 };
+
