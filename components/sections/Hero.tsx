@@ -74,7 +74,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.6 }}
               transition={{ delay: 2, duration: 1.5 }}
-              className="text-[11px] italic text-foreground font-mono mb-4 block max-w-[200px] lg:max-w-none ml-auto"
+              className="text-[11px] italic text-foreground font-mono mb-4 block max-w-[280px] sm:max-w-xs lg:max-w-none mx-auto lg:ml-auto lg:mr-0 text-center lg:text-right"
             >
               &ldquo;{t(PERSONAL_INFO.quote)}&rdquo;
             </motion.p>

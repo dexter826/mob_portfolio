@@ -24,7 +24,7 @@ export function About() {
         </div>
 
         {/* Details Column */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8 border-l border-border-subtle lg:pl-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8 border-t pt-8 lg:border-t-0 lg:border-l border-border-subtle lg:pt-0 lg:pl-12">
           {/* Education Group */}
           <div className="space-y-4">
             <h3 className="text-[11px] uppercase tracking-mega text-primary font-mono font-bold">{t(UI_LABELS.about.education)}</h3>

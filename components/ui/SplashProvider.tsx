@@ -18,8 +18,10 @@ export const SplashProvider: React.FC<SplashProviderProps> = ({ children }) => {
       sessionStorage.setItem('splash_shown', 'true');
       requestAnimationFrame(() => setShowSplash(true));
     } else {
-      setShowSplash(false);
-      setIsLoading(false);
+      requestAnimationFrame(() => {
+        setShowSplash(false);
+        setIsLoading(false);
+      });
     }
   }, []);
 

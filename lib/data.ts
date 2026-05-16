@@ -44,7 +44,7 @@ export const PERSONAL_INFO = {
       en: 'HCMC University of Industry and Trade (HUIT)'
     },
     major: {
-      vi: 'Kỹ thuật Phần mềm',
+      vi: 'Công nghệ Phần mềm',
       en: 'Software Engineering'
     },
     gpa: '3.34/4.0',

@@ -63,15 +63,15 @@ export default function ProjectPage() {
               </div>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 shrink-0">
-              <Link href={project.link} target="_blank">
-                <Button variant="outline" size="sm" className="rounded-none font-mono text-[11px] uppercase tracking-mega border-primary/20 hover:border-primary hover:text-primary bg-transparent h-11 px-7 font-bold">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 shrink-0 w-full md:w-auto mt-4 md:mt-0">
+              <Link href={project.link} target="_blank" className="w-full sm:w-auto">
+                <Button variant="outline" size="sm" className="w-full sm:w-auto rounded-none font-mono text-[11px] uppercase tracking-mega border-primary/20 hover:border-primary hover:text-primary bg-transparent h-11 px-7 font-bold">
                   <Terminal className="w-4 h-4 mr-2" /> {t(UI_LABELS.projects.github)}
                 </Button>
               </Link>
               {(project as any).liveDemo && (
-                <Link href={(project as any).liveDemo} target="_blank">
-                  <Button size="sm" className="rounded-none font-mono text-[11px] uppercase tracking-mega bg-primary text-background hover:bg-foreground hover:text-background h-11 px-7 font-bold">
+                <Link href={(project as any).liveDemo} target="_blank" className="w-full sm:w-auto">
+                  <Button size="sm" className="w-full sm:w-auto rounded-none font-mono text-[11px] uppercase tracking-mega bg-primary text-background hover:bg-foreground hover:text-background h-11 px-7 font-bold">
                     <Globe className="w-4 h-4 mr-2" /> {t(UI_LABELS.projects.liveDemo)}
                   </Button>
                 </Link>
