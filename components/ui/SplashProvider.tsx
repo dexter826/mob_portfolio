@@ -7,13 +7,20 @@ interface SplashProviderProps {
   children: React.ReactNode;
 }
 
-// Điều khiển hiển thị Splash Screen.
+// Quản lý hiển thị Splash Screen một lần mỗi phiên.
 export const SplashProvider: React.FC<SplashProviderProps> = ({ children }) => {
   const [showSplash, setShowSplash] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    requestAnimationFrame(() => setShowSplash(true));
+    const isSplashShown = sessionStorage.getItem('splash_shown');
+    if (!isSplashShown) {
+      sessionStorage.setItem('splash_shown', 'true');
+      requestAnimationFrame(() => setShowSplash(true));
+    } else {
+      setShowSplash(false);
+      setIsLoading(false);
+    }
   }, []);
 
   useEffect(() => {
