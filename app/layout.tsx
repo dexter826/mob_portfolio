@@ -11,10 +11,18 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Trần Công Minh | Software Engineer',
+  title: {
+    template: '%s | Trần Công Minh',
+    default: 'Trần Công Minh | Software Engineer',
+  },
   description: 'Portfolio của Trần Công Minh - Cử nhân Kỹ thuật Phần mềm đam mê phát triển hệ thống phần mềm thực dụng.',
   keywords: ['Software Engineer', 'Portfolio', 'Trần Công Minh', 'Web Development', 'Next.js', 'Flutter', 'Bachelor'],
   authors: [{ name: 'Trần Công Minh' }],
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: {
     title: 'Trần Công Minh Portfolio',
     description: 'Khám phá các dự án và kỹ năng của Trần Công Minh - Cử nhân Kỹ thuật Phần mềm.',
