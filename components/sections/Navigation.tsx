@@ -7,13 +7,36 @@ import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GlitchText } from '@/components/ui/GlitchText';
 import { staggerContainer, fadeInUp } from '@/lib/motion';
 
 export function Navigation() {
   const { language, setLanguage, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY < 10) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        if (!isMenuOpen) {
+          setIsVisible(false);
+        }
+      } else {
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY, isMenuOpen]);
 
   const toggleLanguage = () => {
     setLanguage(language === 'vi' ? 'en' : 'vi');
@@ -26,7 +49,10 @@ export function Navigation() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border-subtle shrink-0">
+    <header className={cn(
+      "fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border-subtle shrink-0 transition-transform duration-300 ease-in-out",
+      isVisible ? "translate-y-0" : "-translate-y-full"
+    )}>
       <div className="max-w-7xl mx-auto px-6 sm:px-12 py-5 flex justify-between items-center w-full">
         <Link href="/" className="text-xl sm:text-2xl font-black tracking-tighter uppercase text-foreground group">
           <GlitchText text={PERSONAL_INFO.name} className="group-hover:text-primary transition-colors" />

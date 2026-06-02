@@ -20,7 +20,7 @@ export default function Portfolio() {
     >
       <Navigation />
 
-      <main className="flex-1 pt-8 relative scroll-smooth overflow-x-hidden">
+      <main className="flex-1 pt-24 relative scroll-smooth overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">
           <div className="flex flex-col">
             <Hero />
