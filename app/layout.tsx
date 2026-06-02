@@ -13,10 +13,10 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: {
     template: '%s | Trần Công Minh',
-    default: 'Trần Công Minh | Software Engineer',
+    default: 'Trần Công Minh | Product Builder',
   },
   description: 'Portfolio của Trần Công Minh - Cử nhân Kỹ thuật Phần mềm đam mê phát triển hệ thống phần mềm thực dụng.',
-  keywords: ['Software Engineer', 'Portfolio', 'Trần Công Minh', 'Web Development', 'Next.js', 'Flutter', 'Bachelor'],
+  keywords: ['Product Builder', 'Software Engineer', 'Portfolio', 'Trần Công Minh', 'Web Development', 'Next.js', 'Flutter', 'Bachelor'],
   authors: [{ name: 'Trần Công Minh' }],
   icons: {
     icon: '/icon.png',
@@ -41,7 +41,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Trần Công Minh",
-    "jobTitle": "Software Engineer",
+    "jobTitle": "Product Builder",
     "url": "https://minhdev.id.vn",
     "sameAs": [
       "https://github.com/dexter826"

@@ -9,18 +9,18 @@ import {
 export const PERSONAL_INFO = {
   name: 'Trần Công Minh',
   role: {
-    vi: 'Software Engineer',
-    en: 'Software Engineer'
+    vi: 'Product Builder',
+    en: 'Product Builder'
   },
-  rolePrefix: 'SOFTWARE',
-  roleSuffix: 'ENGINEERING',
+  rolePrefix: 'PRODUCT',
+  roleSuffix: 'BUILDER',
   basedIn: {
     vi: 'Hồ Chí Minh, Việt Nam',
     en: 'Ho Chi Minh City, Vietnam'
   },
   status: {
-    vi: 'SOFTWARE ENGINEER',
-    en: 'SOFTWARE ENGINEER'
+    vi: 'PRODUCT BUILDER',
+    en: 'PRODUCT BUILDER'
   },
   email: 'tcongminh1604@gmail.com',
   github: 'https://github.com/dexter826',
@@ -104,7 +104,7 @@ export const UI_LABELS = {
 export const SKILLS = [
   { 
     category: { vi: 'Tools', en: 'Tools' }, 
-    items: ['Visual Paradigm (UML)', 'Git / GitHub', 'Photoshop', 'MS Office'] 
+    items: ['Visual Paradigm (UML)', 'Figma', 'Git / GitHub', 'Photoshop', 'MS Office'] 
   },
   { 
     category: { vi: 'Soft Skills', en: 'Soft Skills' }, 
