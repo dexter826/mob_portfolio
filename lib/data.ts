@@ -104,7 +104,7 @@ export const UI_LABELS = {
 export const SKILLS = [
   { 
     category: { vi: 'Tools', en: 'Tools' }, 
-    items: ['Visual Paradigm (UML)', 'Figma', 'Git / GitHub', 'Photoshop', 'MS Office'] 
+    items: ['Visual Paradigm (UML)', 'Git / GitHub', 'Photoshop', 'MS Office'] 
   },
   { 
     category: { vi: 'Soft Skills', en: 'Soft Skills' }, 
