@@ -54,14 +54,14 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
           >
             <h1 
               className="text-4xl md:text-6xl font-bold tracking-tight text-primary"
-              style={{ filter: 'drop-shadow(0 0 15px var(--primary))' }}
+              style={{ filter: 'drop-shadow(0 0 15px var(--ds-brand-accent))' }}
             >
               {displayedText}
               <motion.span
                 animate={{ opacity: [1, 0] }}
                 transition={{ duration: 0.8, repeat: Infinity, ease: 'easeInOut' }}
                 className="inline-block ml-1 md:ml-2 w-[3px] md:w-[4px] h-[32px] md:h-[48px] bg-primary align-middle"
-                style={{ boxShadow: '0 0 10px var(--primary)' }}
+                style={{ boxShadow: 'var(--ds-effect-signal-glow)' }}
               />
             </h1>
           </motion.div>

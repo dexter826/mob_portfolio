@@ -1,16 +1,17 @@
 import type {Metadata} from 'next';
-import { Inter, JetBrains_Mono, Geist } from 'next/font/google';
+import { JetBrains_Mono, Geist } from 'next/font/google';
 import './globals.css';
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({subsets:['latin'],variable:'--font-geist'});
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  variable: '--font-mono',
+  variable: '--font-jetbrains',
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://minhdev.id.vn'),
   title: {
     template: '%s | Trần Công Minh',
     default: 'Trần Công Minh | Product Builder',
@@ -50,7 +51,12 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
 
 
   return (
-    <html lang="vi" className={cn(jetbrainsMono.variable, "font-sans", geist.variable)} data-scroll-behavior="smooth">
+    <html
+      lang="vi"
+      className={cn(jetbrainsMono.variable, geist.variable)}
+      data-scroll-behavior="smooth"
+      data-theme="dark"
+    >
       <head>
         <script
           type="application/ld+json"

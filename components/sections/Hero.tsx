@@ -47,7 +47,7 @@ export function Hero() {
         <motion.div 
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 grayscale hover:grayscale-0 transition-all duration-700 border border-primary/20 hover:border-primary shadow-[0_0_30px_rgba(0,255,65,0.05)] hover:shadow-[0_0_50px_rgba(0,255,65,0.2)] overflow-hidden group"
+          className="ds-media-scanline ds-expressive-hover group relative h-48 w-48 overflow-hidden border border-primary/20 grayscale transition-all duration-700 hover:border-primary hover:grayscale-0 hover:shadow-[var(--ds-effect-signal-glow-strong)] sm:h-64 sm:w-64 lg:h-72 lg:w-72"
         >
           <Image 
             src="/avatar.JPG" 
@@ -60,11 +60,8 @@ export function Hero() {
           
           {/* Animated Scanline overlay */}
           <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden">
-            <div className="w-full h-20 bg-linear-to-b from-transparent via-primary/10 to-transparent animate-scanline" />
+            <div className="w-full h-20 bg-linear-to-b from-transparent via-primary/10 to-transparent animate-scanline motion-reduce:animate-none" />
           </div>
-          
-          {/* Static Scanline effect overlay (CRT feel) */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-30 pointer-events-none bg-size-[100%_2px,3px_100%] opacity-50" />
         </motion.div>
 
         <div className="text-center lg:text-right">

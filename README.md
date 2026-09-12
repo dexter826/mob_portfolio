@@ -4,13 +4,13 @@
   <h1>Mob Portfolio - Personal Showcase</h1>
   
   <p>
-    <img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js" alt="Next.js" />
-    <img src="https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript" alt="TypeScript" />
+    <img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js" alt="Next.js" />
+    <img src="https://img.shields.io/badge/TypeScript-6-blue?style=for-the-badge&logo=typescript" alt="TypeScript" />
     <img src="https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?style=for-the-badge&logo=tailwind-css" alt="Tailwind CSS" />
     <img src="https://img.shields.io/badge/Framer_Motion-600EE4?style=for-the-badge&logo=framer" alt="Framer Motion" />
   </p>
 
-  <p>Một trang web portfolio hiện đại, tối giản và chuyên nghiệp được xây dựng bằng Next.js 15.</p>
+  <p>Một trang web portfolio hiện đại, tối giản và chuyên nghiệp được xây dựng bằng Next.js 16.</p>
 
 <a href="https://mob-portfolio-sand.vercel.app/" target="_blank" rel="noopener noreferrer"><strong>🚀 Xem bản Live Demo</strong></a>
 
@@ -26,11 +26,11 @@
 
 Dự án được xây dựng dựa trên các công nghệ hiện đại nhất:
 
-- **Framework:** <a href="https://nextjs.org/" target="_blank">Next.js 15</a> (App Router)
+- **Framework:** <a href="https://nextjs.org/" target="_blank">Next.js 16</a> (App Router)
 - **Ngôn ngữ:** <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>
 - **Styling:** <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS 4</a>
 - **Animations:** <a href="https://www.framer.com/motion/" target="_blank">Framer Motion</a>
-- **UI Components:** <a href="https://ui.shadcn.com/" target="_blank">Shadcn UI</a> & <a href="https://lucide.dev/" target="_blank">Lucide React</a>
+- **UI Components:** M.O.B Signal Design System & <a href="https://lucide.dev/" target="_blank">Lucide React</a>
 - **Quản lý dữ liệu:** Dữ liệu tập trung tại `lib/data.ts` giúp dễ dàng cập nhật nội dung.
 
 - **Clean Architecture:** Cấu trúc thư mục rõ ràng, dễ bảo trì và mở rộng.

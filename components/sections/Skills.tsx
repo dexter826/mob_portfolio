@@ -37,14 +37,9 @@ export function Skills() {
             
             <div className="flex flex-wrap gap-2">
               {skillGroup.items.map((skill, i) => (
-                <motion.span 
-                  key={i} 
-                  whileHover={{ 
-                    color: "#00ff41",
-                    borderColor: "rgba(0,255,65,0.4)",
-                    backgroundColor: "rgba(0,255,65,0.1)"
-                  }}
-                  className="px-3 py-1 bg-white/5 border border-white/5 text-[11px] font-mono text-muted-foreground/80 transition-all cursor-default font-medium"
+                <motion.span
+                  key={i}
+                  className="cursor-default border border-foreground/5 bg-foreground/5 px-3 py-1 font-mono text-[11px] font-medium text-[var(--ds-text-muted)] transition-all hover:border-primary/40 hover:bg-primary/10 hover:text-primary"
                 >
                   {t(skill)}
                 </motion.span>

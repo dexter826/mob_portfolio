@@ -14,28 +14,37 @@ export const MatrixRain: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let animationFrame: number | null = null;
+    let lastFrame = 0;
+    let drops: number[] = [];
+
     const resizeCanvas = () => {
       canvas.width = container.offsetWidth;
       canvas.height = container.offsetHeight;
+      const columns = Math.ceil(canvas.width / 14);
+      drops = Array.from({ length: columns }, () => Math.random() * -100);
     };
 
     resizeCanvas();
 
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
     const fontSize = 14;
-    const columns = canvas.width / fontSize;
-
-    const drops: number[] = [];
-    for (let i = 0; i < columns; i++) {
-      drops[i] = Math.random() * -100;
-    }
 
     const draw = () => {
-      ctx.fillStyle = 'rgba(5, 5, 5, 0.1)';
+      const rootStyles = getComputedStyle(document.documentElement);
+      const containerStyles = getComputedStyle(container);
+      const canvasColor = rootStyles.getPropertyValue('--ds-bg-canvas').trim() || rootStyles.backgroundColor;
+      const accentColor = rootStyles.getPropertyValue('--ds-brand-accent').trim() || containerStyles.color;
+      const monoFont = rootStyles.getPropertyValue('--ds-font-mono').trim() || containerStyles.fontFamily;
+
+      ctx.globalAlpha = 0.1;
+      ctx.fillStyle = canvasColor;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = '#00ff41';
-      ctx.font = `${fontSize}px monospace`;
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = accentColor;
+      ctx.font = `${fontSize}px ${monoFont}`;
 
       for (let i = 0; i < drops.length; i++) {
         const text = characters.charAt(Math.floor(Math.random() * characters.length));
@@ -48,19 +57,44 @@ export const MatrixRain: React.FC = () => {
       }
     };
 
-    const interval = setInterval(draw, 33);
+    const render = (timestamp: number) => {
+      if (timestamp - lastFrame >= 33) {
+        draw();
+        lastFrame = timestamp;
+      }
+      animationFrame = requestAnimationFrame(render);
+    };
+
+    const stop = () => {
+      if (animationFrame !== null) cancelAnimationFrame(animationFrame);
+      animationFrame = null;
+    };
+
+    const syncAnimation = () => {
+      stop();
+      if (reducedMotion.matches || document.hidden) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        return;
+      }
+      animationFrame = requestAnimationFrame(render);
+    };
 
     const observer = new ResizeObserver(resizeCanvas);
     observer.observe(container);
+    reducedMotion.addEventListener('change', syncAnimation);
+    document.addEventListener('visibilitychange', syncAnimation);
+    syncAnimation();
 
     return () => {
-      clearInterval(interval);
+      stop();
       observer.disconnect();
+      reducedMotion.removeEventListener('change', syncAnimation);
+      document.removeEventListener('visibilitychange', syncAnimation);
     };
   }, []);
 
   return (
-    <div ref={containerRef} className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none overflow-hidden">
+    <div ref={containerRef} className="pointer-events-none absolute inset-0 z-0 overflow-hidden text-primary opacity-[0.15]">
       <canvas ref={canvasRef} className="block" />
     </div>
   );

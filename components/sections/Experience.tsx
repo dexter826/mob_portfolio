@@ -44,7 +44,7 @@ export function Experience() {
                   opacity: [1, 0.7, 1]
                 }}
                 transition={{ repeat: Infinity, duration: 2 }}
-                className="w-1.5 h-1.5 bg-primary shadow-[0_0_8px_#00ff41]" 
+                className="h-1.5 w-1.5 bg-primary shadow-[var(--ds-effect-signal-glow)]"
               />
             </div>
             
@@ -72,7 +72,7 @@ export function Experience() {
                   </div>
                 </div>
                 
-                <p className="text-sm sm:text-[14px] text-muted-foreground/90 leading-relaxed font-medium max-w-2xl">
+                <p className="max-w-2xl text-sm font-medium leading-relaxed text-[var(--ds-text-muted)] sm:text-[14px]">
                   {t(exp.description)}
                 </p>
               </div>

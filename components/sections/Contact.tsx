@@ -3,8 +3,7 @@
 import { motion } from 'motion/react';
 import { Mail } from 'lucide-react';
 import { PERSONAL_INFO, UI_LABELS } from '@/lib/data';
-import { buttonVariants } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { Button } from '@mob-signal/components';
 import { useLanguage } from '@/context/LanguageContext';
 import { GlitchText } from '@/components/ui/GlitchText';
 
@@ -52,19 +51,25 @@ export function Contact() {
        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter mb-4 sm:mb-6 text-foreground leading-[0.9]">
          <GlitchText text={t(UI_LABELS.contact.title)} />
        </h2>
-        <p className="text-sm sm:text-base text-muted-foreground/70 mb-8 max-w-lg mx-auto font-mono uppercase tracking-wide">
+        <p className="mx-auto mb-8 max-w-lg font-mono text-sm uppercase tracking-wide text-[var(--ds-text-muted)] sm:text-base">
           {t(UI_LABELS.contact.description)}
         </p>
        
        <div className="flex flex-col items-center gap-8">
-         <motion.a 
-           href={`mailto:${PERSONAL_INFO.email}`} 
-           whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0, 255, 65, 0.2)" }}
-           whileTap={{ scale: 0.95 }}
-           className={cn(buttonVariants({ size: "lg", variant: "default" }), "rounded-none bg-primary text-background hover:bg-primary font-mono uppercase tracking-mega font-bold px-10 py-5 text-sm inline-flex items-center gap-3 transition-all duration-300")}
+         <Button
+           asChild
+           size="large"
+           variant="primary"
+           className="px-10 text-sm font-bold uppercase tracking-mega hover:shadow-[var(--ds-effect-signal-glow-strong)]"
          >
-           <Mail className="w-4 h-4" /> {t(UI_LABELS.contact.button)}
-         </motion.a>
+           <motion.a
+             href={`mailto:${PERSONAL_INFO.email}`}
+             whileHover={{ scale: 1.05 }}
+             whileTap={{ scale: 0.95 }}
+           >
+             <Mail className="size-4" /> {t(UI_LABELS.contact.button)}
+           </motion.a>
+         </Button>
 
          <div className="flex justify-center gap-6 sm:gap-8">
            {socials.map((social) => (
@@ -78,7 +83,7 @@ export function Contact() {
                className="group flex items-center gap-3 font-mono uppercase tracking-widest font-bold text-muted-foreground transition-all duration-300 p-3 sm:p-0 border border-border-subtle sm:border-transparent bg-card/30 sm:bg-transparent hover:border-primary/40 sm:hover:border-transparent"
                aria-label={social.name}
              >
-               <span className="flex items-center justify-center text-muted-foreground group-hover:text-primary group-hover:drop-shadow-[0_0_8px_#00ff41] transition-all duration-300 scale-125 sm:scale-100">
+               <span className="flex scale-125 items-center justify-center text-muted-foreground transition-all duration-300 group-hover:text-primary sm:scale-100">
                 {social.icon}
                </span>
                

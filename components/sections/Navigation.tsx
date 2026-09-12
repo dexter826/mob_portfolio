@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { PERSONAL_INFO, UI_LABELS } from '@/lib/data';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Button, IconButton } from '@mob-signal/components';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion, AnimatePresence } from 'motion/react';
@@ -59,13 +59,13 @@ export function Navigation() {
         </Link>
         
         <div className="flex items-center gap-4 sm:gap-8">
-          <nav className="hidden sm:flex gap-8 text-[11px] uppercase tracking-mega font-bold text-muted-foreground/60 font-mono">
+          <nav className="hidden gap-8 font-mono text-[11px] font-bold uppercase tracking-mega text-[var(--ds-text-muted)] sm:flex">
             {navLinks.map((link) => (
               <motion.a 
                 key={link.href} 
                 href={link.href} 
-                whileHover={{ scale: 1.05, color: "#00ff41" }}
-                className="relative transition-colors py-1"
+                whileHover={{ scale: 1.05 }}
+                className="relative py-1 transition-colors hover:text-primary"
               >
                 {link.label}
                 <motion.span 
@@ -79,26 +79,31 @@ export function Navigation() {
 
           {/* Language Switcher */}
           <Button 
-            variant="outline"
-            size="xs"
+            variant="secondary"
+            size="compact"
             onClick={toggleLanguage}
-            className="text-[10px] sm:text-[11px] font-mono border-primary/20 hover:bg-primary hover:text-background transition-all uppercase tracking-mega font-bold h-7"
+            className="h-7 border-primary/20 px-2 text-[10px] font-bold uppercase tracking-mega sm:text-[11px]"
           >
             {language === 'vi' ? 'EN' : 'VI'}
           </Button>
 
-          <a href="#contact" className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), "hidden sm:flex font-mono uppercase tracking-mega text-primary border-primary/20 hover:bg-primary hover:text-black text-[11px] font-bold")}>
-            {t(UI_LABELS.nav.contact)}
-          </a>
+          <Button
+            asChild
+            variant="secondary"
+            size="compact"
+            className="hidden border-primary/20 text-[11px] font-bold uppercase tracking-mega text-primary hover:bg-primary hover:text-background sm:inline-flex"
+          >
+            <a href="#contact">{t(UI_LABELS.nav.contact)}</a>
+          </Button>
 
           {/* Mobile Menu Toggle */}
-          <button 
+          <IconButton
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="sm:hidden text-primary p-1"
-            aria-label="Toggle Menu"
-          >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+            className="text-primary sm:hidden"
+            label="Toggle menu"
+            icon={isMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+            size="compact"
+          />
         </div>
       </div>
 
@@ -124,7 +129,7 @@ export function Navigation() {
                   href={link.href} 
                   variants={fadeInUp}
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-muted-foreground hover:text-primary transition-colors py-2 border-b border-white/5 flex items-center justify-between group"
+                  className="group flex items-center justify-between border-b border-border-subtle py-2 text-muted-foreground transition-colors hover:text-primary"
                 >
                   <span>{link.label}</span>
                   <span className="opacity-0 group-hover:opacity-100 transition-opacity text-primary text-[10px]">_GO</span>

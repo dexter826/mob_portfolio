@@ -15,6 +15,7 @@ export function About() {
       viewport={{ once: true }}
       className="border-t border-border-medium py-10 sm:py-12"
     >
+      <h2 className="sr-only">{t(UI_LABELS.about.title)}</h2>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10">
         {/* Bio Column */}
         <div className="lg:col-span-2 space-y-6">
@@ -29,7 +30,7 @@ export function About() {
           <div className="space-y-4">
             <h3 className="text-[11px] uppercase tracking-mega text-primary font-mono font-bold">{t(UI_LABELS.about.education)}</h3>
             <div>
-              <p className="text-[11px] text-muted-foreground/60 font-mono uppercase tracking-widest mb-1">{PERSONAL_INFO.education.period}</p>
+              <p className="mb-1 font-mono text-[11px] uppercase tracking-widest text-[var(--ds-text-muted)]">{PERSONAL_INFO.education.period}</p>
               <p className="text-sm font-bold uppercase tracking-wide text-foreground leading-tight">{t(PERSONAL_INFO.education.school)}</p>
               <p className="text-xs text-muted-foreground mt-1 font-medium">{t(PERSONAL_INFO.education.major)}</p>
               {(PERSONAL_INFO.education as any).gpa && (
@@ -43,11 +44,11 @@ export function About() {
             <h3 className="text-[11px] uppercase tracking-mega text-primary font-mono font-bold">{t(UI_LABELS.about.info)}</h3>
             <div className="space-y-4">
               <div>
-                <p className="text-[11px] text-muted-foreground/60 font-mono uppercase tracking-widest mb-1">{t(UI_LABELS.about.birthDate)}</p>
+                <p className="mb-1 font-mono text-[11px] uppercase tracking-widest text-[var(--ds-text-muted)]">{t(UI_LABELS.about.birthDate)}</p>
                 <p className="text-sm font-bold uppercase tracking-wide text-foreground">{(PERSONAL_INFO as any).birthDate}</p>
               </div>
               <div>
-                <p className="text-[11px] text-muted-foreground/60 font-mono uppercase tracking-widest mb-1">{t(UI_LABELS.about.email)}</p>
+                <p className="mb-1 font-mono text-[11px] uppercase tracking-widest text-[var(--ds-text-muted)]">{t(UI_LABELS.about.email)}</p>
                 <p className="text-sm font-bold uppercase tracking-wide text-foreground truncate">{PERSONAL_INFO.email}</p>
               </div>
             </div>

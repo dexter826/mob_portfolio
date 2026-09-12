@@ -22,11 +22,11 @@ export function Footer() {
   });
 
   return (
-    <footer className="border-t border-border-subtle py-8 flex flex-col sm:flex-row gap-6 sm:gap-0 justify-between items-center shrink-0 font-mono text-[10px] uppercase tracking-widest font-bold text-muted-foreground/60">
+    <footer className="flex shrink-0 flex-col items-center justify-between gap-6 border-t border-border-subtle py-8 font-mono text-[10px] font-bold uppercase tracking-widest text-[var(--ds-text-muted)] sm:flex-row sm:gap-0">
       <div className="flex items-center gap-4">
         <span>{PERSONAL_INFO.basedIn.vi}</span>
         <span className="hidden sm:inline text-border-medium">|</span>
-        <span className="text-primary/80">
+        <span className="text-primary">
           {mounted ? `${formattedTime} GMT+7` : '--:--:-- -- GMT+7'}
         </span>
       </div>
@@ -36,5 +36,4 @@ export function Footer() {
     </footer>
   );
 }
-
 

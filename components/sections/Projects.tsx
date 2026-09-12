@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import { ChevronRight } from 'lucide-react';
 import { PROJECTS, UI_LABELS } from '@/lib/data';
 import Image from 'next/image';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from '@mob-signal/components';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -48,7 +48,7 @@ export function Projects() {
             <Link href={`/projects/${project.slug}`}>
               <div className={`group flex flex-col ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-20 items-center cursor-pointer`}>
                 {/* Image Section */}
-                <div className="w-full lg:w-[55%] relative aspect-3/2 overflow-hidden border border-border-subtle group-hover:border-primary/50 transition-colors bg-card">
+                <div className="ds-media-scanline relative aspect-3/2 w-full overflow-hidden border border-border-subtle bg-card transition-colors group-hover:border-primary/50 lg:w-[55%]">
                   <Image 
                     src={project.image} 
                     alt={project.title} 
@@ -56,12 +56,9 @@ export function Projects() {
                     sizes="(max-width: 1024px) 100vw, 55vw"
                     className="object-cover transition-all duration-700" 
                   />
-                  {/* Scanline Effect */}
-                  <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-10 pointer-events-none bg-size-[100%_2px,3px_100%] opacity-0 group-hover:opacity-100 transition-opacity" />
-                  
                   {/* Project Number Overlay */}
                   <div className={`absolute bottom-4 ${idx % 2 === 1 ? 'left-4' : 'right-4'} z-20`}>
-                    <span className="text-5xl font-black text-white/5 font-mono select-none">0{idx + 1}</span>
+                    <span aria-hidden="true" className="select-none font-mono text-5xl font-black text-foreground/5">0{idx + 1}</span>
                   </div>
                 </div>
                 
@@ -76,19 +73,19 @@ export function Projects() {
                     {project.title}
                   </h3>
                   
-                  <p className="text-sm sm:text-[15px] text-muted-foreground/90 leading-relaxed mb-8 max-w-xl font-medium">
+                  <p className="mb-8 max-w-xl text-sm font-medium leading-relaxed text-[var(--ds-text-muted)] sm:text-[15px]">
                     {t(project.description)}
                   </p>
                   
                   <div className="flex flex-wrap gap-2 mb-10">
                      {project.tech.map((tech, i) => (
-                       <Badge key={i} variant="secondary" className="text-[10px] uppercase font-mono tracking-widest rounded-none text-primary bg-primary/5 border border-primary/10 hover:bg-primary hover:text-black py-0.5 px-2 transition-colors">
+                       <Badge key={i} variant="accent" className="font-mono text-[10px] uppercase tracking-widest transition-colors hover:bg-primary hover:text-background">
                          {tech}
                        </Badge>
                      ))}
                   </div>
 
-                  <div className="flex items-center gap-2 text-[11px] uppercase font-mono text-muted-foreground/60 group-hover:text-primary transition-colors tracking-widest">
+                  <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-[var(--ds-text-muted)] transition-colors group-hover:text-primary">
                     <span>{t(UI_LABELS.projects.viewDetail)}</span>
                     <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                   </div>
