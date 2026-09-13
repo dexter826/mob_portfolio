@@ -6,8 +6,9 @@ import { motion } from 'motion/react';
 import { ChevronLeft, Terminal, Globe, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Badge, Button } from '@mob-signal/components';
+import { Badge, Button, Card, CardContent } from '@mob-signal/components';
 import { useLanguage } from '@/context/LanguageContext';
+import { dsMotion, easeExpo } from '@/lib/motion';
 
 export default function ProjectPage() {
   const params = useParams();
@@ -35,24 +36,24 @@ export default function ProjectPage() {
           size="compact"
           className="group mb-12 px-0 text-[11px] font-bold uppercase tracking-mega text-[var(--ds-text-muted)] hover:text-primary"
         >
-          <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+          <ChevronLeft className="h-4 w-4 transition-transform duration-[var(--ds-motion-fast)] group-hover:-translate-x-1" />
           {t(UI_LABELS.projects.backToHome)}
         </Button>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: dsMotion.reveal, ease: easeExpo }}
         >
           {/* Header Section */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 border-b border-border-medium pb-10">
             <div className="flex-1">
               {project.role && (
-                <span className="text-[11px] font-mono text-primary uppercase tracking-mega mb-4 block font-bold">
+                <span className="ds-signal-label mb-4">
                   {t(project.role)}
                 </span>
               )}
-              <h1 className="text-4xl sm:text-6xl md:text-8xl font-black uppercase italic tracking-tighter text-foreground mb-6 leading-[0.85] wrap-break-word">
+              <h1 className="ds-editorial-heading mb-6 text-4xl text-foreground wrap-break-word sm:text-6xl md:text-8xl">
                 {project.title}
               </h1>
               <div className="flex flex-wrap gap-2">
@@ -81,7 +82,7 @@ export default function ProjectPage() {
           </div>
 
           {/* Main Visual */}
-          <div className="relative aspect-3/2 w-full overflow-hidden border border-border-medium bg-card mb-12">
+          <div className="ds-media-scanline ds-signal-frame relative mb-12 aspect-3/2 w-full bg-card">
             <Image 
               src={project.image} 
               alt={project.title} 
@@ -100,9 +101,7 @@ export default function ProjectPage() {
               {/* Overview Section */}
               <section className="space-y-6">
                 <div className="space-y-4">
-                  <h2 className="text-xs uppercase tracking-mega text-primary font-mono font-bold flex items-center gap-3">
-                    <span className="w-10 h-px bg-primary/30" /> {t(UI_LABELS.projects.overview)}
-                  </h2>
+                  <h2 className="ds-signal-label">{t(UI_LABELS.projects.overview)}</h2>
                   <p className="text-xl font-medium italic leading-relaxed text-[var(--ds-text-muted)] sm:text-2xl">
                     {t(project.description)}
                   </p>
@@ -110,13 +109,13 @@ export default function ProjectPage() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 pt-2">
                   <div className="space-y-3">
-                    <h3 className="text-[11px] uppercase tracking-mega text-foreground font-mono font-bold">{t(UI_LABELS.projects.problem)}</h3>
+                    <h3 className="ds-meta-label text-foreground">{t(UI_LABELS.projects.problem)}</h3>
                     <p className="text-sm font-medium leading-relaxed text-[var(--ds-text-muted)] sm:text-[15px]">
                       {t((project as any).problem)}
                     </p>
                   </div>
                   <div className="space-y-3">
-                    <h3 className="text-[11px] uppercase tracking-mega text-foreground font-mono font-bold">{t(UI_LABELS.projects.solution)}</h3>
+                    <h3 className="ds-meta-label text-foreground">{t(UI_LABELS.projects.solution)}</h3>
                     <p className="text-sm font-medium leading-relaxed text-[var(--ds-text-muted)] sm:text-[15px]">
                       {t((project as any).solution)}
                     </p>
@@ -126,20 +125,18 @@ export default function ProjectPage() {
 
               {/* Detailed Features Section */}
               <section className="space-y-10">
-                <h2 className="text-xs uppercase tracking-mega text-primary font-mono font-bold flex items-center gap-3">
-                  <span className="w-10 h-px bg-primary/30" /> {t(UI_LABELS.projects.coreFeatures)}
-                </h2>
+                <h2 className="ds-signal-label">{t(UI_LABELS.projects.coreFeatures)}</h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
                   {(project as any).detailedFeatures?.map((category: any, i: number) => (
                     <div key={i} className="space-y-5">
-                      <h3 className="text-sm font-bold uppercase tracking-tighter text-foreground border-l-2 border-primary pl-4 leading-none">
+                      <h3 className="ds-editorial-heading border-l-2 border-primary pl-4 text-sm text-foreground">
                         {t(category.category)}
                       </h3>
                       <ul className="space-y-3">
                         {category.items.map((item: any, j: number) => (
                           <li key={j} className="group flex items-start gap-3 text-[13px] font-medium leading-snug text-[var(--ds-text-muted)]">
-                            <ArrowRight className="w-3 h-3 mt-1 text-primary shrink-0 group-hover:translate-x-1 transition-transform" />
+                            <ArrowRight className="mt-1 h-3 w-3 shrink-0 text-primary transition-transform duration-[var(--ds-motion-fast)] group-hover:translate-x-1" />
                             {t(item)}
                           </li>
                         ))}
@@ -151,9 +148,7 @@ export default function ProjectPage() {
 
               {/* Development Section */}
               <section className="space-y-6">
-                <h2 className="text-xs uppercase tracking-mega text-primary font-mono font-bold flex items-center gap-3">
-                  <span className="w-10 h-px bg-primary/30" /> {t(UI_LABELS.projects.caseStudy)}
-                </h2>
+                <h2 className="ds-signal-label">{t(UI_LABELS.projects.caseStudy)}</h2>
                 <div className="prose prose-invert prose-sm max-w-none font-medium leading-relaxed text-[var(--ds-text-muted)]">
                   <p>{t(project.fullDescription)}</p>
                 </div>
@@ -163,25 +158,27 @@ export default function ProjectPage() {
             {/* Right Column: Sidebar */}
             <div className="lg:col-span-4 space-y-10">
               {/* Tech Stack Sidebar */}
-              <div className="p-8 border border-border-subtle bg-card/30 backdrop-blur-sm sticky top-24">
-                <h3 className="text-[11px] uppercase tracking-mega text-primary font-mono mb-8 font-bold">{t(UI_LABELS.projects.techStack)}</h3>
+              <Card className="ds-signal-frame sticky top-24">
+                <CardContent className="p-8">
+                <h3 className="ds-signal-label mb-8">{t(UI_LABELS.projects.techStack)}</h3>
                 
                 <div className="space-y-6">
                   {Object.entries((project as any).techStack || {}).map(([key, value]) => (
                     <div key={key} className="space-y-2">
-                      <h4 className="font-mono text-[11px] font-medium uppercase tracking-widest text-[var(--ds-text-muted)]">{key}</h4>
+                      <h4 className="ds-meta-label font-medium text-[var(--ds-text-muted)]">{key}</h4>
                       <p className="text-sm text-foreground font-bold uppercase tracking-tight">{value as string}</p>
                     </div>
                   ))}
                 </div>
 
                 <div className="mt-10 pt-6 border-t border-border-subtle">
-                  <Link href={project.link} target="_blank" className="flex items-center justify-between group">
-                    <span className="font-mono text-[11px] font-bold uppercase tracking-mega text-[var(--ds-text-muted)] transition-colors group-hover:text-primary">{t(UI_LABELS.projects.viewSource)}</span>
-                    <Terminal className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <Link href={project.link} target="_blank" className="ds-signal-link group flex items-center justify-between pb-1">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-mega text-[var(--ds-text-muted)] transition-colors duration-[var(--ds-motion-fast)] ease-[var(--ds-ease-standard)] group-hover:text-primary">{t(UI_LABELS.projects.viewSource)}</span>
+                    <Terminal className="h-4 w-4 text-muted-foreground transition-colors duration-[var(--ds-motion-fast)] ease-[var(--ds-ease-standard)] group-hover:text-primary" />
                   </Link>
                 </div>
-              </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </motion.div>

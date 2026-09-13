@@ -4,14 +4,14 @@ import { motion, Variants } from 'motion/react';
 import { EXPERIENCE, UI_LABELS } from '@/lib/data';
 import { ExternalLink } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { staggerContainer, easeExpo } from '@/lib/motion';
+import { dsMotion, staggerContainer, easeExpo } from '@/lib/motion';
 
 const item: Variants = {
   hidden: { opacity: 0, x: -20 },
   show: { 
     opacity: 1, 
     x: 0,
-    transition: { duration: 0.6, ease: easeExpo as any }
+    transition: { duration: dsMotion.reveal, ease: easeExpo }
   }
 };
 
@@ -29,7 +29,7 @@ export function Experience() {
     >
       <motion.h2 
         variants={item}
-        className="text-xs uppercase tracking-mega text-primary font-bold mb-8 sm:mb-10 font-mono"
+        className="ds-signal-label mb-8 sm:mb-10"
       >
         {t(UI_LABELS.experience.title)}
       </motion.h2>
@@ -38,20 +38,13 @@ export function Experience() {
         {EXPERIENCE.map((exp, idx) => (
           <motion.div key={idx} variants={item} className="relative pl-8 group">
             <div className="absolute left-[-5.5px] top-2 w-[11px] h-[11px] border border-primary/50 bg-background flex items-center justify-center">
-              <motion.div 
-                animate={{ 
-                  scale: [1, 1.2, 1],
-                  opacity: [1, 0.7, 1]
-                }}
-                transition={{ repeat: Infinity, duration: 2 }}
-                className="h-1.5 w-1.5 bg-primary shadow-[var(--ds-effect-signal-glow)]"
-              />
+              <div className="ds-signal-pulse h-1.5 w-1.5 bg-primary" />
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-start">
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-xl font-bold uppercase italic tracking-tight text-foreground mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="ds-editorial-heading mb-2 text-xl text-foreground transition-colors duration-[var(--ds-motion-fast)] ease-[var(--ds-ease-standard)] group-hover:text-primary">
                     {t(exp.role)}
                   </h3>
                   <div className="flex items-center gap-2">
@@ -63,7 +56,7 @@ export function Experience() {
                         href={(exp as any).link} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-primary hover:text-foreground transition-colors"
+                        className="text-primary transition-colors duration-[var(--ds-motion-fast)] ease-[var(--ds-ease-standard)] hover:text-foreground"
                         title={t(UI_LABELS.experience.viewCompany)}
                       >
                         <ExternalLink className="w-3 h-3" />

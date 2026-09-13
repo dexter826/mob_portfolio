@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { dsMotion, easeExpo } from '@/lib/motion';
 
 interface SplashScreenProps {
   onComplete?: () => void;
@@ -17,7 +18,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
     setIsVisible(false);
     setTimeout(() => {
       onComplete?.();
-    }, 400);
+    }, dsMotion.panel * 1000);
   }, [onComplete]);
 
   useEffect(() => {
@@ -30,9 +31,9 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         clearInterval(typingInterval);
         setTimeout(() => {
           handleComplete();
-        }, 800);
+        }, dsMotion.reveal * 1000);
       }
-    }, 120);
+    }, dsMotion.fast * 1000);
 
     return () => clearInterval(typingInterval);
   }, [handleComplete]);
@@ -43,13 +44,13 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.4, ease: 'easeInOut' }}
+          transition={{ duration: dsMotion.panel, ease: easeExpo }}
           className="fixed inset-0 z-9999 flex items-center justify-center bg-background font-mono px-4"
         >
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
+            transition={{ duration: dsMotion.slow, ease: easeExpo }}
             className="flex items-center"
           >
             <h1 
@@ -57,12 +58,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
               style={{ filter: 'drop-shadow(0 0 15px var(--ds-brand-accent))' }}
             >
               {displayedText}
-              <motion.span
-                animate={{ opacity: [1, 0] }}
-                transition={{ duration: 0.8, repeat: Infinity, ease: 'easeInOut' }}
-                className="inline-block ml-1 md:ml-2 w-[3px] md:w-[4px] h-[32px] md:h-[48px] bg-primary align-middle"
-                style={{ boxShadow: 'var(--ds-effect-signal-glow)' }}
-              />
+              <span className="ds-typing-cursor ml-1 inline-block h-8 w-[3px] align-middle md:ml-2 md:h-12 md:w-1" />
             </h1>
           </motion.div>
         </motion.div>

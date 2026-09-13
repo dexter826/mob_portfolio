@@ -6,6 +6,7 @@ import { PERSONAL_INFO, UI_LABELS } from '@/lib/data';
 import { Button } from '@mob-signal/components';
 import { useLanguage } from '@/context/LanguageContext';
 import { GlitchText } from '@/components/ui/GlitchText';
+import { dsMotion, easeExpo } from '@/lib/motion';
 
 export function Contact() {
   const { t } = useLanguage();
@@ -45,10 +46,11 @@ export function Contact() {
       id="contact"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
+      transition={{ duration: dsMotion.reveal, ease: easeExpo }}
       viewport={{ once: true }}
       className="py-10 sm:py-12 border-t border-border-medium text-center relative overflow-hidden"
     >
-       <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter mb-4 sm:mb-6 text-foreground leading-[0.9]">
+       <h2 className="ds-editorial-heading mb-4 text-3xl text-foreground sm:mb-6 sm:text-5xl lg:text-6xl">
          <GlitchText text={t(UI_LABELS.contact.title)} />
        </h2>
         <p className="mx-auto mb-8 max-w-lg font-mono text-sm uppercase tracking-wide text-[var(--ds-text-muted)] sm:text-base">
@@ -60,39 +62,33 @@ export function Contact() {
            asChild
            size="large"
            variant="primary"
-           className="px-10 text-sm font-bold uppercase tracking-mega hover:shadow-[var(--ds-effect-signal-glow-strong)]"
+           className="ds-expressive-hover ds-signal-glow px-10 text-sm font-bold uppercase tracking-mega"
          >
-           <motion.a
-             href={`mailto:${PERSONAL_INFO.email}`}
-             whileHover={{ scale: 1.05 }}
-             whileTap={{ scale: 0.95 }}
-           >
+           <a href={`mailto:${PERSONAL_INFO.email}`}>
              <Mail className="size-4" /> {t(UI_LABELS.contact.button)}
-           </motion.a>
+           </a>
          </Button>
 
          <div className="flex justify-center gap-6 sm:gap-8">
            {socials.map((social) => (
-             <motion.a 
+             <a
                key={social.name}
                href={social.link} 
                target="_blank" 
                rel="noopener noreferrer"
-               whileHover={{ scale: 1.1 }}
-               whileTap={{ scale: 0.95 }}
-               className="group flex items-center gap-3 font-mono uppercase tracking-widest font-bold text-muted-foreground transition-all duration-300 p-3 sm:p-0 border border-border-subtle sm:border-transparent bg-card/30 sm:bg-transparent hover:border-primary/40 sm:hover:border-transparent"
+               className="ds-expressive-hover ds-pressable group flex items-center gap-3 border border-border-subtle bg-card p-3 font-mono font-bold uppercase tracking-widest text-muted-foreground sm:border-transparent sm:bg-transparent sm:p-0"
                aria-label={social.name}
              >
-               <span className="flex scale-125 items-center justify-center text-muted-foreground transition-all duration-300 group-hover:text-primary sm:scale-100">
+               <span className="flex scale-125 items-center justify-center text-muted-foreground transition-colors duration-[var(--ds-motion-fast)] ease-[var(--ds-ease-standard)] group-hover:text-primary sm:scale-100">
                 {social.icon}
                </span>
                
                <div className="hidden sm:flex items-center h-full leading-none translate-y-px text-[11px]">
-                 <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary mr-1.5">[</span>
+                 <span className="mr-1.5 -translate-x-2 text-primary opacity-0 transition-all duration-[var(--ds-motion-normal)] ease-[var(--ds-ease-enter)] group-hover:translate-x-0 group-hover:opacity-100">[</span>
                  <GlitchText text={social.name} className="group-hover:text-primary" />
-                 <span className="opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary ml-1.5">]</span>
+                 <span className="ml-1.5 translate-x-2 text-primary opacity-0 transition-all duration-[var(--ds-motion-normal)] ease-[var(--ds-ease-enter)] group-hover:translate-x-0 group-hover:opacity-100">]</span>
                </div>
-             </motion.a>
+             </a>
            ))}
          </div>
        </div>

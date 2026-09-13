@@ -9,13 +9,14 @@ import { Projects } from '@/components/sections/Projects';
 import { Contact } from '@/components/sections/Contact';
 import { Footer } from '@/components/sections/Footer';
 import { motion } from 'motion/react';
+import { dsMotion, easeExpo } from '@/lib/motion';
 
 export default function Portfolio() {
   return (
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1, delay: 0.2 }}
+      transition={{ duration: dsMotion.reveal, ease: easeExpo }}
       className="min-h-screen w-full bg-background text-foreground flex flex-col font-sans selection:bg-primary selection:text-background overflow-x-hidden"
     >
       <Navigation />

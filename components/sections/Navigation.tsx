@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { GlitchText } from '@/components/ui/GlitchText';
-import { staggerContainer, fadeInUp } from '@/lib/motion';
+import { dsMotion, easeExpo, staggerContainer, fadeInUp } from '@/lib/motion';
 
 export function Navigation() {
   const { language, setLanguage, t } = useLanguage();
@@ -50,30 +50,24 @@ export function Navigation() {
 
   return (
     <header className={cn(
-      "fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border-subtle shrink-0 transition-transform duration-300 ease-in-out",
+      "fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border-subtle shrink-0 transition-transform duration-[var(--ds-motion-panel)] ease-[var(--ds-ease-standard)]",
       isVisible ? "translate-y-0" : "-translate-y-full"
     )}>
       <div className="max-w-7xl mx-auto px-6 sm:px-12 py-5 flex justify-between items-center w-full">
         <Link href="/" className="text-xl sm:text-2xl font-black tracking-tighter uppercase text-foreground group">
-          <GlitchText text={PERSONAL_INFO.name} className="group-hover:text-primary transition-colors" />
+          <GlitchText text={PERSONAL_INFO.name} className="transition-colors duration-[var(--ds-motion-fast)] ease-[var(--ds-ease-standard)] group-hover:text-primary" />
         </Link>
         
         <div className="flex items-center gap-4 sm:gap-8">
           <nav className="hidden gap-8 font-mono text-[11px] font-bold uppercase tracking-mega text-[var(--ds-text-muted)] sm:flex">
             {navLinks.map((link) => (
-              <motion.a 
+              <a
                 key={link.href} 
                 href={link.href} 
-                whileHover={{ scale: 1.05 }}
-                className="relative py-1 transition-colors hover:text-primary"
+                className="ds-signal-link py-1"
               >
                 {link.label}
-                <motion.span 
-                  className="absolute bottom-0 left-0 w-0 h-px bg-primary"
-                  whileHover={{ width: '100%' }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.a>
+              </a>
             ))}
           </nav>
 
@@ -114,7 +108,7 @@ export function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: dsMotion.panel, ease: easeExpo }}
             className="sm:hidden border-t border-border-subtle bg-background/95 backdrop-blur-lg overflow-hidden"
           >
             <motion.nav 
@@ -129,17 +123,17 @@ export function Navigation() {
                   href={link.href} 
                   variants={fadeInUp}
                   onClick={() => setIsMenuOpen(false)}
-                  className="group flex items-center justify-between border-b border-border-subtle py-2 text-muted-foreground transition-colors hover:text-primary"
+                  className="ds-signal-link group flex items-center justify-between border-b border-border-subtle py-2"
                 >
                   <span>{link.label}</span>
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity text-primary text-[10px]">_GO</span>
+                  <span className="text-[10px] text-primary opacity-0 transition-opacity duration-[var(--ds-motion-fast)] ease-[var(--ds-ease-standard)] group-hover:opacity-100">_GO</span>
                 </motion.a>
               ))}
               <motion.a 
                 href="#contact" 
                 variants={fadeInUp}
                 onClick={() => setIsMenuOpen(false)}
-                className="text-primary hover:opacity-80 transition-opacity py-2 font-bold"
+                className="ds-signal-link py-2 font-bold text-primary"
               >
                 {t(UI_LABELS.nav.contact)}
               </motion.a>

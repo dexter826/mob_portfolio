@@ -37,6 +37,13 @@ test('opens and closes the mobile navigation', async ({ page }, testInfo) => {
 test('provides visible keyboard focus and reduced motion', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop-1440');
 
+  const hydrationErrors: string[] = [];
+  page.on('console', (message) => {
+    if (message.type() === 'error' && /hydration failed|didn't match/i.test(message.text())) {
+      hydrationErrors.push(message.text());
+    }
+  });
+
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   await waitForStablePortfolio(page);
@@ -56,7 +63,27 @@ test('provides visible keyboard focus and reduced motion', async ({ page }, test
   expect(focusState?.outlineStyle).not.toBe('none');
   expect(focusState?.outlineWidth).not.toBe('0px');
   expect(await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches)).toBe(true);
-  await expect(page.locator('.animate-scanline')).toHaveCSS('animation-name', 'none');
+  await expect(page.locator('.ds-typing-cursor').first()).toHaveCSS('animation-name', 'none');
+  expect(hydrationErrors).toEqual([]);
+});
+
+test('applies the M.O.B Signal expressive recipes', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop-1440');
+
+  await page.goto('/');
+  await waitForStablePortfolio(page);
+  await page.mouse.move(0, 0);
+
+  const media = page.locator('.ds-media-reveal').first();
+  const image = media.locator('img');
+  await expect(image).toHaveCSS('filter', 'grayscale(1)');
+  await media.hover();
+  await expect(image).toHaveCSS('filter', 'grayscale(0)');
+
+  const distortion = page.locator('.ds-distortion-hover').first();
+  await distortion.hover();
+  expect(await distortion.evaluate((element) => getComputedStyle(element, '::before').animationName)).toBe('ds-distort-left');
+  expect(await page.locator('.ds-signal-label').count()).toBeGreaterThan(3);
 });
 
 test('renders project actions and not-found state', async ({ page }, testInfo) => {

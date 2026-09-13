@@ -94,28 +94,4 @@
     box-shadow: var(--ds-effect-signal-glow);
   }
 
-  @keyframes scanline {
-    from {
-      transform: translateY(-100%);
-    }
-
-    to {
-      transform: translateY(100%);
-    }
-  }
-
-  .animate-scanline {
-    animation: scanline 8s linear infinite;
-  }
-
-  .glitch-layer {
-    @apply absolute top-0 left-0 h-full w-full opacity-70;
-    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-scanline {
-    animation: none !important;
-  }
 }

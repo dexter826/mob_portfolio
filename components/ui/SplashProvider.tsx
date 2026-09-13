@@ -13,6 +13,11 @@ export const SplashProvider: React.FC<SplashProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      requestAnimationFrame(() => setIsLoading(false));
+      return;
+    }
+
     const isSplashShown = sessionStorage.getItem('splash_shown');
     if (!isSplashShown) {
       sessionStorage.setItem('splash_shown', 'true');
