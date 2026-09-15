@@ -47,7 +47,7 @@ export const PERSONAL_INFO = {
       vi: 'Công nghệ Phần mềm',
       en: 'Software Engineering'
     },
-    gpa: '3.34/4.0',
+    gpa: '3.36/4.0',
   },
 };
 
