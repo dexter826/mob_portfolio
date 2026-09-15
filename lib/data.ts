@@ -307,6 +307,16 @@ export const PROJECTS = [
 
 export const EXPERIENCE = [
   {
+    period: '07/2026 - PRESENT',
+    role: { vi: 'Intern Product Builder', en: 'Intern Product Builder' },
+    company: 'YODY Fashion JSC',
+    link: 'https://yody.vn',
+    description: {
+      vi: 'Ứng dụng công nghệ AI-native để thiết kế và xây dựng các giải pháp giải quyết bài toán nghiệp vụ thực tế.',
+      en: 'Leveraging AI-native technologies to design and build solutions addressing real-world business challenges.'
+    },
+  },
+  {
     period: '07/2025 - 09/2025',
     role: { vi: 'IT Hardware Intern', en: 'IT Hardware Intern' },
     company: 'Thanh Nhan Computer Co., Ltd (TNC)',
