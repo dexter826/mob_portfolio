@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import { useLanguage } from '@/providers';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { GlitchText } from '@/components/ui';
 import { dsMotion, easeExpo, staggerContainer, fadeInUp } from '@/lib/motion';
 
@@ -15,7 +15,7 @@ export function Navigation() {
   const { language, setLanguage, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,7 +23,7 @@ export function Navigation() {
 
       if (currentScrollY < 10) {
         setIsVisible(true);
-      } else if (currentScrollY > lastScrollY) {
+      } else if (currentScrollY > lastScrollY.current) {
         if (!isMenuOpen) {
           setIsVisible(false);
         }
@@ -31,12 +31,12 @@ export function Navigation() {
         setIsVisible(true);
       }
 
-      setLastScrollY(currentScrollY);
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY, isMenuOpen]);
+  }, [isMenuOpen]);
 
   const toggleLanguage = () => {
     setLanguage(language === 'vi' ? 'en' : 'vi');

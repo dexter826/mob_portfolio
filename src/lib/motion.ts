@@ -1,7 +1,7 @@
 import { Variants } from 'motion/react';
 
-export const easeExpo = [0.16, 1, 0.3, 1] as const;
-export const easeOutBack = [0.34, 1.56, 0.64, 1] as const;
+export const easeExpo: [number, number, number, number] = [0.16, 1, 0.3, 1];
+export const easeOutBack: [number, number, number, number] = [0.34, 1.56, 0.64, 1];
 
 // Numeric mirrors of the M.O.B Signal runtime motion tokens for JS choreography.
 export const dsMotion = {
@@ -31,7 +31,7 @@ export const fadeInUp: Variants = {
     y: 0,
     transition: {
       duration: dsMotion.reveal,
-      ease: easeExpo as any,
+      ease: easeExpo,
     },
   },
 };
@@ -42,7 +42,7 @@ export const fadeInDigital: Variants = {
     opacity: 1,
     transition: {
       duration: dsMotion.reveal,
-      ease: easeExpo as any,
+      ease: easeExpo,
     },
   },
 };

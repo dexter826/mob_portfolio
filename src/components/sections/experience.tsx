@@ -32,8 +32,12 @@ export function Experience() {
       </motion.h2>
 
       <div className="relative border-l border-border-subtle ml-3 space-y-16">
-        {EXPERIENCE.map((exp, idx) => (
-          <motion.div key={idx} variants={item} className="relative pl-8 group">
+        {EXPERIENCE.map((exp) => (
+          <motion.div
+            key={`${exp.company}-${exp.period}`}
+            variants={item}
+            className="relative pl-8 group"
+          >
             <div className="absolute left-[-5.5px] top-2 w-[11px] h-[11px] border border-primary/50 bg-background flex items-center justify-center">
               <div className="ds-signal-pulse h-1.5 w-1.5 bg-primary" />
             </div>
@@ -48,9 +52,9 @@ export function Experience() {
                     <p className="text-[11px] font-mono text-muted-foreground uppercase tracking-widest font-medium">
                       {exp.company}
                     </p>
-                    {(exp as any).link && (
+                    {exp.link && (
                       <a
-                        href={(exp as any).link}
+                        href={exp.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary transition-colors duration-[var(--ds-motion-fast)] ease-[var(--ds-ease-standard)] hover:text-foreground"

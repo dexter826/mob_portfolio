@@ -1,34 +1,44 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useSyncExternalStore } from 'react';
 import { SplashScreen } from '@/components/ui/splash-screen';
 
 interface SplashProviderProps {
   children: React.ReactNode;
 }
 
-// Quản lý hiển thị Splash Screen một lần mỗi phiên.
-export const SplashProvider: React.FC<SplashProviderProps> = ({ children }) => {
-  const [showSplash, setShowSplash] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+const emptySubscribe = () => () => {};
 
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      requestAnimationFrame(() => setIsLoading(false));
-      return;
-    }
-
+function getSplashSnapshot(): boolean {
+  if (typeof window === 'undefined') return false;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return false;
+  }
+  try {
     const isSplashShown = sessionStorage.getItem('splash_shown');
     if (!isSplashShown) {
       sessionStorage.setItem('splash_shown', 'true');
-      requestAnimationFrame(() => setShowSplash(true));
-    } else {
-      requestAnimationFrame(() => {
-        setShowSplash(false);
-        setIsLoading(false);
-      });
+      return true;
     }
-  }, []);
+  } catch {
+    return false;
+  }
+  return false;
+}
+
+function getServerSplashSnapshot(): boolean {
+  return false;
+}
+
+// Quản lý hiển thị Splash Screen một lần mỗi phiên.
+export function SplashProvider({ children }: SplashProviderProps) {
+  const isInitialSplash = useSyncExternalStore(
+    emptySubscribe,
+    getSplashSnapshot,
+    getServerSplashSnapshot
+  );
+  const [isDismissed, setIsDismissed] = useState(false);
+  const showSplash = isInitialSplash && !isDismissed;
 
   useEffect(() => {
     if (showSplash) {
@@ -42,14 +52,13 @@ export const SplashProvider: React.FC<SplashProviderProps> = ({ children }) => {
   }, [showSplash]);
 
   const handleSplashComplete = () => {
-    setShowSplash(false);
-    setIsLoading(false);
+    setIsDismissed(true);
   };
 
   return (
     <>
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
-      <div className={isLoading ? 'invisible' : 'visible'}>{children}</div>
+      {children}
     </>
   );
-};
+}

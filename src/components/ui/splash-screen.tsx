@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { dsMotion, easeExpo } from '@/lib/motion';
 
@@ -9,33 +9,40 @@ interface SplashScreenProps {
 }
 
 // Quản lý màn hình khởi tạo với hiệu ứng terminal.
-export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
+export function SplashScreen({ onComplete }: SplashScreenProps) {
   const [displayedText, setDisplayedText] = useState('');
   const [isVisible, setIsVisible] = useState(true);
   const fullText = '<Hello World />';
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleComplete = useCallback(() => {
     setIsVisible(false);
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       onComplete?.();
     }, dsMotion.panel * 1000);
   }, [onComplete]);
 
   useEffect(() => {
     let currentIndex = 0;
+    let delayTimeout: NodeJS.Timeout | null = null;
+
     const typingInterval = setInterval(() => {
       if (currentIndex < fullText.length) {
         setDisplayedText(fullText.slice(0, currentIndex + 1));
         currentIndex++;
       } else {
         clearInterval(typingInterval);
-        setTimeout(() => {
+        delayTimeout = setTimeout(() => {
           handleComplete();
         }, dsMotion.reveal * 1000);
       }
     }, dsMotion.fast * 1000);
 
-    return () => clearInterval(typingInterval);
+    return () => {
+      clearInterval(typingInterval);
+      if (delayTimeout) clearTimeout(delayTimeout);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
   }, [handleComplete]);
 
   return (
@@ -65,4 +72,4 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
       )}
     </AnimatePresence>
   );
-};
+}

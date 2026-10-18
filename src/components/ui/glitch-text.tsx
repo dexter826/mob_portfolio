@@ -9,12 +9,10 @@ interface GlitchTextProps {
   as?: React.ElementType;
 }
 
-export const GlitchText: React.FC<GlitchTextProps> = ({ text, className, as: Tag = 'span' }) => {
-  const Component = Tag as any;
-
+export function GlitchText({ text, className, as: Tag = 'span' }: GlitchTextProps) {
   return (
-    <Component className={cn('ds-distortion-hover inline-block', className)} data-text={text}>
+    <Tag className={cn('ds-distortion-hover inline-block', className)} data-text={text}>
       {text}
-    </Component>
+    </Tag>
   );
-};
+}

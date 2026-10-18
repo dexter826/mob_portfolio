@@ -5,21 +5,26 @@ import { useLanguage } from '@/providers';
 import { PERSONAL_INFO, UI_LABELS } from '@/data';
 import { MatrixRain, GlitchText } from '@/components/ui';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import Image from 'next/image';
 import { dsMotion, easeExpo, fadeInUp } from '@/lib/motion';
 
+const emptySubscribe = () => () => {};
+
 export function Hero() {
   const { t } = useLanguage();
-  const [text, setText] = useState('');
   const fullText = `${PERSONAL_INFO.rolePrefix} ${PERSONAL_INFO.roleSuffix}`;
   const shouldReduceMotion = useReducedMotion();
+  const [text, setText] = useState('');
+
+  const isMounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
 
   useEffect(() => {
-    if (shouldReduceMotion) {
-      const frame = requestAnimationFrame(() => setText(fullText));
-      return () => cancelAnimationFrame(frame);
-    }
+    if (shouldReduceMotion) return;
 
     let i = 1;
     const interval = setInterval(() => {
@@ -27,8 +32,11 @@ export function Hero() {
       i++;
       if (i > fullText.length) clearInterval(interval);
     }, dsMotion.fast * 1000);
+
     return () => clearInterval(interval);
   }, [fullText, shouldReduceMotion]);
+
+  const displayText = shouldReduceMotion || !isMounted ? fullText : text || fullText.slice(0, 1);
 
   return (
     <motion.section
@@ -40,13 +48,16 @@ export function Hero() {
       <MatrixRain />
 
       <div className="relative z-10 flex-1 max-w-3xl">
-        <h1 className="text-[40px] sm:text-[60px] lg:text-[76px] font-black uppercase leading-[0.9] tracking-tighter text-foreground wrap-break-word">
-          {text.split(' ').map((word, idx) => (
-            <span key={idx} className="block">
-              <GlitchText text={word} />
-            </span>
-          ))}
-          <span className="ds-typing-cursor ml-2 inline-block h-[0.75em] w-[1ch] align-middle" />
+        <h1 className="text-[40px] sm:text-[60px] lg:text-[76px] font-black uppercase leading-[0.9] tracking-tighter text-foreground break-words">
+          <span className="sr-only">{fullText}</span>
+          <span aria-hidden="true">
+            {displayText.split(' ').map((word, idx) => (
+              <span key={idx} className="block">
+                <GlitchText text={word} />
+              </span>
+            ))}
+            <span className="ds-typing-cursor ml-2 inline-block h-[0.75em] w-[1ch] align-middle" />
+          </span>
         </h1>
       </div>
 

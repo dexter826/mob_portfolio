@@ -1,39 +1,63 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import type { Language } from '@/types';
+import React, { createContext, useContext, useState, useSyncExternalStore, ReactNode } from 'react';
+import type { Language, I18nRecord, MultiLangText } from '@/types';
 
 export type { Language };
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (data: any) => any; // Hàm helper để lấy nội dung theo ngôn ngữ
+  t: <T = string>(data: MultiLangText | I18nRecord<T> | T | undefined | null) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('vi');
+function subscribeStorage(callback: () => void) {
+  window.addEventListener('storage', callback);
+  return () => window.removeEventListener('storage', callback);
+}
 
-  // Khôi phục ngôn ngữ từ localStorage
-  useEffect(() => {
-    const savedLang = localStorage.getItem('portfolio-lang') as Language;
-    if (savedLang && (savedLang === 'vi' || savedLang === 'en')) {
-      requestAnimationFrame(() => setLanguageState(savedLang));
+function getStoredLanguage(): Language {
+  try {
+    const saved = localStorage.getItem('portfolio-lang');
+    if (saved === 'vi' || saved === 'en') {
+      return saved;
     }
-  }, []);
+  } catch {
+    // Bỏ qua nếu localStorage bị chặn
+  }
+  return 'vi';
+}
+
+function getServerLanguage(): Language {
+  return 'vi';
+}
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const storedLang = useSyncExternalStore(subscribeStorage, getStoredLanguage, getServerLanguage);
+  const [activeLanguage, setActiveLanguage] = useState<Language | null>(null);
+
+  const language = activeLanguage ?? storedLang;
 
   const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
-    localStorage.setItem('portfolio-lang', lang);
+    setActiveLanguage(lang);
+    try {
+      localStorage.setItem('portfolio-lang', lang);
+    } catch {
+      // Bỏ qua nếu localStorage bị chặn
+    }
   };
 
-  // Hàm t hỗ trợ lấy dữ liệu linh hoạt (chuỗi hoặc object)
-  const t = (data: any) => {
+  // Hàm t hỗ trợ lấy dữ liệu an toàn theo ngôn ngữ hiện tại
+  const t = <T = string>(data: MultiLangText | I18nRecord<T> | T | undefined | null): string => {
     if (!data) return '';
     if (typeof data === 'string') return data;
-    return data[language] || data['vi'] || '';
+    if (typeof data === 'object' && data !== null) {
+      const record = data as Record<string, unknown>;
+      return String(record[language] ?? record['vi'] ?? '');
+    }
+    return String(data);
   };
 
   return (

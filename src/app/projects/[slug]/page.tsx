@@ -1,6 +1,6 @@
 'use client';
 
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, notFound } from 'next/navigation';
 import { PROJECTS, UI_LABELS } from '@/data';
 import { motion } from 'motion/react';
 import { ChevronLeft, Terminal, Globe, ArrowRight } from 'lucide-react';
@@ -12,16 +12,11 @@ import { dsMotion, easeExpo } from '@/lib/motion';
 
 export default function ProjectPage() {
   const params = useParams();
-  const router = useRouter();
   const { t } = useLanguage();
   const project = PROJECTS.find((p) => p.slug === params.slug);
 
   if (!project) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background text-primary font-mono">
-        404_PROJECT_NOT_FOUND
-      </div>
-    );
+    notFound();
   }
 
   return (
@@ -30,15 +25,13 @@ export default function ProjectPage() {
       <div className="ds-technical-grid pointer-events-none fixed inset-0 mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,var(--ds-bg-canvas)_70%,transparent_100%)]" />
 
       <div className="max-w-7xl mx-auto px-6 pt-10 sm:pt-14 relative z-10">
-        <Button
-          onClick={() => router.back()}
-          variant="ghost"
-          size="compact"
-          className="group mb-12 px-0 text-[11px] font-bold uppercase tracking-mega text-[var(--ds-text-muted)] hover:text-primary"
+        <Link
+          href="/"
+          className="group mb-12 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-mega text-[var(--ds-text-muted)] hover:text-primary transition-colors"
         >
           <ChevronLeft className="h-4 w-4 transition-transform duration-[var(--ds-motion-fast)] group-hover:-translate-x-1" />
           {t(UI_LABELS.projects.backToHome)}
-        </Button>
+        </Link>
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -49,17 +42,17 @@ export default function ProjectPage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 border-b border-border-medium pb-10">
             <div className="flex-1">
               {project.role && <span className="ds-signal-label mb-4">{t(project.role)}</span>}
-              <h1 className="ds-editorial-heading mb-6 text-4xl text-foreground wrap-break-word sm:text-6xl md:text-8xl">
+              <h1 className="ds-editorial-heading mb-6 text-4xl text-foreground break-words sm:text-6xl md:text-8xl">
                 {project.title}
               </h1>
               <div className="flex flex-wrap gap-2">
-                {project.tech.map((t, i) => (
+                {project.tech.map((techName) => (
                   <Badge
-                    key={i}
+                    key={techName}
                     variant="accent"
                     className="px-3 py-1 font-mono text-[10px] font-medium uppercase tracking-widest"
                   >
-                    {t}
+                    {techName}
                   </Badge>
                 ))}
               </div>
@@ -72,17 +65,17 @@ export default function ProjectPage() {
                 size="default"
                 className="h-11 w-full border-primary/20 bg-transparent px-7 text-[11px] font-bold uppercase tracking-mega hover:border-primary hover:text-primary sm:w-auto"
               >
-                <Link href={project.link} target="_blank">
+                <Link href={project.link} target="_blank" rel="noopener noreferrer">
                   <Terminal className="w-4 h-4 mr-2" /> {t(UI_LABELS.projects.github)}
                 </Link>
               </Button>
-              {(project as any).liveDemo && (
+              {project.liveDemo && (
                 <Button
                   asChild
                   size="default"
                   className="h-11 w-full px-7 text-[11px] font-bold uppercase tracking-mega sm:w-auto"
                 >
-                  <Link href={(project as any).liveDemo} target="_blank">
+                  <Link href={project.liveDemo} target="_blank" rel="noopener noreferrer">
                     <Globe className="w-4 h-4 mr-2" /> {t(UI_LABELS.projects.liveDemo)}
                   </Link>
                 </Button>
@@ -122,7 +115,7 @@ export default function ProjectPage() {
                       {t(UI_LABELS.projects.problem)}
                     </h3>
                     <p className="text-sm font-medium leading-relaxed text-[var(--ds-text-muted)] sm:text-[15px]">
-                      {t((project as any).problem)}
+                      {t(project.problem)}
                     </p>
                   </div>
                   <div className="space-y-3">
@@ -130,7 +123,7 @@ export default function ProjectPage() {
                       {t(UI_LABELS.projects.solution)}
                     </h3>
                     <p className="text-sm font-medium leading-relaxed text-[var(--ds-text-muted)] sm:text-[15px]">
-                      {t((project as any).solution)}
+                      {t(project.solution)}
                     </p>
                   </div>
                 </div>
@@ -141,13 +134,13 @@ export default function ProjectPage() {
                 <h2 className="ds-signal-label">{t(UI_LABELS.projects.coreFeatures)}</h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
-                  {(project as any).detailedFeatures?.map((category: any, i: number) => (
-                    <div key={i} className="space-y-5">
+                  {project.detailedFeatures?.map((cat) => (
+                    <div key={t(cat.category)} className="space-y-5">
                       <h3 className="ds-editorial-heading border-l-2 border-primary pl-4 text-sm text-foreground">
-                        {t(category.category)}
+                        {t(cat.category)}
                       </h3>
                       <ul className="space-y-3">
-                        {category.items.map((item: any, j: number) => (
+                        {cat.items.map((item, j) => (
                           <li
                             key={j}
                             className="group flex items-start gap-3 text-[13px] font-medium leading-snug text-[var(--ds-text-muted)]"
@@ -179,13 +172,13 @@ export default function ProjectPage() {
                   <h3 className="ds-signal-label mb-8">{t(UI_LABELS.projects.techStack)}</h3>
 
                   <div className="space-y-6">
-                    {Object.entries((project as any).techStack || {}).map(([key, value]) => (
+                    {Object.entries(project.techStack || {}).map(([key, value]) => (
                       <div key={key} className="space-y-2">
                         <h4 className="ds-meta-label font-medium text-[var(--ds-text-muted)]">
                           {key}
                         </h4>
                         <p className="text-sm text-foreground font-bold uppercase tracking-tight">
-                          {value as string}
+                          {value}
                         </p>
                       </div>
                     ))}
@@ -195,6 +188,7 @@ export default function ProjectPage() {
                     <Link
                       href={project.link}
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="ds-signal-link group flex items-center justify-between pb-1"
                     >
                       <span className="font-mono text-[11px] font-bold uppercase tracking-mega text-[var(--ds-text-muted)] transition-colors duration-[var(--ds-motion-fast)] ease-[var(--ds-ease-standard)] group-hover:text-primary">

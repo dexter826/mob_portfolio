@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 
-export const MatrixRain: React.FC = () => {
+export function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -19,11 +19,33 @@ export const MatrixRain: React.FC = () => {
     let lastFrame = 0;
     let drops: number[] = [];
 
+    let canvasColor = '#000000';
+    let accentColor = '#00ff41';
+    let monoFont = 'monospace';
+
+    const updateCachedStyles = () => {
+      const rootStyles = getComputedStyle(document.documentElement);
+      const containerStyles = getComputedStyle(container);
+      canvasColor =
+        rootStyles.getPropertyValue('--ds-bg-canvas').trim() ||
+        rootStyles.backgroundColor ||
+        '#000000';
+      accentColor =
+        rootStyles.getPropertyValue('--ds-brand-accent').trim() ||
+        containerStyles.color ||
+        '#00ff41';
+      monoFont =
+        rootStyles.getPropertyValue('--ds-font-mono').trim() ||
+        containerStyles.fontFamily ||
+        'monospace';
+    };
+
     const resizeCanvas = () => {
       canvas.width = container.offsetWidth;
       canvas.height = container.offsetHeight;
       const columns = Math.ceil(canvas.width / 14);
       drops = Array.from({ length: columns }, () => Math.random() * -100);
+      updateCachedStyles();
     };
 
     resizeCanvas();
@@ -32,15 +54,6 @@ export const MatrixRain: React.FC = () => {
     const fontSize = 14;
 
     const draw = () => {
-      const rootStyles = getComputedStyle(document.documentElement);
-      const containerStyles = getComputedStyle(container);
-      const canvasColor =
-        rootStyles.getPropertyValue('--ds-bg-canvas').trim() || rootStyles.backgroundColor;
-      const accentColor =
-        rootStyles.getPropertyValue('--ds-brand-accent').trim() || containerStyles.color;
-      const monoFont =
-        rootStyles.getPropertyValue('--ds-font-mono').trim() || containerStyles.fontFamily;
-
       ctx.globalAlpha = 0.1;
       ctx.fillStyle = canvasColor;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -104,4 +117,4 @@ export const MatrixRain: React.FC = () => {
       <canvas ref={canvasRef} className="block" />
     </div>
   );
-};
+}

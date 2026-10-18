@@ -42,9 +42,9 @@ export function About() {
               <p className="text-xs text-muted-foreground mt-1 font-medium">
                 {t(PERSONAL_INFO.education.major)}
               </p>
-              {(PERSONAL_INFO.education as any).gpa && (
+              {PERSONAL_INFO.education.gpa && (
                 <Badge variant="accent" className="mt-3 font-mono">
-                  GPA: {(PERSONAL_INFO.education as any).gpa}
+                  GPA: {PERSONAL_INFO.education.gpa}
                 </Badge>
               )}
             </div>
@@ -59,7 +59,7 @@ export function About() {
                   {t(UI_LABELS.about.birthDate)}
                 </p>
                 <p className="text-sm font-bold uppercase tracking-wide text-foreground">
-                  {(PERSONAL_INFO as any).birthDate}
+                  {PERSONAL_INFO.birthDate}
                 </p>
               </div>
               <div>

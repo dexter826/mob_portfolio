@@ -51,7 +51,7 @@ export function Projects() {
 
       <div className="flex flex-col gap-12 lg:gap-16">
         {PROJECTS.map((project, idx) => (
-          <motion.div key={idx} variants={item}>
+          <motion.div key={project.slug} variants={item}>
             <Link href={`/projects/${project.slug}`}>
               <div
                 className={`group flex flex-col ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-20 items-center cursor-pointer`}
@@ -91,8 +91,8 @@ export function Projects() {
                   </p>
 
                   <div className="flex flex-wrap gap-2 mb-10">
-                    {project.tech.map((tech, i) => (
-                      <Badge key={i} variant="accent" className="font-mono">
+                    {project.tech.map((tech) => (
+                      <Badge key={tech} variant="accent" className="font-mono">
                         {tech}
                       </Badge>
                     ))}

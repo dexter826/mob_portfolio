@@ -1,4 +1,4 @@
-import { Smartphone, CreditCard, MessageSquare, Globe, Film } from 'lucide-react';
+import { CreditCard, Globe, Film } from 'lucide-react';
 import type { PersonalInfo, SkillItem, Project, ExperienceItem } from '@/types';
 export { UI_LABELS } from './ui-labels';
 
