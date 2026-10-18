@@ -2,8 +2,6 @@ export * from './fade-in';
 export * from './magnet';
 export * from './animated-text';
 export * from './button';
-export * from './contact-button';
-export * from './live-project-button';
 export * from './contact-modal';
 export * from './section-container';
 export * from './section-header';

@@ -12,8 +12,6 @@
     "clean": "next clean"
   },
   "dependencies": {
-    "@mob-signal/components": "file:vendor/mob-signal-components-1.1.1.tgz",
-    "@mob-signal/theme": "file:vendor/mob-signal-theme-1.1.1.tgz",
     "autoprefixer": "^10.4.21",
     "clsx": "^2.1.1",
     "lucide-react": "^1.14.0",

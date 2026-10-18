@@ -1,0 +1,38 @@
+# 1. Tự động chuẩn hóa line endings về LF cho toàn bộ text files
+* text=auto eol=lf
+
+# 2. Source Code & Web Assets (Bắt buộc dùng LF)
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.md text eol=lf
+*.tex text eol=lf
+*.sty text eol=lf
+*.svg text eol=lf
+
+# 3. Shell scripts & Configs
+*.sh text eol=lf
+*.bash text eol=lf
+.env* text eol=lf
+.gitignore text eol=lf
+.eslintrc* text eol=lf
+.prettierrc* text eol=lf
+
+# 4. Binary Files (Bảo toàn 100% byte gốc, không chuyển đổi line endings)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.tgz binary
+*.zip binary
