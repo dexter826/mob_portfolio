@@ -23,6 +23,7 @@ export const UI_LABELS = {
     birthDate: { vi: 'Ngày sinh', en: 'Birth Date' },
     email: { vi: 'Email', en: 'Email' },
     status: { vi: 'Trạng thái', en: 'Status' },
+    exploreProjects: { vi: 'Khám phá dự án', en: 'Explore Projects' },
   },
   skills: {
     title: { vi: 'Kỹ năng', en: 'Skills' },
@@ -59,16 +60,30 @@ export const UI_LABELS = {
     viewCompany: { vi: 'Xem chi tiết công ty', en: 'View Company' },
   },
   contact: {
-    title: { vi: 'THIẾT LẬP KẾT NỐI', en: 'ESTABLISH CONNECTION' },
+    title: { vi: 'LIÊN HỆ', en: 'GET IN TOUCH' },
     description: {
-      vi: 'Đang tìm kiếm những thách thức mới. Nếu bạn có dự án thú vị, hãy để lại lời nhắn.',
-      en: 'Seeking new challenges. If you have an interesting project, leave a message.',
+      vi: 'Bạn có dự án cần triển khai hoặc muốn kết nối hợp tác? Hãy để lại lời nhắn.',
+      en: 'Have a project in mind or want to collaborate? Feel free to drop a message.',
     },
     button: { vi: 'Liên hệ ngay', en: 'Contact Now' },
     copyEmail: { vi: 'Sao chép email', en: 'Copy email' },
     copied: { vi: 'Đã sao chép!', en: 'Copied!' },
     sendEmail: { vi: 'Gửi email trực tiếp', en: 'Send direct email' },
-    socials: { vi: 'Kênh kết nối', en: 'Social networks' },
-    close: { vi: 'Đóng hộp thoại', en: 'Close dialog' },
+    socials: { vi: 'Mạng xã hội', en: 'Social networks' },
+    close: { vi: 'Đóng', en: 'Close' },
+  },
+  footer: {
+    headline: {
+      vi: 'Bắt đầu một dự án mới?',
+      en: "Let's build something together.",
+    },
+    subtitle: {
+      vi: 'Nếu bạn có ý tưởng hoặc cơ hội hợp tác, đừng ngần ngại nhắn cho tôi.',
+      en: 'Have an idea or looking for collaboration? Feel free to reach out.',
+    },
+    rights: {
+      vi: '© 2026 Trần Công Minh. All rights reserved.',
+      en: '© 2026 Tran Cong Minh. All rights reserved.',
+    },
   },
 } as const;

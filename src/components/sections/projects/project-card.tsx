@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Button, SurfaceCard } from '@/components/ui';
@@ -19,6 +19,15 @@ export interface ProjectCardProps {
 export function ProjectCard({ project, index, totalCards }: ProjectCardProps) {
   const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
@@ -31,14 +40,18 @@ export function ProjectCard({ project, index, totalCards }: ProjectCardProps) {
   return (
     <div
       ref={containerRef}
-      className="h-[92vh] min-h-[680px] flex items-start justify-center sticky top-16 sm:top-20 md:top-24"
+      className="h-auto min-h-0 static pb-10 sm:pb-14 lg:pb-0 lg:h-[92vh] lg:min-h-[680px] flex items-start justify-center lg:sticky lg:top-20"
     >
       <motion.div
-        style={{
-          scale,
-          top: `${index * 24}px`,
-        }}
-        className="w-full max-w-6xl rounded-container border-2 border-text-primary bg-surface-base p-5 sm:p-7 md:p-8 flex flex-col justify-between gap-4 sm:gap-6 shadow-2xl relative overflow-hidden"
+        style={
+          isDesktop
+            ? {
+                scale,
+                top: `${index * 24}px`,
+              }
+            : undefined
+        }
+        className="w-full max-w-6xl rounded-3xl sm:rounded-container border-2 border-text-primary bg-surface-base p-4 sm:p-6 md:p-8 flex flex-col justify-between gap-4 sm:gap-6 shadow-2xl relative overflow-visible lg:overflow-hidden"
       >
         {/* Top Bar: Number, Title, Role, Live Demo & GitHub */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-border-subtle">
@@ -87,7 +100,7 @@ export function ProjectCard({ project, index, totalCards }: ProjectCardProps) {
         </div>
 
         {/* Card Body: Full 2-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 flex-1 items-stretch overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 flex-1 items-stretch overflow-visible lg:overflow-hidden">
           {/* Left Column (5 cols): Authentic Problem, Solution & Core Features */}
           <div className="lg:col-span-5 flex flex-col gap-3.5 justify-between">
             {/* Problem & Solution Box */}

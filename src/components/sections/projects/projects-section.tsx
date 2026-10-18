@@ -10,7 +10,7 @@ export function ProjectsSection() {
   const { t } = useLanguage();
 
   return (
-    <SectionContainer id="projects" variant="dark" className="py-24 sm:py-32 z-10">
+    <SectionContainer id="projects" variant="dark" className="py-16 sm:py-24 md:py-32 z-10">
       <SectionHeader
         title={t(UI_LABELS.projects.title)}
         subtitle={t(UI_LABELS.projects.subtitle)}

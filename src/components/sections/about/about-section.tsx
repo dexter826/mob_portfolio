@@ -15,10 +15,10 @@ import { EducationCard } from './education-card';
 import { ProfileCard } from './profile-card';
 
 export interface AboutSectionProps {
-  onContactClick: () => void;
+  onContactClick?: () => void;
 }
 
-export function AboutSection({ onContactClick }: AboutSectionProps) {
+export function AboutSection({ onContactClick }: AboutSectionProps = {}) {
   const { t } = useLanguage();
   const bioText = t(PERSONAL_INFO.bio);
 
@@ -26,7 +26,7 @@ export function AboutSection({ onContactClick }: AboutSectionProps) {
     <SectionContainer
       id="about"
       variant="dark"
-      className="min-h-screen flex flex-col items-center justify-center text-center py-24 sm:py-32"
+      className="min-h-screen flex flex-col items-center justify-center text-center py-16 sm:py-24 md:py-32"
     >
       {/* 4 Corner 3D Decorative Assets */}
       <AboutDecorations />
@@ -65,10 +65,30 @@ export function AboutSection({ onContactClick }: AboutSectionProps) {
           </div>
         </FadeIn>
 
-        {/* Contact Button */}
+        {/* Explore Projects Button */}
         <FadeIn delay={0.25} y={20}>
-          <Button variant="gradient-pill" onClick={onContactClick}>
-            {t(UI_LABELS.common.contactMe)}
+          <Button
+            variant="outline-pill"
+            href="#projects"
+            icon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="transition-transform duration-200 group-hover:translate-y-0.5"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            }
+            iconPosition="right"
+          >
+            {t(UI_LABELS.about.exploreProjects)}
           </Button>
         </FadeIn>
       </div>

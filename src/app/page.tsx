@@ -7,8 +7,9 @@ import {
   AboutSection,
   ExperienceSection,
   ProjectsSection,
+  FooterSection,
 } from '@/components/sections';
-import { ContactModal } from '@/components/ui';
+import { ContactModal, ScrollToTop } from '@/components/ui';
 import { LanguageProvider } from '@/context/language-context';
 
 export default function Home() {
@@ -27,7 +28,7 @@ export default function Home() {
         <MarqueeSection />
 
         {/* 3. About Section */}
-        <AboutSection onContactClick={() => setIsContactOpen(true)} />
+        <AboutSection />
 
         {/* 4. Experience Section (White Contrast) */}
         <ExperienceSection />
@@ -35,11 +36,17 @@ export default function Home() {
         {/* 5. Projects Section (Sticky Stacking) */}
         <ProjectsSection />
 
+        {/* 6. Closing CTA / Footer Section */}
+        <FooterSection onContactClick={() => setIsContactOpen(true)} />
+
         {/* Contact Modal */}
         <ContactModal
           isOpen={isContactOpen}
           onClose={() => setIsContactOpen(false)}
         />
+
+        {/* Floating Scroll To Top */}
+        <ScrollToTop />
       </main>
     </LanguageProvider>
   );

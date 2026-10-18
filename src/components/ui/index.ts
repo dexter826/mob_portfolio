@@ -7,3 +7,4 @@ export * from './section-container';
 export * from './section-header';
 export * from './surface-card';
 export * from './tag-badge';
+export * from './scroll-to-top';
