@@ -1,9 +1,7 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { FadeIn, Magnet, ContactButton } from '../ui';
-import { PERSONAL_INFO } from '@/data/portfolio';
 
 interface HeroSectionProps {
   onContactClick: () => void;
@@ -52,7 +50,7 @@ export function HeroSection({ onContactClick }: HeroSectionProps) {
         </FadeIn>
       </div>
 
-      {/* Centered 3D Portrait with Magnet effect (Minh's authentic avatar) */}
+      {/* Centered 3D Portrait with Magnet effect */}
       <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0 z-10 pointer-events-auto">
         <FadeIn delay={0.6} y={30}>
           <Magnet
@@ -62,21 +60,13 @@ export function HeroSection({ onContactClick }: HeroSectionProps) {
             inactiveTransition="transform 0.6s ease-in-out"
             className="cursor-pointer"
           >
-            <div className="relative w-[240px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-[4/5] sm:aspect-square rounded-3xl overflow-hidden border border-[#D7E2EA]/30 bg-gradient-to-b from-[#1C1C1C] to-[#0C0C0C] shadow-2xl group">
-              <Image
-                src="/avatar.JPG"
-                alt={PERSONAL_INFO.name}
-                fill
-                priority
-                sizes="(max-width: 640px) 240px, (max-width: 768px) 320px, (max-width: 1024px) 380px, 420px"
-                className="object-cover object-top select-none pointer-events-none transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between px-3 py-1.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-mono uppercase tracking-wider text-[#D7E2EA]/90 pointer-events-none">
-                <span className="font-medium text-white">{PERSONAL_INFO.name}</span>
-                <span className="text-emerald-400">● {PERSONAL_INFO.status.en}</span>
-              </div>
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png"
+              alt="3D Portrait Asset"
+              className="w-[280px] sm:w-[360px] md:w-[440px] lg:w-[520px] object-contain drop-shadow-2xl pointer-events-none select-none"
+              loading="eager"
+            />
           </Magnet>
         </FadeIn>
       </div>
