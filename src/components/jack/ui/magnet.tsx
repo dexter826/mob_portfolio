@@ -1,6 +1,22 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useSyncExternalStore } from 'react';
+
+function subscribeHover(callback: () => void) {
+  if (typeof window === 'undefined') return () => {};
+  const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+  mediaQuery.addEventListener('change', callback);
+  return () => mediaQuery.removeEventListener('change', callback);
+}
+
+function getHoverSnapshot(): boolean {
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+}
+
+function getServerHoverSnapshot(): boolean {
+  return false;
+}
 
 interface MagnetProps {
   children: React.ReactNode;
@@ -22,17 +38,11 @@ export function Magnet({
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isActive, setIsActive] = useState(false);
-  const [canHover, setCanHover] = useState(false);
-
-  useEffect(() => {
-    // Only enable magnetic tracking on fine-pointer devices with hover capability
-    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
-    setCanHover(mediaQuery.matches);
-
-    const handler = (e: MediaQueryListEvent) => setCanHover(e.matches);
-    mediaQuery.addEventListener('change', handler);
-    return () => mediaQuery.removeEventListener('change', handler);
-  }, []);
+  const canHover = useSyncExternalStore(
+    subscribeHover,
+    getHoverSnapshot,
+    getServerHoverSnapshot
+  );
 
   useEffect(() => {
     if (!canHover) return;
