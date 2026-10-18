@@ -5,10 +5,10 @@ import {
   HeroSection,
   MarqueeSection,
   AboutSection,
-  ServicesSection,
+  CapabilitiesSection,
   ProjectsSection,
-} from '@/components/jack/sections';
-import { ContactModal } from '@/components/jack/ui';
+} from '@/components/sections';
+import { ContactModal } from '@/components/ui';
 
 export default function Home() {
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -27,10 +27,10 @@ export default function Home() {
       {/* 3. About Section */}
       <AboutSection onContactClick={() => setIsContactOpen(true)} />
 
-      {/* 4. Services Section */}
-      <ServicesSection />
+      {/* 4. Capabilities Section (White Contrast) */}
+      <CapabilitiesSection />
 
-      {/* 5. Projects Section */}
+      {/* 5. Projects Section (Sticky Stacking) */}
       <ProjectsSection />
 
       {/* Contact Modal */}

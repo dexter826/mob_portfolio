@@ -11,8 +11,9 @@ const kanit = Kanit({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://minhdev.id.vn'),
-  title: 'Jack -- 3D Creator',
-  description: 'Portfolio of Jack (Minh) -- 3D Creator & Product Builder driven by crafting striking and unforgettable projects.',
+  title: 'Trần Công Minh | Product Builder',
+  description:
+    'Portfolio của Trần Công Minh - Cử nhân Kỹ thuật Phần mềm đam mê phát triển hệ thống phần mềm thực dụng.',
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { FadeIn, AnimatedText, ContactButton } from '../ui';
+import { PERSONAL_INFO } from '@/data/portfolio';
 
 interface AboutSectionProps {
   onContactClick: () => void;
@@ -9,21 +10,21 @@ interface AboutSectionProps {
 
 export function AboutSection({ onContactClick }: AboutSectionProps) {
   const aboutText =
-    "With more than five years of experience in design and software engineering, i focus on system architecture, intuitive UI, and seamless user experiences. I truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!";
+    "Bachelor of Software Engineering from HUIT (GPA 3.36/4.0), currently an Intern Product Builder at YODY Fashion JSC. I focus on leveraging modern technologies, serverless architecture, and AI-native workflows to transform complex operational challenges into pragmatic, high-impact products. Let's build something remarkable together!";
 
   return (
     <section
       id="about"
       className="min-h-screen relative flex flex-col items-center justify-center text-center px-5 sm:px-8 md:px-10 py-20 overflow-hidden select-none bg-[#0C0C0C]"
     >
-      {/* 4 Corner 3D Decorative Assets */}
+      {/* 4 Corner 3D Decorative Assets from Visual Language */}
       {/* Top-Left: Moon icon */}
       <div className="absolute top-[4%] left-[1%] sm:left-[2%] md:left-[4%] z-10 pointer-events-none">
         <FadeIn delay={0.1} x={-80} y={0} duration={0.9}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/moon_icon.11395d36.png"
-            alt="3D Moon Icon"
+            alt="3D Moon Decorative Asset"
             className="w-[120px] sm:w-[160px] md:w-[210px] object-contain drop-shadow-xl"
             loading="lazy"
             decoding="async"
@@ -51,7 +52,7 @@ export function AboutSection({ onContactClick }: AboutSectionProps) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/lego_icon-1.703bb594.png"
-            alt="3D Lego Icon"
+            alt="3D Lego Asset"
             className="w-[120px] sm:w-[160px] md:w-[210px] object-contain drop-shadow-xl"
             loading="lazy"
             decoding="async"
@@ -65,7 +66,7 @@ export function AboutSection({ onContactClick }: AboutSectionProps) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/Group_134-1.2e04f3ce.png"
-            alt="3D Group Object"
+            alt="3D Group Asset"
             className="w-[130px] sm:w-[170px] md:w-[220px] object-contain drop-shadow-xl"
             loading="lazy"
             decoding="async"
@@ -77,21 +78,28 @@ export function AboutSection({ onContactClick }: AboutSectionProps) {
       <div className="flex flex-col items-center max-w-4xl z-20">
         {/* Heading */}
         <FadeIn delay={0} y={40}>
-          <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-center text-[clamp(3rem,12vw,160px)] mb-10 sm:mb-14 md:mb-16">
+          <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-center text-[clamp(3rem,12vw,160px)] mb-8 sm:mb-12 md:mb-14">
             About me
           </h2>
         </FadeIn>
 
         {/* Character-by-character animated paragraph */}
-        <div className="mb-16 sm:mb-20 md:mb-24 px-4">
+        <div className="mb-10 sm:mb-14 px-4">
           <AnimatedText
             text={aboutText}
-            className="text-[#D7E2EA] font-medium text-center leading-relaxed max-w-[560px] text-[clamp(1rem,2vw,1.35rem)] mx-auto"
+            className="text-[#D7E2EA] font-medium text-center leading-relaxed max-w-[620px] text-[clamp(1rem,2vw,1.35rem)] mx-auto"
           />
         </div>
 
+        {/* Personal Quote */}
+        <FadeIn delay={0.15} y={20} className="mb-12">
+          <p className="font-mono text-xs sm:text-sm italic text-[#D7E2EA]/60 max-w-md mx-auto">
+            &ldquo;{PERSONAL_INFO.quote.en}&rdquo;
+          </p>
+        </FadeIn>
+
         {/* Contact Button */}
-        <FadeIn delay={0.2} y={20}>
+        <FadeIn delay={0.25} y={20}>
           <ContactButton onClick={onContactClick} />
         </FadeIn>
       </div>

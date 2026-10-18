@@ -1,38 +1,39 @@
 'use client';
 
 import React from 'react';
-import { motion, type HTMLMotionProps } from 'motion/react';
+import { motion, useInView } from 'motion/react';
 
-interface FadeInProps extends HTMLMotionProps<'div'> {
+interface FadeInProps {
+  children: React.ReactNode;
   delay?: number;
   duration?: number;
   x?: number;
   y?: number;
   className?: string;
-  children: React.ReactNode;
 }
 
 export function FadeIn({
-  delay = 0,
-  duration = 0.7,
-  x = 0,
-  y = 30,
-  className = '',
   children,
-  ...props
+  delay = 0,
+  duration = 0.8,
+  x = 0,
+  y = 20,
+  className = '',
 }: FadeInProps) {
+  const ref = React.useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
+
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0, x, y }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: '50px', amount: 0 }}
+      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x, y }}
       transition={{
         duration,
         delay,
         ease: [0.25, 0.1, 0.25, 1],
       }}
       className={className}
-      {...props}
     >
       {children}
     </motion.div>
