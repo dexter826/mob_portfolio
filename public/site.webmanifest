@@ -1,0 +1,27 @@
+{
+  "name": "Trần Công Minh | Software Engineer & Product Builder",
+  "short_name": "MINH",
+  "description": "Portfolio của Trần Công Minh - Kỹ sư phần mềm và xây dựng sản phẩm số thực dụng.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0C0C0C",
+  "theme_color": "#0C0C0C",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
