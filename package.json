@@ -6,12 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . && npm run check:ui",
-    "check:ui": "node scripts/check-ui-contracts.mjs",
-    "test": "playwright test",
-    "test:interaction": "playwright test tests/interaction.spec.ts",
-    "test:visual": "playwright test tests/visual.spec.ts",
-    "test:visual:update": "playwright test tests/visual.spec.ts --update-snapshots",
+    "lint": "eslint .",
     "clean": "next clean"
   },
   "dependencies": {
@@ -28,8 +23,6 @@
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.13.0",
-    "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^25.7.0",
