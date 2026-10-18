@@ -1,8 +1,8 @@
 <div align="center">
   <img width="250" alt="Mob Portfolio Banner" src="public/it_mano-borsa.png" />
-  
+
   <h1>Mob Portfolio - Personal Showcase</h1>
-  
+
   <p>
     <img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js" alt="Next.js" />
     <img src="https://img.shields.io/badge/TypeScript-6-blue?style=for-the-badge&logo=typescript" alt="TypeScript" />
@@ -37,8 +37,8 @@ Dự án được xây dựng dựa trên các công nghệ hiện đại nhất
 
 ## 📱 Dự án tiêu biểu
 
-| Dự án        | Mô tả                                  | Công nghệ                  | Demo                                                                              |
-| :----------- | :------------------------------------- | :------------------------- | :-------------------------------------------------------------------------------- |
+| Dự án        | Mô tả                                  | Công nghệ                  | Demo                                                                          |
+| :----------- | :------------------------------------- | :------------------------- | :---------------------------------------------------------------------------- |
 | **CineMOB**  | Movie Tracker thông minh tích hợp AI.  | React, Firebase, AI        | <a href="https://cinematrics-e0231.firebaseapp.com/" target="_blank">Link</a> |
 | **ShiftPay** | Hệ thống quản lý nhân sự & bảng lương. | React, Firebase, VietQR    | <a href="https://at-shiftpay.web.app/" target="_blank">Link</a>               |
 | **Smurfy**   | Mạng xã hội thời gian thực.            | React, Firebase, ZegoCloud | <a href="https://smurfy-138c1.web.app/" target="_blank">Link</a>              |

@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+build/
+dist/
+vendor/
+.agents/
+coverage/
+test-results/
+playwright-report/
+package-lock.json
+tsconfig.tsbuildinfo
