@@ -21,7 +21,7 @@ export function FadeIn({
   className = '',
 }: FadeInProps) {
   const ref = React.useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const isInView = useInView(ref, { once: true, margin: '0px 0px -40px 0px' });
 
   return (
     <motion.div

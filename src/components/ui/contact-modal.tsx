@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Copy, Check, Mail, ExternalLink } from 'lucide-react';
-import { PERSONAL_INFO } from '@/data/portfolio';
+import { PERSONAL_INFO, UI_LABELS } from '@/data/portfolio';
+import { useLanguage } from '@/context/language-context';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -39,6 +40,7 @@ function InstagramIcon({ className = 'w-5 h-5' }: { className?: string }) {
 }
 
 export function ContactModal({ isOpen, onClose }: ContactModalProps) {
+  const { language, t } = useLanguage();
   const [copied, setCopied] = useState(false);
   const email = PERSONAL_INFO.email;
 
@@ -104,13 +106,13 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
             {/* Modal Header */}
             <div className="mb-6">
               <span className="font-mono text-xs uppercase tracking-widest text-[#D7E2EA]/50">
-                Let&apos;s build together
+                {t(UI_LABELS.contact.title)}
               </span>
               <h3 className="font-bold text-2xl sm:text-3xl uppercase tracking-tight text-white mt-1">
-                Get in touch
+                {t(UI_LABELS.nav.contact)}
               </h3>
               <p className="text-sm text-[#D7E2EA]/70 mt-1">
-                Have a project idea, a collaboration opportunity, or just want to talk tech? Drop me a line.
+                {t(UI_LABELS.contact.description)}
               </p>
             </div>
 
@@ -130,12 +132,14 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 {copied ? (
                   <>
                     <Check className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-emerald-400">Copied</span>
+                    <span className="text-emerald-400">
+                      {language === 'vi' ? 'Đã sao chép' : 'Copied'}
+                    </span>
                   </>
                 ) : (
                   <>
                     <Copy className="w-3.5 h-3.5" />
-                    <span>Copy</span>
+                    <span>{language === 'vi' ? 'Sao chép' : 'Copy'}</span>
                   </>
                 )}
               </button>
@@ -144,7 +148,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
             {/* Social Links */}
             <div className="space-y-2">
               <span className="font-mono text-xs uppercase tracking-widest text-[#D7E2EA]/50">
-                Connect
+                {language === 'vi' ? 'Kết nối' : 'Connect'}
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
                 <a
@@ -191,7 +195,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
             {/* Footer Note */}
             <div className="mt-6 pt-4 border-t border-[#D7E2EA]/10 text-center">
               <span className="font-mono text-[11px] text-[#D7E2EA]/40 uppercase tracking-widest">
-                Based in {PERSONAL_INFO.basedIn.vi}
+                {t(UI_LABELS.hero.basedIn)} {t(PERSONAL_INFO.basedIn)}
               </span>
             </div>
           </motion.div>
