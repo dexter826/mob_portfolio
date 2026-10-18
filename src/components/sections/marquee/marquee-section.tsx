@@ -1,12 +1,7 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-
-interface MotionCardItem {
-  src: string;
-  title: string;
-  tag: string;
-}
+import { MarqueeCard, type MotionCardItem } from './marquee-card';
 
 const ROW_1_ITEMS: MotionCardItem[] = [
   {
@@ -78,79 +73,49 @@ const ROW_2_ITEMS: MotionCardItem[] = [
     tag: 'FRONTEND CRAFT',
   },
   {
-    src: 'https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif',
-    title: 'Orbit Topology',
-    tag: 'DISTRIBUTED SYSTEMS',
+    src: 'https://motionsites.ai/assets/hero-sparkling-preview-k9o-Uq1j.gif',
+    title: 'Sparkling UI',
+    tag: 'DYNAMIC GRAPHICS',
   },
   {
-    src: 'https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif',
-    title: 'Nexora Interface',
-    tag: 'NEXT-GEN UI',
+    src: 'https://motionsites.ai/assets/hero-aurora-preview-BwGk-D6y.gif',
+    title: 'Aurora Engine',
+    tag: 'GPU SHADERS',
   },
   {
-    src: 'https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif',
-    title: 'EVR Workflows',
-    tag: 'REAL-TIME OPS',
+    src: 'https://motionsites.ai/assets/hero-hyperion-preview-DEy1mHkS.gif',
+    title: 'Hyperion Vector',
+    tag: 'ALGORITHMIC',
   },
   {
-    src: 'https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif',
-    title: 'Planet Orbit',
-    tag: 'GRAPHICS ENGINE',
+    src: 'https://motionsites.ai/assets/hero-genesis-preview-DJ1_rC9n.gif',
+    title: 'Genesis Cloud',
+    tag: 'DISTRIBUTED SYS',
   },
   {
-    src: 'https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif',
-    title: 'New Era Digital',
-    tag: 'WEB PLATFORM',
+    src: 'https://motionsites.ai/assets/hero-pulse-preview-CO43e11W.gif',
+    title: 'Pulse Analytics',
+    tag: 'REAL-TIME DATA',
   },
   {
-    src: 'https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif',
-    title: 'Fintech Engine',
-    tag: 'FINTECH APIS',
+    src: 'https://motionsites.ai/assets/hero-orion-preview-B13lB6P7.gif',
+    title: 'Orion Gateway',
+    tag: 'API GATEWAY',
   },
   {
-    src: 'https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif',
-    title: 'Luminex Shader',
+    src: 'https://motionsites.ai/assets/hero-zenith-preview-C5-3d_z2.gif',
+    title: 'Zenith Studio',
     tag: 'CREATIVE TECH',
   },
   {
-    src: 'https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif',
-    title: 'Celestia Network',
-    tag: 'PEER ARCHITECTURE',
+    src: 'https://motionsites.ai/assets/hero-nexus-preview-D2FkLm8P.gif',
+    title: 'Nexus Intelligence',
+    tag: 'ML PLATFORM',
   },
 ];
 
 const TRIPLED_ROW_1 = [...ROW_1_ITEMS, ...ROW_1_ITEMS, ...ROW_1_ITEMS];
 const TRIPLED_ROW_2 = [...ROW_2_ITEMS, ...ROW_2_ITEMS, ...ROW_2_ITEMS];
-
-function MotionCard({ item }: { item: MotionCardItem }) {
-  return (
-    <div className="w-[380px] sm:w-[420px] h-[240px] sm:h-[270px] min-w-[380px] sm:min-w-[420px] rounded-card overflow-hidden bg-surface-card-hover border border-white/10 shrink-0 relative group">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={item.src}
-        alt={item.title}
-        loading="lazy"
-        decoding="async"
-        className="w-full h-full object-cover rounded-2xl pointer-events-none select-none transition-transform duration-700 group-hover:scale-105"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-
-      {/* Top-left category tag */}
-      <div className="absolute top-4 left-4">
-        <span className="px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-mono uppercase tracking-wider text-text-primary">
-          {item.tag}
-        </span>
-      </div>
-
-      {/* Bottom title */}
-      <div className="absolute bottom-4 left-4 right-4">
-        <h4 className="font-bold text-base sm:text-lg text-white uppercase tracking-tight">
-          {item.title}
-        </h4>
-      </div>
-    </div>
-  );
-}
 
 export function MarqueeSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -200,7 +165,7 @@ export function MarqueeSection() {
           }}
         >
           {TRIPLED_ROW_1.map((item, index) => (
-            <MotionCard key={`row1-${index}`} item={item} />
+            <MarqueeCard key={`row1-${index}`} item={item} />
           ))}
         </div>
 
@@ -213,7 +178,7 @@ export function MarqueeSection() {
           }}
         >
           {TRIPLED_ROW_2.map((item, index) => (
-            <MotionCard key={`row2-${index}`} item={item} />
+            <MarqueeCard key={`row2-${index}`} item={item} />
           ))}
         </div>
       </div>
