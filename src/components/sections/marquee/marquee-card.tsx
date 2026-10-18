@@ -10,7 +10,7 @@ export interface MotionCardItem {
 
 export function MarqueeCard({ item }: { item: MotionCardItem }) {
   return (
-    <div className="w-[380px] sm:w-[420px] h-[240px] sm:h-[270px] min-w-[380px] sm:min-w-[420px] rounded-card overflow-hidden bg-surface-card-hover border border-white/10 shrink-0 relative group">
+    <div className="w-[380px] sm:w-[420px] h-[240px] sm:h-[270px] min-w-[380px] sm:min-w-[420px] rounded-card overflow-hidden bg-surface-card-hover border border-white/10 hover:border-white/25 shrink-0 relative group transition-colors duration-300">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={item.src}
@@ -19,7 +19,7 @@ export function MarqueeCard({ item }: { item: MotionCardItem }) {
         decoding="async"
         className="w-full h-full object-cover rounded-2xl pointer-events-none select-none transition-transform duration-700 group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
 
       {/* Top-left category tag */}
       <div className="absolute top-4 left-4">
