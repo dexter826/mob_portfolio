@@ -22,10 +22,10 @@ export function HeroSection({ onContactClick }: HeroSectionProps) {
             About
           </a>
           <a
-            href="#capabilities"
+            href="#experience"
             className="text-[#D7E2EA] font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] hover:opacity-70 transition-opacity duration-200"
           >
-            Capabilities
+            Experience
           </a>
           <a
             href="#projects"

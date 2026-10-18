@@ -5,7 +5,7 @@ import {
   HeroSection,
   MarqueeSection,
   AboutSection,
-  CapabilitiesSection,
+  ExperienceSection,
   ProjectsSection,
 } from '@/components/sections';
 import { ContactModal } from '@/components/ui';
@@ -27,8 +27,8 @@ export default function Home() {
       {/* 3. About Section */}
       <AboutSection onContactClick={() => setIsContactOpen(true)} />
 
-      {/* 4. Capabilities Section (White Contrast) */}
-      <CapabilitiesSection />
+      {/* 4. Experience Section (White Contrast) */}
+      <ExperienceSection />
 
       {/* 5. Projects Section (Sticky Stacking) */}
       <ProjectsSection />
