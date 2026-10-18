@@ -1,78 +1,23 @@
 @import 'tailwindcss';
-@import '@mob-signal/theme/runtime.css';
-
-@source "../../node_modules/@mob-signal/components/dist";
-
-@custom-variant dark (&:is([data-theme="dark"] *));
-
-@theme inline {
-  --font-heading: var(--ds-font-sans);
-  --font-sans: var(--font-geist);
-  --font-mono: var(--font-jetbrains);
-  --tracking-tighter: var(--ds-font-tracking-display);
-  --tracking-tight: var(--ds-font-tracking-heading);
-  --tracking-normal: 0em;
-  --tracking-wide: var(--ds-font-tracking-metadata);
-  --tracking-widest: var(--ds-font-tracking-label);
-  --tracking-mega: var(--ds-font-tracking-identifier);
-  --leading-none: 1;
-  --leading-tight: var(--ds-line-height-tight);
-  --leading-snug: var(--ds-line-height-heading);
-  --leading-normal: var(--ds-line-height-body);
-  --leading-relaxed: var(--ds-line-height-relaxed);
-  --color-ring: var(--ds-focus-ring);
-  --color-input: var(--ds-component-control-border);
-  --color-border: var(--ds-border-default);
-  --color-border-subtle: var(--ds-border-subtle);
-  --color-border-medium: var(--ds-border-default);
-  --color-destructive: var(--ds-status-danger);
-  --color-accent-foreground: var(--ds-text-primary);
-  --color-accent: var(--ds-bg-hover);
-  --color-muted-foreground: var(--ds-text-secondary);
-  --color-muted: var(--ds-bg-surface-muted);
-  --color-secondary-foreground: var(--ds-action-secondary-text);
-  --color-secondary: var(--ds-action-secondary-bg);
-  --color-primary-foreground: var(--ds-action-primary-text);
-  --color-primary: var(--ds-brand-accent);
-  --color-popover-foreground: var(--ds-text-primary);
-  --color-popover: var(--ds-bg-surface-raised);
-  --color-card-foreground: var(--ds-text-primary);
-  --color-card: var(--ds-bg-surface);
-  --color-foreground: var(--ds-text-primary);
-  --color-background: var(--ds-bg-canvas);
-  --radius-sm: var(--ds-radius-control-compact);
-  --radius-md: var(--ds-radius-control);
-  --radius-lg: var(--ds-radius-control);
-  --radius-xl: var(--ds-radius-overlay);
-  --radius-2xl: var(--ds-radius-overlay);
-  --radius-3xl: var(--ds-radius-overlay);
-  --radius-4xl: var(--ds-radius-pill);
-  --ease-expo: var(--ds-ease-enter);
-  --ease-out-back: var(--ds-ease-snap);
-}
-
-:root {
-  --ds-font-sans: var(--font-geist);
-  --ds-font-mono: var(--font-jetbrains);
-}
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+  *, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
-  body {
-    @apply bg-background text-foreground;
+  html, body, #root {
+    background-color: #0C0C0C;
+    color: #D7E2EA;
+    font-family: var(--font-kanit), 'Kanit', sans-serif;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  html {
-    @apply font-sans scroll-smooth;
-  }
-
-  button,
-  [role='button'],
-  a {
-    @apply cursor-pointer;
+  button, [role='button'], a {
+    cursor: pointer;
   }
 
   ::-webkit-scrollbar {
@@ -80,17 +25,21 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--ds-bg-canvas);
+    background: #0C0C0C;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--ds-bg-surface-muted);
-    border: 1px solid var(--ds-border-subtle);
-    border-radius: var(--ds-radius-pill);
+    background: #222222;
+    border-radius: 9999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--ds-brand-accent);
-    box-shadow: var(--ds-effect-signal-glow);
+    background: #444444;
   }
+}
+
+@utility hero-heading {
+  background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

@@ -7,14 +7,28 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-  // Allow access to remote image placeholder.
+  // Allow access to remote images
   images: {
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'picsum.photos',
-        port: '',
-        pathname: '/**', // This allows any path under the hostname
+      },
+      {
+        protocol: 'https',
+        hostname: 'motionsites.ai',
+      },
+      {
+        protocol: 'https',
+        hostname: 'shrug-person-78902957.figma.site',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.higgs.ai',
+      },
+      {
+        protocol: 'https',
+        hostname: 'd8j0ntlcm91z4.cloudfront.net',
       },
     ],
   },
