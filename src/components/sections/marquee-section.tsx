@@ -124,7 +124,7 @@ const TRIPLED_ROW_2 = [...ROW_2_ITEMS, ...ROW_2_ITEMS, ...ROW_2_ITEMS];
 
 function MotionCard({ item }: { item: MotionCardItem }) {
   return (
-    <div className="w-[380px] sm:w-[420px] h-[240px] sm:h-[270px] min-w-[380px] sm:min-w-[420px] rounded-2xl overflow-hidden bg-[#181818] border border-white/10 shrink-0 relative group">
+    <div className="w-[380px] sm:w-[420px] h-[240px] sm:h-[270px] min-w-[380px] sm:min-w-[420px] rounded-card overflow-hidden bg-surface-card-hover border border-white/10 shrink-0 relative group">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={item.src}
@@ -137,7 +137,7 @@ function MotionCard({ item }: { item: MotionCardItem }) {
 
       {/* Top-left category tag */}
       <div className="absolute top-4 left-4">
-        <span className="px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-mono uppercase tracking-wider text-[#D7E2EA]">
+        <span className="px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-mono uppercase tracking-wider text-text-primary">
           {item.tag}
         </span>
       </div>
@@ -188,7 +188,7 @@ export function MarqueeSection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden select-none"
+      className="bg-surface-base pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden select-none"
     >
       <div className="flex flex-col gap-4 w-full">
         {/* Row 1: Moves RIGHT on scroll */}

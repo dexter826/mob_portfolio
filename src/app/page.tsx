@@ -18,7 +18,7 @@ export default function Home() {
     <LanguageProvider>
       <main
         style={{ overflowX: 'clip' }}
-        className="min-h-screen w-full bg-[#0C0C0C] text-[#D7E2EA] font-sans overflow-x-clip selection:bg-white selection:text-black relative"
+        className="min-h-screen w-full bg-surface-base text-text-primary font-sans overflow-x-clip selection:bg-white selection:text-black relative"
       >
         {/* 1. Hero Section */}
         <HeroSection onContactClick={() => setIsContactOpen(true)} />

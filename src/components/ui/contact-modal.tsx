@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, Copy, Check, Mail, ExternalLink } from 'lucide-react';
 import { PERSONAL_INFO, UI_LABELS } from '@/data/portfolio';
 import { useLanguage } from '@/context/language-context';
+import { easeCustom } from '@/lib/motion';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -40,7 +41,7 @@ function InstagramIcon({ className = 'w-5 h-5' }: { className?: string }) {
 }
 
 export function ContactModal({ isOpen, onClose }: ContactModalProps) {
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
   const email = PERSONAL_INFO.email;
 
@@ -67,8 +68,8 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
       await navigator.clipboard.writeText(email);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // fallback
+    } catch (err) {
+      console.error('Failed to copy email to clipboard', err);
     }
   };
 
@@ -90,36 +91,36 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative w-full max-w-lg rounded-3xl bg-[#141414] border border-[#D7E2EA]/20 p-6 sm:p-8 text-[#D7E2EA] shadow-2xl z-10"
+            transition={{ duration: 0.25, ease: easeCustom }}
+            className="relative w-full max-w-lg rounded-3xl bg-surface-card border border-border-strong p-6 sm:p-8 text-text-primary shadow-2xl z-10"
           >
             {/* Close Button */}
             <button
               type="button"
               onClick={onClose}
-              className="absolute top-5 right-5 p-2 rounded-full text-[#D7E2EA]/60 hover:text-white hover:bg-white/10 transition-colors"
-              aria-label="Close modal"
+              className="absolute top-5 right-5 p-2 rounded-full text-text-muted hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              aria-label={t(UI_LABELS.contact.close)}
             >
               <X className="w-5 h-5" />
             </button>
 
             {/* Modal Header */}
             <div className="mb-6">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#D7E2EA]/50">
+              <span className="font-mono text-xs uppercase tracking-widest text-text-muted">
                 {t(UI_LABELS.contact.title)}
               </span>
               <h3 className="font-bold text-2xl sm:text-3xl uppercase tracking-tight text-white mt-1">
                 {t(UI_LABELS.nav.contact)}
               </h3>
-              <p className="text-sm text-[#D7E2EA]/70 mt-1">
+              <p className="text-sm text-text-muted mt-1">
                 {t(UI_LABELS.contact.description)}
               </p>
             </div>
 
             {/* Email Copy Box */}
-            <div className="mb-6 p-4 rounded-2xl bg-[#0C0C0C] border border-[#D7E2EA]/15 flex items-center justify-between gap-3">
+            <div className="mb-6 p-4 rounded-2xl bg-surface-base border border-border-subtle flex items-center justify-between gap-3">
               <div className="flex items-center gap-3 overflow-hidden">
-                <Mail className="w-5 h-5 text-[#D7E2EA]/60 shrink-0" />
+                <Mail className="w-5 h-5 text-text-muted shrink-0" />
                 <span className="font-mono text-xs sm:text-sm truncate select-all">
                   {email}
                 </span>
@@ -127,19 +128,19 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
               <button
                 type="button"
                 onClick={handleCopy}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1E1E1E] hover:bg-[#2A2A2A] text-xs font-medium uppercase tracking-wider text-[#D7E2EA] transition-colors shrink-0"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-card-hover hover:bg-[#2A2A2A] text-xs font-medium uppercase tracking-wider text-text-primary transition-colors shrink-0 cursor-pointer"
               >
                 {copied ? (
                   <>
                     <Check className="w-3.5 h-3.5 text-emerald-400" />
                     <span className="text-emerald-400">
-                      {language === 'vi' ? 'Đã sao chép' : 'Copied'}
+                      {t(UI_LABELS.contact.copied)}
                     </span>
                   </>
                 ) : (
                   <>
                     <Copy className="w-3.5 h-3.5" />
-                    <span>{language === 'vi' ? 'Sao chép' : 'Copy'}</span>
+                    <span>{t(UI_LABELS.contact.copyEmail)}</span>
                   </>
                 )}
               </button>
@@ -147,54 +148,54 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
             {/* Social Links */}
             <div className="space-y-2">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#D7E2EA]/50">
-                {language === 'vi' ? 'Kết nối' : 'Connect'}
+              <span className="font-mono text-xs uppercase tracking-widest text-text-muted">
+                {t(UI_LABELS.contact.socials)}
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
                 <a
                   href={PERSONAL_INFO.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between px-4 py-3 rounded-xl bg-[#0C0C0C] border border-[#D7E2EA]/15 hover:border-[#D7E2EA]/40 hover:bg-[#1A1A1A] transition-all text-xs font-medium group"
+                  className="flex items-center justify-between px-4 py-3 rounded-xl bg-surface-base border border-border-subtle hover:border-border-strong hover:bg-surface-card-hover transition-all text-xs font-medium group cursor-pointer"
                 >
                   <div className="flex items-center gap-2">
-                    <GithubIcon className="w-4 h-4 text-[#D7E2EA]" />
+                    <GithubIcon className="w-4 h-4 text-text-primary" />
                     <span>GitHub</span>
                   </div>
-                  <ExternalLink className="w-3.5 h-3.5 text-[#D7E2EA]/40 group-hover:text-white" />
+                  <ExternalLink className="w-3.5 h-3.5 text-text-muted group-hover:text-white" />
                 </a>
 
                 <a
                   href={PERSONAL_INFO.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between px-4 py-3 rounded-xl bg-[#0C0C0C] border border-[#D7E2EA]/15 hover:border-[#D7E2EA]/40 hover:bg-[#1A1A1A] transition-all text-xs font-medium group"
+                  className="flex items-center justify-between px-4 py-3 rounded-xl bg-surface-base border border-border-subtle hover:border-border-strong hover:bg-surface-card-hover transition-all text-xs font-medium group cursor-pointer"
                 >
                   <div className="flex items-center gap-2">
-                    <FacebookIcon className="w-4 h-4 text-[#D7E2EA]" />
+                    <FacebookIcon className="w-4 h-4 text-text-primary" />
                     <span>Facebook</span>
                   </div>
-                  <ExternalLink className="w-3.5 h-3.5 text-[#D7E2EA]/40 group-hover:text-white" />
+                  <ExternalLink className="w-3.5 h-3.5 text-text-muted group-hover:text-white" />
                 </a>
 
                 <a
                   href={PERSONAL_INFO.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between px-4 py-3 rounded-xl bg-[#0C0C0C] border border-[#D7E2EA]/15 hover:border-[#D7E2EA]/40 hover:bg-[#1A1A1A] transition-all text-xs font-medium group"
+                  className="flex items-center justify-between px-4 py-3 rounded-xl bg-surface-base border border-border-subtle hover:border-border-strong hover:bg-surface-card-hover transition-all text-xs font-medium group cursor-pointer"
                 >
                   <div className="flex items-center gap-2">
-                    <InstagramIcon className="w-4 h-4 text-[#D7E2EA]" />
+                    <InstagramIcon className="w-4 h-4 text-text-primary" />
                     <span>Instagram</span>
                   </div>
-                  <ExternalLink className="w-3.5 h-3.5 text-[#D7E2EA]/40 group-hover:text-white" />
+                  <ExternalLink className="w-3.5 h-3.5 text-text-muted group-hover:text-white" />
                 </a>
               </div>
             </div>
 
             {/* Footer Note */}
-            <div className="mt-6 pt-4 border-t border-[#D7E2EA]/10 text-center">
-              <span className="font-mono text-[11px] text-[#D7E2EA]/40 uppercase tracking-widest">
+            <div className="mt-6 pt-4 border-t border-border-subtle text-center">
+              <span className="font-mono text-[11px] text-text-muted uppercase tracking-widest">
                 {t(UI_LABELS.hero.basedIn)} {t(PERSONAL_INFO.basedIn)}
               </span>
             </div>

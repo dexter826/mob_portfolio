@@ -3,11 +3,17 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { LiveProjectButton, FadeIn } from '../ui';
+import {
+  Button,
+  SectionContainer,
+  SectionHeader,
+  SurfaceCard,
+  TagBadge,
+} from '../ui';
 import { PROJECTS, UI_LABELS } from '@/data/portfolio';
 import { useLanguage } from '@/context/language-context';
 import type { Project } from '@/types';
-import { ExternalLink, CheckCircle2, Layers } from 'lucide-react';
+import { ExternalLink, CheckCircle2, Layers, ArrowUpRight } from 'lucide-react';
 
 interface CardProps {
   project: Project;
@@ -37,12 +43,12 @@ function ProjectCard({ project, index, totalCards }: CardProps) {
           scale,
           top: `${index * 24}px`,
         }}
-        className="w-full max-w-6xl rounded-[36px] sm:rounded-[48px] md:rounded-[56px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-5 sm:p-7 md:p-8 flex flex-col justify-between gap-4 sm:gap-6 shadow-2xl relative overflow-hidden"
+        className="w-full max-w-6xl rounded-container border-2 border-text-primary bg-surface-base p-5 sm:p-7 md:p-8 flex flex-col justify-between gap-4 sm:gap-6 shadow-2xl relative overflow-hidden"
       >
         {/* Top Bar: Number, Title, Role, Live Demo & GitHub */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#D7E2EA]/15">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-border-subtle">
           <div className="flex items-center gap-4 sm:gap-6">
-            <span className="font-black text-[clamp(2.2rem,5vw,72px)] text-[#D7E2EA] leading-none select-none">
+            <span className="font-black text-[clamp(2.2rem,5vw,72px)] text-text-primary leading-none select-none">
               {number}
             </span>
             <div className="flex flex-col">
@@ -54,7 +60,7 @@ function ProjectCard({ project, index, totalCards }: CardProps) {
               <h3 className="font-bold uppercase text-lg sm:text-2xl md:text-3xl text-white tracking-tight mt-0.5">
                 {project.title}
               </h3>
-              <p className="text-xs sm:text-sm text-[#D7E2EA]/70 font-light max-w-2xl line-clamp-1 mt-0.5">
+              <p className="text-xs sm:text-sm text-text-muted font-light max-w-2xl line-clamp-1 mt-0.5">
                 {t(project.description)}
               </p>
             </div>
@@ -68,16 +74,19 @@ function ProjectCard({ project, index, totalCards }: CardProps) {
                 rel="noopener noreferrer"
                 aria-label="View source code on GitHub"
                 title={t(UI_LABELS.projects.github)}
-                className="p-2 sm:p-2.5 rounded-full border border-[#D7E2EA]/30 text-[#D7E2EA]/80 hover:text-white hover:border-[#D7E2EA] hover:bg-white/5 transition-colors"
+                className="p-2 sm:p-2.5 rounded-full border border-border-strong text-text-primary/80 hover:text-white hover:border-text-primary hover:bg-white/5 transition-colors cursor-pointer"
               >
                 <ExternalLink className="w-4 h-4" />
               </a>
             )}
             {project.liveDemo && (
-              <LiveProjectButton
+              <Button
+                variant="outline-pill"
                 href={project.liveDemo}
-                label={t(UI_LABELS.projects.liveDemo)}
-              />
+                icon={<ArrowUpRight className="w-4 h-4" />}
+              >
+                {t(UI_LABELS.projects.liveDemo)}
+              </Button>
             )}
           </div>
         </div>
@@ -87,12 +96,12 @@ function ProjectCard({ project, index, totalCards }: CardProps) {
           {/* Left Column (5 cols): Authentic Problem, Solution & Core Features */}
           <div className="lg:col-span-5 flex flex-col gap-3.5 justify-between">
             {/* Problem & Solution Box */}
-            <div className="rounded-2xl sm:rounded-3xl bg-[#141414] border border-[#D7E2EA]/15 p-4 sm:p-5 flex flex-col gap-2.5">
+            <SurfaceCard variant="dark" className="p-4 sm:p-5 flex flex-col gap-2.5">
               <div>
                 <span className="font-mono text-[10px] uppercase tracking-wider text-amber-400/90 font-bold block mb-1">
                   ● {t(UI_LABELS.projects.problem)}
                 </span>
-                <p className="text-xs sm:text-[13px] text-[#D7E2EA]/80 leading-relaxed font-light">
+                <p className="text-xs sm:text-[13px] text-text-primary/80 leading-relaxed font-light">
                   {t(project.problem)}
                 </p>
               </div>
@@ -101,23 +110,23 @@ function ProjectCard({ project, index, totalCards }: CardProps) {
                 <span className="font-mono text-[10px] uppercase tracking-wider text-emerald-400/90 font-bold block mb-1">
                   ● {t(UI_LABELS.projects.solution)}
                 </span>
-                <p className="text-xs sm:text-[13px] text-[#D7E2EA]/80 leading-relaxed font-light">
+                <p className="text-xs sm:text-[13px] text-text-primary/80 leading-relaxed font-light">
                   {t(project.solution)}
                 </p>
               </div>
-            </div>
+            </SurfaceCard>
 
             {/* Core Features List */}
-            <div className="rounded-2xl sm:rounded-3xl bg-[#141414] border border-[#D7E2EA]/15 p-4 sm:p-5 flex-1 flex flex-col justify-between">
+            <SurfaceCard variant="dark" className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
               <div>
-                <span className="font-mono text-[10px] uppercase tracking-wider text-[#D7E2EA]/60 font-semibold block mb-2">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-text-muted font-semibold block mb-2">
                   {t(UI_LABELS.projects.coreFeatures)}
                 </span>
                 <ul className="space-y-1.5">
                   {project.features.map((feature, idx) => (
                     <li
                       key={idx}
-                      className="text-xs sm:text-[13px] text-[#D7E2EA]/90 flex items-start gap-2 leading-snug"
+                      className="text-xs sm:text-[13px] text-text-primary/90 flex items-start gap-2 leading-snug"
                     >
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                       <span>{t(feature)}</span>
@@ -125,13 +134,13 @@ function ProjectCard({ project, index, totalCards }: CardProps) {
                   ))}
                 </ul>
               </div>
-            </div>
+            </SurfaceCard>
           </div>
 
           {/* Right Column (7 cols): Real Mockup Image + Detailed TechStack Breakdown */}
           <div className="lg:col-span-7 flex flex-col gap-3.5 justify-between">
             {/* Screenshot Hero */}
-            <div className="rounded-2xl sm:rounded-3xl overflow-hidden bg-[#181818] border border-[#D7E2EA]/15 relative min-h-[220px] sm:min-h-[260px] md:min-h-[290px] flex-1 group">
+            <div className="rounded-card overflow-hidden bg-surface-card-hover border border-border-subtle relative min-h-[220px] sm:min-h-[260px] md:min-h-[290px] flex-1 group">
               <Image
                 src={project.image}
                 alt={`${project.title} screenshot`}
@@ -140,7 +149,7 @@ function ProjectCard({ project, index, totalCards }: CardProps) {
                 className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02] pointer-events-none select-none"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-[#D7E2EA]">
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-text-primary">
                 <span className="bg-black/60 px-3 py-1 rounded-full backdrop-blur-md border border-white/10">
                   {t(UI_LABELS.projects.idPrefix)} {number}
                 </span>
@@ -151,10 +160,10 @@ function ProjectCard({ project, index, totalCards }: CardProps) {
             </div>
 
             {/* TechStack Breakdown Grid */}
-            <div className="rounded-2xl sm:rounded-3xl bg-[#141414] border border-[#D7E2EA]/15 p-4 sm:p-5">
+            <SurfaceCard variant="dark" className="p-4 sm:p-5">
               <div className="flex items-center gap-1.5 mb-2.5">
-                <Layers className="w-3.5 h-3.5 text-[#D7E2EA]/70" />
-                <span className="font-mono text-[10px] uppercase tracking-wider text-[#D7E2EA]/60 font-semibold">
+                <Layers className="w-3.5 h-3.5 text-text-muted" />
+                <span className="font-mono text-[10px] uppercase tracking-wider text-text-muted font-semibold">
                   {t(UI_LABELS.projects.techStack)}
                 </span>
               </div>
@@ -164,16 +173,16 @@ function ProjectCard({ project, index, totalCards }: CardProps) {
                     key={layer}
                     className="p-2 rounded-xl bg-black/40 border border-white/5 flex flex-col"
                   >
-                    <span className="text-[10px] uppercase text-[#D7E2EA]/50 font-bold">
+                    <span className="text-[10px] uppercase text-text-muted font-bold">
                       {layer}
                     </span>
-                    <span className="text-[#D7E2EA]/90 truncate mt-0.5">
+                    <span className="text-text-primary/90 truncate mt-0.5">
                       {val}
                     </span>
                   </div>
                 ))}
               </div>
-            </div>
+            </SurfaceCard>
           </div>
         </div>
       </motion.div>
@@ -182,22 +191,17 @@ function ProjectCard({ project, index, totalCards }: CardProps) {
 }
 
 export function ProjectsSection() {
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
 
   return (
-    <section id="projects" className="bg-[#0C0C0C] py-24 sm:py-32 select-none relative z-10 px-4 sm:px-6 md:px-10">
-      <div className="max-w-6xl mx-auto mb-16 sm:mb-20 text-center">
-        <FadeIn delay={0} y={30}>
-          <h2 className="hero-heading font-black uppercase text-[clamp(3rem,12vw,160px)] leading-none tracking-tight">
-            {t(UI_LABELS.projects.title)}
-          </h2>
-          <p className="font-mono text-xs sm:text-sm text-[#D7E2EA]/60 uppercase tracking-widest mt-4">
-            {language === 'vi'
-              ? 'Các sản phẩm và hệ thống phần mềm đã xây dựng'
-              : 'Production builds & system design implementations'}
-          </p>
-        </FadeIn>
-      </div>
+    <SectionContainer id="projects" variant="dark" className="py-24 sm:py-32 z-10">
+      <SectionHeader
+        title={t(UI_LABELS.projects.title)}
+        subtitle={t(UI_LABELS.projects.subtitle)}
+        theme="dark"
+        align="center"
+        className="mb-16 sm:mb-20 max-w-6xl mx-auto"
+      />
 
       <div className="relative">
         {PROJECTS.map((project, index) => (
@@ -209,6 +213,6 @@ export function ProjectsSection() {
           />
         ))}
       </div>
-    </section>
+    </SectionContainer>
   );
 }

@@ -29,7 +29,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={kanit.variable} style={{ backgroundColor: '#0C0C0C' }}>
-      <body className="bg-[#0C0C0C] text-[#D7E2EA] font-sans antialiased overflow-x-clip m-0 p-0 selection:bg-white selection:text-black">
+      <body className="bg-surface-base text-text-primary font-sans antialiased overflow-x-clip m-0 p-0 selection:bg-white selection:text-black">
         {children}
       </body>
     </html>
