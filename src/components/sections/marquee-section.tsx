@@ -1,181 +1,153 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-import Image from 'next/image';
 
-interface MarqueeCardData {
-  type: 'image' | 'tech';
+interface MotionCardItem {
+  src: string;
   title: string;
-  subtitle: string;
   tag: string;
-  imageSrc?: string;
-  details?: string[];
 }
 
-const ROW_1_CARDS: MarqueeCardData[] = [
+const ROW_1_ITEMS: MotionCardItem[] = [
   {
-    type: 'image',
-    title: 'CineMOB',
-    subtitle: 'AI-Native Cinema Discovery & Tracker',
-    tag: 'PROJECT 01',
-    imageSrc: '/cinemob.jpg',
+    src: 'https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif',
+    title: 'Space Architecture',
+    tag: '3D GRAPHICS',
   },
   {
-    type: 'tech',
-    title: 'React 19 & Next.js',
-    subtitle: 'Modern Full-Stack Web Development',
-    tag: 'CORE STACK',
-    details: ['Server Actions', 'Optimistic UI', 'Hooks Architecture', 'PWA Support'],
+    src: 'https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif',
+    title: 'CodeNest Core',
+    tag: 'DEV TOOLING',
   },
   {
-    type: 'image',
-    title: 'ShiftPay',
-    subtitle: 'Automated Payroll & VietQR Fintech',
-    tag: 'PROJECT 02',
-    imageSrc: '/shiftpay.jpg',
+    src: 'https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif',
+    title: 'Vex Systems',
+    tag: 'SCALE INFRA',
   },
   {
-    type: 'tech',
-    title: 'Firebase Serverless',
-    subtitle: 'Scalable Cloud Infrastructure',
-    tag: 'BACKEND',
-    details: ['Firestore & RTDB', 'Cloud Functions', 'Google Auth', 'Offline Cache'],
+    src: 'https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif',
+    title: 'Stellar Intelligence',
+    tag: 'AI-NATIVE',
   },
   {
-    type: 'image',
-    title: 'Smurfy Social',
-    subtitle: 'Real-Time Communication Platform',
-    tag: 'PROJECT 03',
-    imageSrc: '/smurfy.jpg',
+    src: 'https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif',
+    title: 'ASME Platform',
+    tag: 'SYSTEM DESIGN',
   },
   {
-    type: 'tech',
-    title: 'AI-Native Integration',
-    subtitle: 'OpenRouter & Smart Suggestions',
-    tag: 'INTELLIGENCE',
-    details: ['LLM Orchestration', 'Contextual Search', 'Prompt Engineering', 'API Gateways'],
+    src: 'https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif',
+    title: 'Transform Pipeline',
+    tag: 'DATA ENGINE',
   },
   {
-    type: 'tech',
-    title: 'VietQR Integration',
-    subtitle: 'Instant Automated Banking QR',
-    tag: 'FINTECH',
-    details: ['Zero-Fee Payments', 'Auto Reference Codes', 'Mobile-First UX', 'Offline Cache'],
+    src: 'https://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif',
+    title: 'Vitara Dynamics',
+    tag: 'MICRO-INTERACTION',
+  },
+  {
+    src: 'https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif',
+    title: 'Terra Topology',
+    tag: '3D COMPUTING',
+  },
+  {
+    src: 'https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif',
+    title: 'SkyElite Cloud',
+    tag: 'SERVERLESS',
+  },
+  {
+    src: 'https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif',
+    title: 'Aethera Core',
+    tag: 'FULL-STACK',
+  },
+  {
+    src: 'https://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif',
+    title: 'DesignPro Studio',
+    tag: 'PRODUCT UX',
   },
 ];
 
-const ROW_2_CARDS: MarqueeCardData[] = [
+const ROW_2_ITEMS: MotionCardItem[] = [
   {
-    type: 'tech',
-    title: 'System Design & UML',
-    subtitle: 'Visual Paradigm & System Architecture',
-    tag: 'ARCHITECTURE',
-    details: ['Class & Sequence Diagrams', 'ERD Database Design', 'Clean Boundaries', 'API Specs'],
+    src: 'https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif',
+    title: 'Stellar Generative',
+    tag: 'LLM ORCHESTRATION',
   },
   {
-    type: 'image',
-    title: 'ShiftPay Dashboard',
-    subtitle: 'Attendance Tracking & Debt Ledger',
-    tag: 'FINTECH UX',
-    imageSrc: '/shiftpay.jpg',
-  },
-  {
-    type: 'tech',
-    title: 'ZegoCloud Realtime',
-    subtitle: 'Low-Latency Video & Audio Calls',
-    tag: 'WEBRTC',
-    details: ['Peer-to-Peer Calling', 'Room Management', 'State Sync', 'Media Controls'],
-  },
-  {
-    type: 'image',
-    title: 'Smurfy Realtime Feed',
-    subtitle: 'Multimedia Chat & Cosine Friends',
-    tag: 'SOCIAL NETWORK',
-    imageSrc: '/smurfy.jpg',
-  },
-  {
-    type: 'tech',
-    title: 'Tailwind CSS & Motion',
-    subtitle: 'High-Impact Design Systems',
+    src: 'https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif',
+    title: 'Interactive Motion',
     tag: 'FRONTEND CRAFT',
-    details: ['Fluid Typography', 'Custom Cubic Bezier', 'Magnet Physics', 'Scroll Stacking'],
   },
   {
-    type: 'image',
-    title: 'CineMOB AI Picks',
-    subtitle: 'TMDB API & Smart Recommendations',
-    tag: 'ENTERTAINMENT',
-    imageSrc: '/cinemob.jpg',
+    src: 'https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif',
+    title: 'Orbit Topology',
+    tag: 'DISTRIBUTED SYSTEMS',
   },
   {
-    type: 'tech',
-    title: 'YODY Fashion JSC',
-    subtitle: 'Intern Product Builder Experience',
-    tag: 'CAREER',
-    details: ['AI-Native Tooling', 'Business Problem Solving', 'Agile Delivery', 'HUIT 3.36 GPA'],
+    src: 'https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif',
+    title: 'Nexora Interface',
+    tag: 'NEXT-GEN UI',
+  },
+  {
+    src: 'https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif',
+    title: 'EVR Workflows',
+    tag: 'REAL-TIME OPS',
+  },
+  {
+    src: 'https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif',
+    title: 'Planet Orbit',
+    tag: 'GRAPHICS ENGINE',
+  },
+  {
+    src: 'https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif',
+    title: 'New Era Digital',
+    tag: 'WEB PLATFORM',
+  },
+  {
+    src: 'https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif',
+    title: 'Fintech Engine',
+    tag: 'FINTECH APIS',
+  },
+  {
+    src: 'https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif',
+    title: 'Luminex Shader',
+    tag: 'CREATIVE TECH',
+  },
+  {
+    src: 'https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif',
+    title: 'Celestia Network',
+    tag: 'PEER ARCHITECTURE',
   },
 ];
 
-// Tripled lists for seamless visual looping
-const TRIPLED_ROW_1 = [...ROW_1_CARDS, ...ROW_1_CARDS, ...ROW_1_CARDS];
-const TRIPLED_ROW_2 = [...ROW_2_CARDS, ...ROW_2_CARDS, ...ROW_2_CARDS];
+const TRIPLED_ROW_1 = [...ROW_1_ITEMS, ...ROW_1_ITEMS, ...ROW_1_ITEMS];
+const TRIPLED_ROW_2 = [...ROW_2_ITEMS, ...ROW_2_ITEMS, ...ROW_2_ITEMS];
 
-function CardItem({ card }: { card: MarqueeCardData }) {
-  if (card.type === 'image' && card.imageSrc) {
-    return (
-      <div className="w-[380px] sm:w-[420px] h-[240px] sm:h-[260px] rounded-2xl overflow-hidden bg-[#181818] border border-[#D7E2EA]/15 shrink-0 relative group">
-        <Image
-          src={card.imageSrc}
-          alt={card.title}
-          fill
-          sizes="(max-width: 640px) 380px, 420px"
-          className="object-cover object-top transition-transform duration-700 group-hover:scale-105 pointer-events-none select-none"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 pointer-events-none" />
-        <div className="absolute top-4 left-4">
-          <span className="px-2.5 py-1 rounded-md bg-white/10 backdrop-blur-md border border-white/10 text-[10px] font-mono uppercase tracking-wider text-[#D7E2EA]">
-            {card.tag}
-          </span>
-        </div>
-        <div className="absolute bottom-4 left-4 right-4">
-          <h4 className="font-bold text-lg sm:text-xl text-white uppercase tracking-tight">
-            {card.title}
-          </h4>
-          <p className="text-xs text-[#D7E2EA]/70 mt-0.5 line-clamp-1">
-            {card.subtitle}
-          </p>
-        </div>
-      </div>
-    );
-  }
-
+function MotionCard({ item }: { item: MotionCardItem }) {
   return (
-    <div className="w-[380px] sm:w-[420px] h-[240px] sm:h-[260px] rounded-2xl bg-[#141414] border border-[#D7E2EA]/15 p-6 flex flex-col justify-between shrink-0 hover:border-[#D7E2EA]/40 transition-colors">
-      <div>
-        <div className="flex items-center justify-between mb-3">
-          <span className="px-2.5 py-1 rounded-md bg-[#222222] border border-white/5 text-[10px] font-mono uppercase tracking-wider text-[#D7E2EA]/70">
-            {card.tag}
-          </span>
-          <span className="text-emerald-400 text-xs font-mono">● LIVE SPEC</span>
-        </div>
-        <h4 className="font-bold text-lg sm:text-xl text-white uppercase tracking-tight">
-          {card.title}
-        </h4>
-        <p className="text-xs text-[#D7E2EA]/60 mt-1">{card.subtitle}</p>
+    <div className="w-[380px] sm:w-[420px] h-[240px] sm:h-[270px] min-w-[380px] sm:min-w-[420px] rounded-2xl overflow-hidden bg-[#181818] border border-white/10 shrink-0 relative group">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={item.src}
+        alt={item.title}
+        loading="lazy"
+        decoding="async"
+        className="w-full h-full object-cover rounded-2xl pointer-events-none select-none transition-transform duration-700 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+
+      {/* Top-left category tag */}
+      <div className="absolute top-4 left-4">
+        <span className="px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-mono uppercase tracking-wider text-[#D7E2EA]">
+          {item.tag}
+        </span>
       </div>
 
-      {card.details && (
-        <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/5">
-          {card.details.map((detail, idx) => (
-            <span
-              key={idx}
-              className="text-[11px] font-mono text-[#D7E2EA]/80 px-2 py-0.5 rounded bg-black/40 border border-white/5"
-            >
-              {detail}
-            </span>
-          ))}
-        </div>
-      )}
+      {/* Bottom title */}
+      <div className="absolute bottom-4 left-4 right-4">
+        <h4 className="font-bold text-base sm:text-lg text-white uppercase tracking-tight">
+          {item.title}
+        </h4>
+      </div>
     </div>
   );
 }
@@ -227,8 +199,8 @@ export function MarqueeSection() {
             willChange: 'transform',
           }}
         >
-          {TRIPLED_ROW_1.map((card, index) => (
-            <CardItem key={`row1-${index}`} card={card} />
+          {TRIPLED_ROW_1.map((item, index) => (
+            <MotionCard key={`row1-${index}`} item={item} />
           ))}
         </div>
 
@@ -240,8 +212,8 @@ export function MarqueeSection() {
             willChange: 'transform',
           }}
         >
-          {TRIPLED_ROW_2.map((card, index) => (
-            <CardItem key={`row2-${index}`} card={card} />
+          {TRIPLED_ROW_2.map((item, index) => (
+            <MotionCard key={`row2-${index}`} item={item} />
           ))}
         </div>
       </div>
