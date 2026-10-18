@@ -62,8 +62,8 @@ export function HeroSection({ onContactClick }: HeroSectionProps) {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png"
-              alt="3D Portrait Asset"
+              src="/minh-3d-avatar.png"
+              alt="Portrait of Minh"
               className="w-[280px] sm:w-[360px] md:w-[440px] lg:w-[520px] object-contain drop-shadow-2xl pointer-events-none select-none"
               loading="eager"
             />
