@@ -34,7 +34,7 @@ export function AnimatedText({ text, className = '' }: AnimatedTextProps) {
   const totalChars = characters.length;
 
   return (
-    <p ref={elementRef} className={className}>
+    <p ref={elementRef} className={`relative ${className}`}>
       {characters.map((char, index) => {
         const start = index / totalChars;
         const end = start + 1 / totalChars;

@@ -27,6 +27,10 @@
     padding: 0;
   }
 
+  html {
+    position: relative;
+  }
+
   html, body, #root {
     background-color: #0C0C0C;
     color: #D7E2EA;
